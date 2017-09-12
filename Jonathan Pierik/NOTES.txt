@@ -1,0 +1,18 @@
+Mobile app
+Multiple restaurants
+android and IOS app
+One ide visual studio
+users will enter guest amount and time 
+feedback will be wait times any 
+
+
+
+Web app
+C#
+Structered Qeues 
+meta refresh to automatically update the content on the webpage
+Customer priorities
+start off with one floor plan later on develop abilities to add custom floor plans
+vistual studio 
+has sql built right into it 
+

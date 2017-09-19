@@ -24,14 +24,35 @@ namespace Project16_Mobile.Droid
 
 			// Get our button from the layout resource,
 			// and attach an event to it
-			Button button = FindViewById<Button> (Resource.Id.myButton);
+			Button btnLogin = FindViewById<Button> (Resource.Id.btnLogin);
+            Button btnRegister = FindViewById<Button>(Resource.Id.btnRegister);
+            EditText txtUsername = FindViewById<EditText>(Resource.Id.txtUsername);
+            EditText txtPassword = FindViewById<EditText>(Resource.Id.txtPassword);
+            ProgressBar prgStatus = FindViewById<ProgressBar>(Resource.Id.prgStatus);
             SQLLibrary library = SQLLibrary.getInstance();
-			button.Click += async delegate {
-                JsonValue json = await library.TestConnection ();
-                json.ToString();
+            btnLogin.Click += delegate {
+                string output = library.TestConnection(txtUsername.Text,txtPassword.Text,"LOGIN");
+                if (output.Contains("Success")){
+                    prgStatus.SetBackgroundColor(Android.Graphics.Color.Green);
+                }
+                else
+                {
+                    prgStatus.SetBackgroundColor(Android.Graphics.Color.Red);
+                }
+                
             };
-          
-		}
+            btnRegister.Click += delegate {
+                string output = library.TestConnection(txtUsername.Text, txtPassword.Text, "REGISTER");
+                if (output.Contains("Success")){
+                    prgStatus.SetBackgroundColor(Android.Graphics.Color.Green);
+                }
+                else
+                {
+                    prgStatus.SetBackgroundColor(Android.Graphics.Color.Red);
+                }
+            };
+
+        }
 	}
 }
 

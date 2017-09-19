@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs
+*.ide
+*.ide
+*.cache
+Project16_Mobile/Project16_Mobile/Project16_Mobile.Android/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+*.cache

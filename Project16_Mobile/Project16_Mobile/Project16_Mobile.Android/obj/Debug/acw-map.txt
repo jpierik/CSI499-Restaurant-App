@@ -1,4 +1,0 @@
-Project16_Mobile.Droid.MainActivity, Project16_Mobile.Android;md5cf9ca2d57a742fca763352af366af0dc.MainActivity
-Project16_Mobile.Droid.MainActivity, Project16_Mobile.Android, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5cf9ca2d57a742fca763352af366af0dc.MainActivity
-Project16_Mobile.Droid.MainActivity;md5cf9ca2d57a742fca763352af366af0dc.MainActivity
-project16_mobile.droid.MainActivity;md5cf9ca2d57a742fca763352af366af0dc.MainActivity

@@ -26,25 +26,18 @@ namespace Project16_Mobile
 
         }
         //POST api/SQL?username={username}&password={password}
-        public async Task<JsonValue> TestConnection()
+        public string TestConnection(string username, string password, string proccess)
         {
-            string url = "http://sqlloginapi.azurewebsites.net/api/SQL?username=" + "test1" + "&password=" + "test1" + "";
+            string url = "http://sqlloginapi.azurewebsites.net/api/SQL?username=" + username + "&password=" + password + "&process=" + proccess;
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
             request.ContentType = "application/json";
-            request.Method = "PUT";
-            using (WebResponse response = await request.GetResponseAsync())
+            request.Method = "GET";
+            string responseString;
+            using (WebResponse response = request.GetResponse())
             {
-                using (Stream stream = response.GetResponseStream())
-                {
-                    // Use this stream to build a JSON document object:
-                    JsonValue jsonDoc = await Task.Run(() => JsonObject.Load(stream));
-                    Console.Out.WriteLine("Response: {0}", jsonDoc.ToString
-                   ());
-                    // Return the JSON document:
-                    return jsonDoc;
-                }
-            
+                responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();               
             }
+            return responseString;
 
         }
         /*

@@ -22,6 +22,14 @@ namespace Project16_Mobile.Droid
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
+
+            /*
+                       Intent intent = new Intent(this, Settings.class);
+                       startActivity(intent);
+            */
+         
+            
+
 			// Get our button from the layout resource,
 			// and attach an event to it
 			Button btnLogin = FindViewById<Button> (Resource.Id.btnLogin);

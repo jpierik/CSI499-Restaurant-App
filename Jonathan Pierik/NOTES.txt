@@ -18,3 +18,17 @@ has sql built right into it
 
 This is a test again....
 
+For Sprint 2
+9/19/17
+
+1) create all user stories
+	Template:
+	-Scenario
+	-Context/Setting
+	-Event 
+	-Outcome
+
+2) create functional UI
+
+3) Create all QA tests for user authentication system
+

@@ -3,40 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "InLineWebApp", "..\..\WebSites\InLineWebApp\", "{1A48DFB0-33BB-41B9-9C5A-34B57596E957}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_51518"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\WebSites\InLineWebApp\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51518\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_51518"
-		Release.AspNetCompiler.PhysicalPath = "..\..\WebSites\InLineWebApp\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51518\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "51518"
-		SlnRelativePath = "..\..\WebSites\InLineWebApp\"
-		DefaultWebSiteLanguage = "Visual C#"
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InLineWebApp", "InLineWebApp\InLineWebApp.csproj", "{A1919224-4C59-433F-80EC-A7113B3716B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InLineWebApp.Tests", "InLineWebApp.Tests\InLineWebApp.Tests.csproj", "{BDA5120E-B2BE-41A7-A20A-0182A047DDBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1A48DFB0-33BB-41B9-9C5A-34B57596E957}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A48DFB0-33BB-41B9-9C5A-34B57596E957}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1919224-4C59-433F-80EC-A7113B3716B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1919224-4C59-433F-80EC-A7113B3716B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1919224-4C59-433F-80EC-A7113B3716B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1919224-4C59-433F-80EC-A7113B3716B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDA5120E-B2BE-41A7-A20A-0182A047DDBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDA5120E-B2BE-41A7-A20A-0182A047DDBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDA5120E-B2BE-41A7-A20A-0182A047DDBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDA5120E-B2BE-41A7-A20A-0182A047DDBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {F3053E1F-B8DE-41C1-817B-234C860CF685}
+		SolutionGuid = {72C4901F-EC93-434F-8C67-61DC9EE7898C}
 	EndGlobalSection
 EndGlobal

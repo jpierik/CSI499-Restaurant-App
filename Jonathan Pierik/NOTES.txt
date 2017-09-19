@@ -17,6 +17,7 @@ vistual studio
 has sql built right into it 
 Setup everything on azure for databases and servers	
 
+<<<<<<< HEAD
 We need to setup backend server for to host and run evrything 
 
 need to do research in to QA testing for C#
@@ -28,3 +29,21 @@ Risks/Challenges
 -if we go with c# most of us need to learn the language
 -Getting the mobile app and desktop/web app to work together fluently 
 -
+=======
+This is a test again....
+
+For Sprint 2
+9/19/17
+
+1) create all user stories
+	Template:
+	-Scenario
+	-Context/Setting
+	-Event 
+	-Outcome
+
+2) create functional UI
+
+3) Create all QA tests for user authentication system
+
+>>>>>>> origin/Jon's-Branch

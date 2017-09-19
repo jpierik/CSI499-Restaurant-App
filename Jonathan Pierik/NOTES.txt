@@ -15,4 +15,16 @@ Customer priorities
 start off with one floor plan later on develop abilities to add custom floor plans
 vistual studio 
 has sql built right into it 
+Setup everything on azure for databases and servers	
 
+We need to setup backend server for to host and run evrything 
+
+need to do research in to QA testing for C#
+C# programming methods 
+
+
+
+Risks/Challenges
+-if we go with c# most of us need to learn the language
+-Getting the mobile app and desktop/web app to work together fluently 
+-

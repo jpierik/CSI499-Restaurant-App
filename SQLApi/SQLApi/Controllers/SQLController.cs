@@ -5,43 +5,54 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using SQLApi.Models;
+using System.Data.Sql;
+using System.Data.SqlClient;
 
 namespace SQLApi.Controllers
 {
     public class SQLController : ApiController
     {
 
-        LoginEntities csi4999 = new LoginEntities();
-
-
-        [HttpPost]
-        [ActionName("PROJECT_16_REGISTER")]
-        
-        public HttpResponseMessage Project_16_Register(string username, string password)
-        {
-            
-            Login login = new Login();
-            login.Username = username;
-            login.Password = password;
-            csi4999.Logins.Add(login);
-            csi4999.SaveChanges();
-            return Request.CreateResponse(HttpStatusCode.Accepted, "Succefully Created");
-            
-        }
+        LoginEntities csi4999 = new LoginEntities();              
 
         [HttpGet]
         [ActionName("PROJECT_16_LOGIN")]
-        public HttpResponseMessage Project_16_Login(string username, string password)
+        public HttpResponseMessage Project_16_Login(string username, string password, string process)
         {
-
-            Login user = csi4999.Logins.Where(x => x.Username == username && x.Password == password).FirstOrDefault();
-            if(user == null)
+            if (process == "LOGIN")
             {
-                return Request.CreateResponse(HttpStatusCode.Unauthorized, "Please Enter a valid Username and Password");
+                Login user = csi4999.Logins.Where(x => x.Username == username && x.Password == password).FirstOrDefault();
+                if (user == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.Unauthorized, "Please Enter a valid Username and Password");
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.Accepted, user.Username.ToString() + " " + user.Password.ToString());
+                }
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.Accepted, user.Username.ToString() + " " +  user.Password.ToString());
+                try
+                {
+                    SqlConnection sqlConnection = new SqlConnection();
+                    sqlConnection.ConnectionString = "Server = tcp:csi4999.database.windows.net,1433;" +
+                                                     "Initial Catalog = CSI4999;" +
+                                                     "Persist Security Info = False;" +
+                                                     "User ID = csi4999;" +
+                                                     "Password = Temp1234;" +
+                                                     "MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";
+                    sqlConnection.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Logins (Username, Password) VALUES (@val1, @val2);", sqlConnection);
+                    cmd.Parameters.AddWithValue("@val1", username);
+                    cmd.Parameters.AddWithValue("@val2", password);
+                    cmd.ExecuteNonQuery();
+                    return Request.CreateResponse(HttpStatusCode.Accepted, "Successfully Created");
+                }
+                catch (Exception ex)
+                {
+                    return Request.CreateResponse(HttpStatusCode.Unauthorized, "error submittings");
+                }
             }
         }
 

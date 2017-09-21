@@ -12,15 +12,16 @@ using Android.Widget;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "Activity1")]
-    public class Activity1 : Activity
+    [Activity(Label = "RegisterActivity")]
+    public class RegisterActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             // Create your application here
-           
+            SetContentView(Resource.Layout.activity_register);
+
         }
     }
 }

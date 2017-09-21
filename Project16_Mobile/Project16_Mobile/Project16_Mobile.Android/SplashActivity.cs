@@ -12,15 +12,15 @@ using Android.Widget;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "Activity1")]
-    public class Activity1 : Activity
+    [Activity(Label = "SplashActivity")]
+    public class SplashActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+            
             // Create your application here
-           
+         
         }
     }
 }

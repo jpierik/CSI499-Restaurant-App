@@ -10,8 +10,8 @@ using System.Json;
 
 namespace Project16_Mobile.Droid
 {
-	[Activity (Label = "Project16_Mobile.Android", MainLauncher = true, Icon = "@drawable/icon")]
-	public class MainActivity : Activity
+	[Activity (Label = "Project16_Mobile.Android", MainLauncher = true, Icon = "@drawable/logo")]
+	public class MainActivity : AppCompatActivity
 	{
 		int count = 1;
 

@@ -1,0 +1,33 @@
+Sprint 3 User Stories for the web application
+By: Jonathan Pierik
+
+1) Type of user: Admin
+   Scenario: Post successfully logging into the web site application
+   Actions: The user must be able to interchange between different screens, such as 
+   the settings, home, manage restauarant etc.
+2) Type of user: Admin
+   Scenario: Post successfully logging into the web site application
+   Action: The user must be able to adjust user account informations such as, 
+   change password, change personal info such as address etc. 
+3) Type of user: Admin
+   Scenerio: user must be on the account settings/information page
+   Action: The user must be able to insert general information regarding his/her 
+   restaurant. Such as the number of occupancy, tables, location, name, etc
+4) Type of user: General
+   Scenerio: Post successfully logging into the web site application
+   Action: User must be able to navigate the website with items only pertaining to
+   him/her. Therfore a general user such as this person should never see and restaurant 
+   managment related information
+5) Type of user: Admin
+   Scenario: Post successfully logging into the web site application
+   Action: The user must be able to adjust user account informations such as, 
+   change password, change personal info such as address etc.
+6) Type of user:
+   Scenerio:
+   Action:
+7) Type of user:
+   Scenerio:
+   Action:
+8) Type of user:
+   Scenerio:
+   Action:

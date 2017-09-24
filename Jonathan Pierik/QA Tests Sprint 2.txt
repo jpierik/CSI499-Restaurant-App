@@ -1,0 +1,36 @@
+
+Mobile:
+1)Test with correct username and password:N/A
+2)Test with inncorrect username or password:N/A 
+3)Test with correct username and empty password:N/A
+4)Test with empty username and correct password:N/A
+5)Verify for correct error messages:N/A
+6)Verify the back button is not able to push you to your logged in page 
+just after you logout from a specific account:N/A
+7)Test a page URL without login to application:N/A
+8)Verify the session timeout:N/A
+9)Verify ID in URL while processing your request:N/A
+10)Verify deletion of ID while browsing:N/A
+11)Try to login when cookies are disabeled:N/A
+12)Check SQL injection:N/A
+13)Verify account lockout:N/A
+14)Verify simultaneous login to application on a different browser:N/A
+15)Try some hit and trial username and password:N/A
+
+Web:
+1)Test with correct username and password:N/A 
+2)Test with inncorrect username or password:N/A
+3)Test with correct username and empty password:N/A
+4)Test with empty username and correct password:N/A
+5)Verify for correct error messages:N/A
+6)Verify the back button is not able to push you to your logged in page 
+just after you logout from a specific account:N/A
+7)Test a page URL without login to application:N/A
+8)Verify the session timeout:N/A
+9)Verify ID in URL while processing your request:N/A
+10)Verify deletion of ID while browsing:N/A
+11)Try to login when cookies are disabeled:N/A
+12)Check SQL injection:N/A
+13)Verify account lockout:N/A
+14)Verify simultaneous login to application on a different browser:N/A
+15)Try some hit and trial username and password:N/A

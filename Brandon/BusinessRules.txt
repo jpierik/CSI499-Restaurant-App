@@ -2,7 +2,7 @@ A restaurant has only one layout.
 A layout can be used at one or many restaurants.
 A layout contains many tables
 A table belongs to only one layout.
-A current status has on or many tables
+A current status has one or many tables
 A table has only one current status.
-A history record has only one table.
+A history record has one or many tables.
 A table has 0 to many history records.

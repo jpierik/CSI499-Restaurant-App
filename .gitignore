@@ -5,3 +5,4 @@
 /SQLApi/packages/Microsoft.Net.Compilers.2.1.0/tools/Microsoft.Build.Tasks.CodeAnalysis.dll
 *.ide
 Project16_Mobile/.vs/Project16_Mobile/v15/.suo
+/Project16_Mobile/Project16_Mobile/Project16_Mobile.Android

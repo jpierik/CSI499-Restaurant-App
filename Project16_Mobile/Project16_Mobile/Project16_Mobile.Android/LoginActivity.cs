@@ -73,18 +73,25 @@ namespace Project16_Mobile.Droid
 
             string email = txtEmail.Text;
             string password = txtPassword.Text;
-
+            SQLLibrary library = SQLLibrary.getInstance();
             Handler h = new Handler();
             Action myAction = () =>
             {
                 // your code that you want to delay here
-                onLoginSuccess();
-                // onLoginFailed();
+                string output = library.TestConnection(email, password, "LOGIN");
+                if (output.Contains("Success"))
+                {
+                    onLoginSuccess();
+                }
+                else
+                {
+                    onLoginFailed();
+                }
                 progressDialog.Dismiss();
 
             };
 
-            h.PostDelayed(myAction, 1000);
+            h.PostDelayed(myAction, 3000);
 
 
         }

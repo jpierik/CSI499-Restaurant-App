@@ -2,11 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs
+/SQLApi/packages/Microsoft.Net.Compilers.2.1.0/tools/Microsoft.Build.Tasks.CodeAnalysis.dll
 *.ide
-*.ide
-*.cache
-Project16_Mobile/Project16_Mobile/Project16_Mobile.Android/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
-*.cache
-*.ide
-Project16_Mobile/.vs/Project16_Mobile/v15/sqlite3/storage.ide
+Project16_Mobile/.vs/Project16_Mobile/v15/.suo

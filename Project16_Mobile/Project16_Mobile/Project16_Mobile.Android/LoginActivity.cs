@@ -10,15 +10,17 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Java.Lang;
+using Xamarin;
 using Android.Util;
+using Android.Support.V7.App;
 
 namespace Project16_Mobile.Droid
 {
 
 
 
-    [Activity(Label = "LoginActivity")]
-    public class LoginActivity : Activity
+    [Activity(Label = "LoginActivity", Theme = "@style/Theme.AppCompat.Light")]
+    public class LoginActivity : AppCompatActivity
     {
 
         Button btnLogin;
@@ -29,7 +31,7 @@ namespace Project16_Mobile.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+          
             // Create your application here
             SetContentView(Resource.Layout.activity_login);
             txtEmail = (EditText)FindViewById(Resource.Id.txtUsername);
@@ -37,7 +39,7 @@ namespace Project16_Mobile.Droid
             btnLogin = (Button)FindViewById(Resource.Id.btnLogin);
             btnLogin.Click += delegate
             {
-                login();
+                login(this);
             };
             
             lnkSignup = (TextView)FindViewById(Resource.Id.lnkSignup);
@@ -51,14 +53,14 @@ namespace Project16_Mobile.Droid
         public override void OnBackPressed()
         {
             base.OnBackPressed();
-
-
+            MoveTaskToBack(true);
+          
         }
-        
-        
 
-    
-        public void login()
+
+
+
+        public void login(Context context)
         {
             Console.WriteLine("Login Begin...");
             if (!validate())
@@ -67,8 +69,9 @@ namespace Project16_Mobile.Droid
                 return;
             }
             btnLogin.Enabled = false;
-            ProgressDialog progressDialog = new ProgressDialog(Application.Context);
+            ProgressDialog progressDialog = new ProgressDialog(context);
             progressDialog.SetMessage("Authenticating...");
+            progressDialog.Indeterminate = true;
             progressDialog.Show();
 
             string email = txtEmail.Text;
@@ -111,7 +114,7 @@ namespace Project16_Mobile.Droid
             string email = txtEmail.Text;
             string password = txtPassword.Text;
 
-            if(string.IsNullOrEmpty(email) || Patterns.EmailAddress.Matcher(email).Matches())
+            if(string.IsNullOrEmpty(email) || !Patterns.EmailAddress.Matcher(email).Matches())
             {
                 txtEmail.Error = "Enter a valid email address";
                 valid = false;

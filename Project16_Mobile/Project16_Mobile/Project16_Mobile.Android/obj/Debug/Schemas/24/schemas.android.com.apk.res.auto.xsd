@@ -2,7 +2,7 @@
 <xs:schema xmlns:app="http://schemas.android.com/apk/res-auto" attributeFormDefault="qualified" targetNamespace="http://schemas.android.com/apk/res-auto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v24</xs:documentation>
-    <xs:documentation>9/27/2017 10:42:35 PM</xs:documentation>
+    <xs:documentation>9/28/2017 12:18:58 AM</xs:documentation>
   </xs:annotation>
   <xs:attribute name="allowStacking">
     <xs:annotation>
@@ -2853,6 +2853,9 @@
             <xs:enumeration value="@color/bright_foreground_material_light" />
             <xs:enumeration value="@color/button_material_dark" />
             <xs:enumeration value="@color/button_material_light" />
+            <xs:enumeration value="@color/colorAccent" />
+            <xs:enumeration value="@color/colorPrimary" />
+            <xs:enumeration value="@color/colorPrimaryDark" />
             <xs:enumeration value="@color/design_bottom_navigation_shadow_color" />
             <xs:enumeration value="@color/design_error" />
             <xs:enumeration value="@color/design_fab_shadow_end_color" />
@@ -7730,6 +7733,9 @@
             <xs:enumeration value="@color/bright_foreground_material_light" />
             <xs:enumeration value="@color/button_material_dark" />
             <xs:enumeration value="@color/button_material_light" />
+            <xs:enumeration value="@color/colorAccent" />
+            <xs:enumeration value="@color/colorPrimary" />
+            <xs:enumeration value="@color/colorPrimaryDark" />
             <xs:enumeration value="@color/design_bottom_navigation_shadow_color" />
             <xs:enumeration value="@color/design_error" />
             <xs:enumeration value="@color/design_fab_shadow_end_color" />
@@ -8583,6 +8589,9 @@
             <xs:enumeration value="@color/bright_foreground_material_light" />
             <xs:enumeration value="@color/button_material_dark" />
             <xs:enumeration value="@color/button_material_light" />
+            <xs:enumeration value="@color/colorAccent" />
+            <xs:enumeration value="@color/colorPrimary" />
+            <xs:enumeration value="@color/colorPrimaryDark" />
             <xs:enumeration value="@color/design_bottom_navigation_shadow_color" />
             <xs:enumeration value="@color/design_error" />
             <xs:enumeration value="@color/design_fab_shadow_end_color" />
@@ -9109,6 +9118,9 @@
             <xs:enumeration value="@color/bright_foreground_material_light" />
             <xs:enumeration value="@color/button_material_dark" />
             <xs:enumeration value="@color/button_material_light" />
+            <xs:enumeration value="@color/colorAccent" />
+            <xs:enumeration value="@color/colorPrimary" />
+            <xs:enumeration value="@color/colorPrimaryDark" />
             <xs:enumeration value="@color/design_bottom_navigation_shadow_color" />
             <xs:enumeration value="@color/design_error" />
             <xs:enumeration value="@color/design_fab_shadow_end_color" />
@@ -12111,6 +12123,9 @@
             <xs:enumeration value="@color/bright_foreground_material_light" />
             <xs:enumeration value="@color/button_material_dark" />
             <xs:enumeration value="@color/button_material_light" />
+            <xs:enumeration value="@color/colorAccent" />
+            <xs:enumeration value="@color/colorPrimary" />
+            <xs:enumeration value="@color/colorPrimaryDark" />
             <xs:enumeration value="@color/design_bottom_navigation_shadow_color" />
             <xs:enumeration value="@color/design_error" />
             <xs:enumeration value="@color/design_fab_shadow_end_color" />
@@ -13301,6 +13316,9 @@
             <xs:enumeration value="@color/bright_foreground_material_light" />
             <xs:enumeration value="@color/button_material_dark" />
             <xs:enumeration value="@color/button_material_light" />
+            <xs:enumeration value="@color/colorAccent" />
+            <xs:enumeration value="@color/colorPrimary" />
+            <xs:enumeration value="@color/colorPrimaryDark" />
             <xs:enumeration value="@color/design_bottom_navigation_shadow_color" />
             <xs:enumeration value="@color/design_error" />
             <xs:enumeration value="@color/design_fab_shadow_end_color" />
@@ -14892,6 +14910,9 @@
             <xs:enumeration value="@color/bright_foreground_material_light" />
             <xs:enumeration value="@color/button_material_dark" />
             <xs:enumeration value="@color/button_material_light" />
+            <xs:enumeration value="@color/colorAccent" />
+            <xs:enumeration value="@color/colorPrimary" />
+            <xs:enumeration value="@color/colorPrimaryDark" />
             <xs:enumeration value="@color/design_bottom_navigation_shadow_color" />
             <xs:enumeration value="@color/design_error" />
             <xs:enumeration value="@color/design_fab_shadow_end_color" />
@@ -15840,6 +15861,9 @@
             <xs:enumeration value="@color/bright_foreground_material_light" />
             <xs:enumeration value="@color/button_material_dark" />
             <xs:enumeration value="@color/button_material_light" />
+            <xs:enumeration value="@color/colorAccent" />
+            <xs:enumeration value="@color/colorPrimary" />
+            <xs:enumeration value="@color/colorPrimaryDark" />
             <xs:enumeration value="@color/design_bottom_navigation_shadow_color" />
             <xs:enumeration value="@color/design_error" />
             <xs:enumeration value="@color/design_fab_shadow_end_color" />
@@ -17598,6 +17622,9 @@
             <xs:enumeration value="@color/bright_foreground_material_light" />
             <xs:enumeration value="@color/button_material_dark" />
             <xs:enumeration value="@color/button_material_light" />
+            <xs:enumeration value="@color/colorAccent" />
+            <xs:enumeration value="@color/colorPrimary" />
+            <xs:enumeration value="@color/colorPrimaryDark" />
             <xs:enumeration value="@color/design_bottom_navigation_shadow_color" />
             <xs:enumeration value="@color/design_error" />
             <xs:enumeration value="@color/design_fab_shadow_end_color" />
@@ -19231,6 +19258,9 @@
             <xs:enumeration value="@color/bright_foreground_material_light" />
             <xs:enumeration value="@color/button_material_dark" />
             <xs:enumeration value="@color/button_material_light" />
+            <xs:enumeration value="@color/colorAccent" />
+            <xs:enumeration value="@color/colorPrimary" />
+            <xs:enumeration value="@color/colorPrimaryDark" />
             <xs:enumeration value="@color/design_bottom_navigation_shadow_color" />
             <xs:enumeration value="@color/design_error" />
             <xs:enumeration value="@color/design_fab_shadow_end_color" />
@@ -19757,6 +19787,9 @@
             <xs:enumeration value="@color/bright_foreground_material_light" />
             <xs:enumeration value="@color/button_material_dark" />
             <xs:enumeration value="@color/button_material_light" />
+            <xs:enumeration value="@color/colorAccent" />
+            <xs:enumeration value="@color/colorPrimary" />
+            <xs:enumeration value="@color/colorPrimaryDark" />
             <xs:enumeration value="@color/design_bottom_navigation_shadow_color" />
             <xs:enumeration value="@color/design_error" />
             <xs:enumeration value="@color/design_fab_shadow_end_color" />
@@ -20122,6 +20155,9 @@
             <xs:enumeration value="@color/bright_foreground_material_light" />
             <xs:enumeration value="@color/button_material_dark" />
             <xs:enumeration value="@color/button_material_light" />
+            <xs:enumeration value="@color/colorAccent" />
+            <xs:enumeration value="@color/colorPrimary" />
+            <xs:enumeration value="@color/colorPrimaryDark" />
             <xs:enumeration value="@color/design_bottom_navigation_shadow_color" />
             <xs:enumeration value="@color/design_error" />
             <xs:enumeration value="@color/design_fab_shadow_end_color" />
@@ -21798,6 +21834,9 @@
             <xs:enumeration value="@color/bright_foreground_material_light" />
             <xs:enumeration value="@color/button_material_dark" />
             <xs:enumeration value="@color/button_material_light" />
+            <xs:enumeration value="@color/colorAccent" />
+            <xs:enumeration value="@color/colorPrimary" />
+            <xs:enumeration value="@color/colorPrimaryDark" />
             <xs:enumeration value="@color/design_bottom_navigation_shadow_color" />
             <xs:enumeration value="@color/design_error" />
             <xs:enumeration value="@color/design_fab_shadow_end_color" />
@@ -22664,6 +22703,9 @@
             <xs:enumeration value="@color/bright_foreground_material_light" />
             <xs:enumeration value="@color/button_material_dark" />
             <xs:enumeration value="@color/button_material_light" />
+            <xs:enumeration value="@color/colorAccent" />
+            <xs:enumeration value="@color/colorPrimary" />
+            <xs:enumeration value="@color/colorPrimaryDark" />
             <xs:enumeration value="@color/design_bottom_navigation_shadow_color" />
             <xs:enumeration value="@color/design_error" />
             <xs:enumeration value="@color/design_fab_shadow_end_color" />

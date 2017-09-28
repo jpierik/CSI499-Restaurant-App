@@ -9,11 +9,12 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Support.V7.App;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "RegisterActivity")]
-    public class RegisterActivity : Activity
+    [Activity(Label = "RegisterActivity",Theme = "@style/Theme.AppCompat.Light")]
+    public class RegisterActivity : AppCompatActivity
     {
         Button btnSignup;
         TextView lnkLogin;
@@ -32,7 +33,7 @@ namespace Project16_Mobile.Droid
             btnSignup = (Button)FindViewById(Resource.Id.btnSignup);
             btnSignup.Click += delegate
             {
-
+                signup(this);
             };
             lnkLogin = (TextView)FindViewById(Resource.Id.lnkLogin);
             lnkLogin.Click += delegate
@@ -41,7 +42,7 @@ namespace Project16_Mobile.Droid
             };
 
         }
-        public void signup()
+        public void signup(Context context)
         {
             Console.WriteLine("Signup Started...");
 
@@ -50,8 +51,9 @@ namespace Project16_Mobile.Droid
                 return;
             }
             btnSignup.Enabled = false;
-            ProgressDialog progressDialog = new ProgressDialog(Application.Context);
+            ProgressDialog progressDialog = new ProgressDialog(context);
             progressDialog.SetMessage("Creating Account...");
+            progressDialog.Indeterminate = true;
             progressDialog.Show();
 
             string name = txtName.Text;
@@ -63,7 +65,7 @@ namespace Project16_Mobile.Droid
             Action myAction = () =>
             {
                 // your code that you want to delay here
-                string output = library.TestConnection(email, password, "LOGIN");
+                string output = library.TestConnection(email, password, "REGISTER");
                 if (output.Contains("Success"))
                 {
                     onSignupSuccess();

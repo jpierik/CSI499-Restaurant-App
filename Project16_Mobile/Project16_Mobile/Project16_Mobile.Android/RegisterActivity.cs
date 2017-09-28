@@ -32,7 +32,7 @@ namespace Project16_Mobile.Droid
             btnSignup = (Button)FindViewById(Resource.Id.btnSignup);
             btnSignup.Click += delegate
             {
-                
+
             };
             lnkLogin = (TextView)FindViewById(Resource.Id.lnkLogin);
             lnkLogin.Click += delegate
@@ -45,7 +45,7 @@ namespace Project16_Mobile.Droid
         {
             Console.WriteLine("Signup Started...");
 
-            if (!validate(){
+            if (!validate()) {
                 onSignupFailed();
                 return;
             }
@@ -92,7 +92,39 @@ namespace Project16_Mobile.Droid
         }
         public bool validate()
         {
+            bool valid = true;
 
+            string name = txtName.Text;
+            string email = txtEmail.Text;
+            string password = txtPassword.Text;
+
+            if (string.IsNullOrEmpty(name) || name.Length < 3)
+            {
+                txtName.Error = "At least 3 characters";
+                valid = false;
+            }
+            else
+            {
+                txtName.Error = null;
+            }
+            if (string.IsNullOrEmpty(email) || !Android.Util.Patterns.EmailAddress.Matcher(email).Matches()){
+                txtEmail.Error = "Enter a vaild email address";
+                valid = false;
+            }
+            else
+            {
+                txtEmail.Error = null;
+            }
+            if(string.IsNullOrEmpty(password) || password.Length < 4 || password.Length > 10)
+            {
+                txtPassword.Error = "Between 4 and 10 alphanumeric characters";
+                valid = false;
+            }
+            else
+            {
+                txtPassword.Error = null;
+            }
+            return valid;
         }
     }
 }

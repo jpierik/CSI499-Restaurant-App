@@ -1,0 +1,5 @@
+As a user, I want to be able to view the main screen after I log in so I can use the features of the app
+
+As a user, I want to be able search for resturants so that I can see the available tables
+
+As a user, I want to be able to navigate to the resturant page, and back to the search page, so that I can compare different wait times.

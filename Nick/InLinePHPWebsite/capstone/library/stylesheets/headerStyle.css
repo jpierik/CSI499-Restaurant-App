@@ -1,0 +1,90 @@
+/* ---------- HEADER ---------- */
+
+header {
+    height: 60px;
+    width: 100%;
+    background: #2b2b2b;
+    box-shadow: inset 0 5px 10px -5px #444, inset 0 -5px 10px -5px #000;
+}
+
+header h1 {
+    line-height: 60px;
+    margin: 0;
+    padding-left: 20px;
+  /*  text-transform: uppercase; */
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #fff;
+    float: left;
+}
+
+header h1 b {
+    color: #3399cc;
+    font-weight: 900;
+}
+
+header h1 b:last-child {
+    color: #3399cc;
+}
+
+header .icons {
+    display: inline-block;
+    width: 20px;
+    height: 40px;
+    margin: 10px 0 10px 5px;
+}
+
+header .icons i {
+    display: block;
+    width: 20px;
+    height: 20px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+header .icons .up {
+    color: #00d07d;
+}
+
+header .icons .down {
+    color: #ff5555;
+}
+
+/* ---------- HEADER NAVIGATION ---------- */
+
+nav {
+    float: right;
+}
+
+nav a {
+    display: inline-block;
+    height: 60px;
+    line-height: 60px;
+    padding-right: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+ /*  text-transform: uppercase;  */
+    font-size: 16px;
+}
+
+a.green:hover {
+    color:#3399cc;
+}
+
+a.red:hover {
+    color:#3399cc;
+}
+
+a.orange:hover {
+    color:#3399cc;
+}
+
+a.blue:hover {
+    color:#3399cc;
+}
+
+a.gray:hover {
+    color:#3399cc;
+}

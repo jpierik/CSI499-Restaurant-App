@@ -1,0 +1,8 @@
+[27-Sep-2017 19:36:25 UTC] PHP Warning:  require(config.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/capstone/library/library.php on line 3
+[27-Sep-2017 19:36:25 UTC] PHP Stack trace:
+[27-Sep-2017 19:36:25 UTC] PHP   1. {main}() /home/ubuntu/workspace/capstone/index.php:0
+[27-Sep-2017 19:36:25 UTC] PHP   2. require() /home/ubuntu/workspace/capstone/index.php:2
+[27-Sep-2017 19:36:25 UTC] PHP Fatal error:  require(): Failed opening required 'config.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/capstone/library/library.php on line 3
+[27-Sep-2017 19:36:25 UTC] PHP Stack trace:
+[27-Sep-2017 19:36:25 UTC] PHP   1. {main}() /home/ubuntu/workspace/capstone/index.php:0
+[27-Sep-2017 19:36:25 UTC] PHP   2. require() /home/ubuntu/workspace/capstone/index.php:2

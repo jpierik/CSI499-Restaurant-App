@@ -18,7 +18,6 @@ C:\Users\alna172906\source\repos\Project16_Mobile\Project16_Mobile\Project16_Mob
 C:\Users\alna172906\source\repos\Project16_Mobile\Project16_Mobile\Project16_Mobile.Android\obj\Debug\uploadflags.txt
 C:\Users\alna172906\source\repos\Project16_Mobile\Project16_Mobile\Project16_Mobile.Android\bin\Debug\Project16_Mobile.Android.dll.mdb
 C:\Users\alna172906\source\repos\Project16_Mobile\Project16_Mobile\Project16_Mobile.Android\obj\Debug\android\assets\Project16_Mobile.Android.dll.mdb
-<<<<<<< HEAD
 C:\Users\Stephanie\Source\Repos\CSI499-Restaurant-App\Project16_Mobile\Project16_Mobile\Project16_Mobile.Android\bin\Debug\Project16_Mobile.Android.dll
 C:\Users\Stephanie\Source\Repos\CSI499-Restaurant-App\Project16_Mobile\Project16_Mobile\Project16_Mobile.Android\bin\Debug\Project16_Mobile.Android.pdb
 C:\Users\Stephanie\Source\Repos\CSI499-Restaurant-App\Project16_Mobile\Project16_Mobile\Project16_Mobile.Android\bin\Debug\Project16_Mobile.Android.apk
@@ -40,7 +39,3 @@ C:\Users\Stephanie\Source\Repos\CSI499-Restaurant-App\Project16_Mobile\Project16
 C:\Users\Stephanie\Source\Repos\CSI499-Restaurant-App\Project16_Mobile\Project16_Mobile\Project16_Mobile.Android\obj\Debug\uploadflags.txt
 C:\Users\Stephanie\Source\Repos\CSI499-Restaurant-App\Project16_Mobile\Project16_Mobile\Project16_Mobile.Android\bin\Debug\Project16_Mobile.Android.dll.mdb
 C:\Users\Stephanie\Source\Repos\CSI499-Restaurant-App\Project16_Mobile\Project16_Mobile\Project16_Mobile.Android\obj\Debug\android\assets\Project16_Mobile.Android.dll.mdb
-=======
-C:\Users\Austin Home\Source\Repos\CSI499-Restaurant-App\Project16_Mobile\Project16_Mobile\Project16_Mobile.Android\obj\Debug\Project16_Mobile.Android.csprojResolveAssemblyReference.cache
-C:\Users\Austin Home\Source\Repos\CSI499-Restaurant-App\Project16_Mobile\Project16_Mobile\Project16_Mobile.Android\obj\Debug\Project16_Mobile.Android.csproj.CoreCompileInputs.cache
->>>>>>> master

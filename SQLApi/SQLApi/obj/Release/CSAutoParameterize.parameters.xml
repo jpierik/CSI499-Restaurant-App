@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="CSI4999Entities-Web.config Connection String" description="CSI4999Entities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.SQLModel.csdl|res://*/Models.SQLModel.ssdl|res://*/Models.SQLModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=csi4999.database.windows.net;initial catalog=CSI4999;user id=csi4999;password=Temp1234;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Austin\ Home\\Source\\Repos\\CSI499-Restaurant-App\\SQLApi\\SQLApi\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CSI4999Entities']/@connectionString" />
+  </parameter>
+  <parameter name="LoginEntities-Web.config Connection String" description="LoginEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.LoginModel.csdl|res://*/Models.LoginModel.ssdl|res://*/Models.LoginModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=csi4999.database.windows.net;initial catalog=CSI4999;user id=csi4999;password=Temp1234;multipleactiveresultsets=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Austin\ Home\\Source\\Repos\\CSI499-Restaurant-App\\SQLApi\\SQLApi\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='LoginEntities']/@connectionString" />
+  </parameter>
+</parameters>

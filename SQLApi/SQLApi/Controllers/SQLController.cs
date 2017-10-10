@@ -28,7 +28,7 @@ namespace SQLApi.Controllers
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.Accepted, "Success");
+                    return Request.CreateResponse(HttpStatusCode.Accepted, user.Username.ToString() + " " + user.Password.ToString());
                 }
             }
             else

@@ -14,7 +14,7 @@ using Android.Widget;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "Project16_Mobile.Android", MainLauncher = false, Icon = "@drawable/icon")]
+    [Activity(Label = "Project16_Mobile.Android", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/Theme.AppCompat.Light")]
     public class SearchActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -26,6 +26,12 @@ namespace Project16_Mobile.Droid
             
             SetContentView (Resource.Layout.Search);
 
+<<<<<<< HEAD
+=======
+            StartActivity(typeof(LoginActivity));
+
+            TextView testText = FindViewById<TextView>(Resource.Id.testText);
+>>>>>>> master
             EditText searchBox = FindViewById<EditText>(Resource.Id.searchBox);
             ImageView searchIcon = FindViewById<ImageView>(Resource.Id.searchIcon);
             LinearLayout resultListLayout = FindViewById<LinearLayout>(Resource.Id.resultListLayout);

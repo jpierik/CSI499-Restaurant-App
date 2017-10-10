@@ -3,7 +3,7 @@
     p1:orientation="vertical"
     p1:layout_width="match_parent"
     p1:layout_height="match_parent"
-    p1:id="@+id/resultListLayout">
+    p1:id="@+id/mainView">
     <GridLayout
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
@@ -27,12 +27,19 @@
             p1:minWidth="50dp"
             p1:clickable="true" />
     </GridLayout>
-    <TextView
-        p1:text="Testing text for clickable functionality"
+    <ScrollView
+        p1:minWidth="25px"
+        p1:minHeight="25px"
         p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:id="@+id/testText"
-        p1:textSize="20dp"
-        p1:clickable="true"
-        p1:editable="false" />
+        p1:layout_height="0dp"
+        p1:layout_weight="1"
+        p1:id="@+id/scrollView1">
+        <LinearLayout
+            p1:orientation="vertical"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/resultListLayout" />
+    </ScrollView>
 </LinearLayout>

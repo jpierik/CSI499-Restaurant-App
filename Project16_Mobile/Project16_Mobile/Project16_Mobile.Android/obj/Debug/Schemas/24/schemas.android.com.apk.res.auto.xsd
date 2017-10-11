@@ -2,7 +2,7 @@
 <xs:schema xmlns:app="http://schemas.android.com/apk/res-auto" attributeFormDefault="qualified" targetNamespace="http://schemas.android.com/apk/res-auto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v24</xs:documentation>
-    <xs:documentation>9/28/2017 12:18:58 AM</xs:documentation>
+    <xs:documentation>10/10/2017 10:23:22 PM</xs:documentation>
   </xs:annotation>
   <xs:attribute name="allowStacking">
     <xs:annotation>

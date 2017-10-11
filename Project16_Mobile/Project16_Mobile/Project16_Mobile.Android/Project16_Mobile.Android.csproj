@@ -90,6 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListItem.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="RegisterActivity.cs" />
@@ -115,6 +116,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\layout\Search.axml" />
+    <AndroidResource Include="Resources\layout\list_item_layout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

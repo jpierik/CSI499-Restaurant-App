@@ -26,7 +26,7 @@ namespace Project16_Mobile.Droid
             
             SetContentView (Resource.Layout.Search);
 
-            StartActivity(typeof(LoginActivity));
+           
 
             TextView testText = FindViewById<TextView>(Resource.Id.testText);
             EditText searchBox = FindViewById<EditText>(Resource.Id.searchBox);
@@ -36,6 +36,7 @@ namespace Project16_Mobile.Droid
             //resultListLayout.AddView(b1);
 
 
+            StartActivity(typeof(LoginActivity));
         }
     }
 }

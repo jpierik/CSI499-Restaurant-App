@@ -2,13 +2,13 @@ html body {
     height: 100%;
 }
 
-form {
+.form1 {
     background: #fff;
     width: 500px;
     margin-top: 50px;
 }
-
-input[type=text], input[type=password], textarea, select {
+/*
+input[type=text], input[type=password], textarea, input {
     width: 100%;
     max-width:100%;
     padding: 12px 20px;
@@ -17,6 +17,18 @@ input[type=text], input[type=password], textarea, select {
     border: 1px solid #ccc;
     box-sizing: border-box;
     font-family: 'Space Mono', consolas, monospace !important;
+}
+*/
+.oldinput {
+    width: 100%;
+    max-width:100%;
+    padding: 12px 20px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: 'Space Mono', consolas, monospace !important;    
+    
 }
 
 textarea {

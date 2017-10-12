@@ -92,15 +92,15 @@ if (isset($_REQUEST['submission'])) {
     <body>
         <center>
             <div class="topSpacer"></div>
-                <form>
+                <form class="form1">
                     <div class="container">
-                        <input type="text" placeholder="Email" name="email" required>
+                        <input class="oldinput" type="text" placeholder="Email" name="email" required>
                     
-                        <input type="text" placeholder="Username" name="username" required>
+                        <input class="oldinput" type="text" placeholder="Username" name="username" required>
                     
-                        <input type="password" placeholder="Password" name="password" required>
+                        <input class="oldinput" type="password" placeholder="Password" name="password" required>
                         
-                        <input type="password" placeholder="Confirm Password" name="passConf" required>
+                        <input class="oldinput" type="password" placeholder="Confirm Password" name="passConf" required>
                     </div>
                 
                     <div class="container" style="background-color:#1f1f1f">

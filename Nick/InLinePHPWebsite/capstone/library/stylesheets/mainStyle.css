@@ -16,7 +16,7 @@ a:-webkit-any-link {
 section.banner {
     background: #3399cc;
     width: 100%;
-    padding: 70px 0;
+    padding: 50px 0;
     text-align: center;
     border: #fff solid;
     border-width: 5px 0;
@@ -44,18 +44,74 @@ section.banner  p {
 
 main.content {
     width: 100%;
-    max-width: 1000px;
+    max-width: 1150px;
     margin: 0 auto;
+
 }
 
 /* ---------- ARTICLES CONTAINER ---------- */
 
 section.articles {
-    width: calc(100% - 350px);
-    padding: 50px 0 50px 0; 
-    margin-left: 150px; 
- /*   border-left: 5px #fff solid; */
+    width: 50%;
+    margin: 0px auto;
+    text-align: center;
+    padding: 0px 0 20px 0; 
 }
+
+section.articles h2 {
+    margin: 5px;
+    margin-top: 8px;
+    font-size: large;
+}
+
+article {
+    margin: 0 0 50px 50px;
+    width: calc(100% - 100px);
+    padding: 25px;
+    background: #fff;
+    color: #000;
+}
+
+.tables {
+    border: 3px solid #3399cc;
+    height: 760px;
+    margin: 0px auto;
+    width: 760px;
+
+}
+.floating-box {
+    float: left;
+    width: 150px;
+    height: 150px;
+    margin: 0px;
+    border: 1px solid #fff;  
+}
+
+.icons{
+    position: absolute;
+    opacity: 1; 
+    
+    visibility: hidden;
+}
+
+.styled-select select {
+   height: 25px;
+   text-align: center;
+   font-size: 14px;
+   width: 130px;
+   margin-left: 10px;
+   margin-top: 5px;
+   font-family: 'Space Mono';
+
+}
+
+input.newinput {
+    width: 100%;
+    padding: 3px 15px;
+    box-sizing: border-box;
+    font-family: 'Space Mono', consolas, monospace !important;
+}
+
 
 /* ---------- FOOTER ---------- */
 
@@ -69,4 +125,5 @@ footer {
     letter-spacing: 1px;
     font-size: 12px;
     color: #888;
+    margin-top: 50px;
 }

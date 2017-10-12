@@ -109,11 +109,11 @@ update_info();
     <body>
         <div class="topSpacer"></div>
         <center>
-            <form>
+            <form class="form1">
                 <div class="container">
-                    <input type="text" placeholder="Username" name="username" required>
+                    <input class="oldinput" type="text" placeholder="Username" name="username" required>
                 
-                    <input type="password" placeholder="Password" name="city" required>
+                    <input class="oldinput" type="password" placeholder="Password" name="city" required>
                 
                 </div>
             

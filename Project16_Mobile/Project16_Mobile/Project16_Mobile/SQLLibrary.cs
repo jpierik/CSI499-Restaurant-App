@@ -26,16 +26,23 @@ namespace Project16_Mobile
         //POST api/SQL?username={username}&password={password}
         public string TestConnection(string username, string password, string proccess)
         {
-            string url = "http://sqlloginapi.azurewebsites.net/api/SQL?username=" + username + "&password=" + password + "&process=" + proccess;
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
-            request.ContentType = "application/json";
-            request.Method = "GET";
-            string responseString;
-            using (WebResponse response = request.GetResponse())
+            try
             {
-                responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();               
+                string url = "http://sqlloginapi.azurewebsites.net/api/SQL?username=" + username + "&password=" + password + "&process=" + proccess;
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+                request.ContentType = "application/json";
+                request.Method = "GET";
+                string responseString;
+                using (WebResponse response = request.GetResponse())
+                {
+                    responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                }
+                return responseString;
             }
-            return responseString;
+            catch (Exception ex)
+            {
+                return "Timeout";
+            }
 
         }
         /*

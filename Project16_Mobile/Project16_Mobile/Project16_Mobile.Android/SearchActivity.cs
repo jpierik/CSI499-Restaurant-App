@@ -25,18 +25,18 @@ namespace Project16_Mobile.Droid
             
             // Create your application here
            
-            /*
-            SetContentView (Android.Resource.Layout.Search);
+            
+            SetContentView (Resource.Layout.Search);
 
 
           
 
-            EditText searchBox = FindViewById<EditText>(Android.Resource.Id.searchBox);
-            ImageView searchIcon = FindViewById<ImageView>(Android.Resource.Id.searchIcon);
-            LinearLayout resultListLayout = FindViewById<LinearLayout>(Android.Resource.Id.resultListLayout);
+            EditText searchBox = FindViewById<EditText>(Resource.Id.searchBox);
+            ImageView searchIcon = FindViewById<ImageView>(Resource.Id.searchIcon);
+            LinearLayout resultListLayout = FindViewById<LinearLayout>(Resource.Id.resultListLayout);
             //LinearLayout.LayoutParams resultParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 200);
 
-    *
+    
 
             //Button b1 = new Button(this);
 
@@ -47,18 +47,15 @@ namespace Project16_Mobile.Droid
                     for (int i = 1; i <= 10; i++)
                     {
                         ListItem listItem = new ListItem(ApplicationContext, null);
-                        listItem.setIndex(i - 1);
+                        listItem.setIndex(i);
                         listItem.setLocationAndWaitTime("Location: " + i, (20 + i) + " min");
                         resultListLayout.AddView(listItem);
                     }
                 }
             };
-            searchBox.Click += delegate
-            {
-                searchBox.Text = "";
-            };
+           
             StartActivity(typeof(LoginActivity));
-            */
+            
         }
     }
 }

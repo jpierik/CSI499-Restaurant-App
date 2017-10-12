@@ -78,7 +78,7 @@ namespace Project16_Mobile.Droid
 
             };
 
-            h.PostDelayed(myAction, 3000);
+            h.Post(myAction);
 
         }
         public void onSignupSuccess()

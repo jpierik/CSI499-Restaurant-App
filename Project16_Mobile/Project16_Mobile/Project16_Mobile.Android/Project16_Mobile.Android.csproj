@@ -116,8 +116,12 @@
     <AndroidResource Include="Resources\layout\list_item_layout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <None Include="Resources\layout\Resturant.axml" />
-    <None Include="Resources\layout\Search.axml" />
+    <AndroidResource Include="Resources\layout\Search.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Resturant.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

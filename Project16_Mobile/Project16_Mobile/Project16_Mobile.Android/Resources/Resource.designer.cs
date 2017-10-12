@@ -2264,11 +2264,17 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f07002f
 			public const int auto = 2131165231;
 			
+			// aapt resource value: 0x7f0700a9
+			public const int backButton = 2131165353;
+			
 			// aapt resource value: 0x7f070020
 			public const int beginning = 2131165216;
 			
 			// aapt resource value: 0x7f070028
 			public const int bottom = 2131165224;
+			
+			// aapt resource value: 0x7f0700a8
+			public const int btnGetInLine = 2131165352;
 			
 			// aapt resource value: 0x7f070075
 			public const int btnLogin = 2131165301;
@@ -2381,6 +2387,9 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f07003f
 			public const int @fixed = 2131165247;
 			
+			// aapt resource value: 0x7f0700ab
+			public const int gridLayout1 = 2131165355;
+			
 			// aapt resource value: 0x7f070005
 			public const int home = 2131165189;
 			
@@ -2432,6 +2441,9 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f0700a1
 			public const int line3 = 2131165345;
 			
+			// aapt resource value: 0x7f0700a4
+			public const int linearLayout1 = 2131165348;
+			
 			// aapt resource value: 0x7f07000f
 			public const int listMode = 2131165199;
 			
@@ -2444,8 +2456,11 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f070076
 			public const int lnkSignup = 2131165302;
 			
-			// aapt resource value: 0x7f0700a5
-			public const int masked = 2131165349;
+			// aapt resource value: 0x7f0700aa
+			public const int mainView = 2131165354;
+			
+			// aapt resource value: 0x7f0700b1
+			public const int masked = 2131165361;
 			
 			// aapt resource value: 0x7f070093
 			public const int media_actions = 2131165331;
@@ -2480,6 +2495,9 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f070095
 			public const int notification_main_column_container = 2131165333;
 			
+			// aapt resource value: 0x7f0700a6
+			public const int numTables = 2131165350;
+			
 			// aapt resource value: 0x7f070037
 			public const int parallax = 2131165239;
 			
@@ -2497,6 +2515,12 @@ namespace Project16_Mobile.Droid
 			
 			// aapt resource value: 0x7f07005d
 			public const int radio = 2131165277;
+			
+			// aapt resource value: 0x7f0700a5
+			public const int resturantName = 2131165349;
+			
+			// aapt resource value: 0x7f0700af
+			public const int resultListLayout = 2131165359;
 			
 			// aapt resource value: 0x7f070035
 			public const int right = 2131165237;
@@ -2522,8 +2546,17 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f070050
 			public const int scrollView = 2131165264;
 			
+			// aapt resource value: 0x7f0700ae
+			public const int scrollView1 = 2131165358;
+			
 			// aapt resource value: 0x7f070040
 			public const int scrollable = 2131165248;
+			
+			// aapt resource value: 0x7f0700ac
+			public const int searchBox = 2131165356;
+			
+			// aapt resource value: 0x7f0700ad
+			public const int searchIcon = 2131165357;
 			
 			// aapt resource value: 0x7f070068
 			public const int search_badge = 2131165288;
@@ -2678,8 +2711,11 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f07000e
 			public const int view_offset_helper = 2131165198;
 			
-			// aapt resource value: 0x7f0700a4
-			public const int visible = 2131165348;
+			// aapt resource value: 0x7f0700b0
+			public const int visible = 2131165360;
+			
+			// aapt resource value: 0x7f0700a7
+			public const int waitTime = 2131165351;
 			
 			// aapt resource value: 0x7f070027
 			public const int withText = 2131165223;
@@ -2921,16 +2957,22 @@ namespace Project16_Mobile.Droid
 			public const int notification_template_part_time = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int select_dialog_item_material = 2130903100;
+			public const int Resturant = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int select_dialog_multichoice_material = 2130903101;
+			public const int Search = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int select_dialog_singlechoice_material = 2130903102;
+			public const int select_dialog_item_material = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int support_simple_spinner_dropdown_item = 2130903103;
+			public const int select_dialog_multichoice_material = 2130903103;
+			
+			// aapt resource value: 0x7f030040
+			public const int select_dialog_singlechoice_material = 2130903104;
+			
+			// aapt resource value: 0x7f030041
+			public const int support_simple_spinner_dropdown_item = 2130903105;
 			
 			static Layout()
 			{

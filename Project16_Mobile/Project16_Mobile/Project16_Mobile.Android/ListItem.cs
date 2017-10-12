@@ -34,7 +34,7 @@ namespace Project16_Mobile.Droid
 
             mSelection.Click += delegate
             {
-                Intent intent = new Intent(context, typeof( MainActivity)/* Insert Reseraunt Activity*/);
+                Intent intent = new Intent(context, typeof( ResturantActivity)/* Insert Reseraunt Activity*/);
                 intent.PutExtra(MyClass.EXTRA_INDEX, mIndex);
                 context.StartActivity(intent);
             };

@@ -80,6 +80,7 @@ namespace Project16_Mobile.Droid
             Handler h = new Handler();
             Action myAction = () =>
             {
+                // Testing Commit
                 // your code that you want to delay here
                 string output = library.TestConnection(email, password, "LOGIN");
                 if (output.Contains("Success"))

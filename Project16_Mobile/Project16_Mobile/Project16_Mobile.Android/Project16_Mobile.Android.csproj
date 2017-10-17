@@ -96,6 +96,7 @@
     <Compile Include="ResturantActivity.cs" />
     <Compile Include="SearchActivity.cs" />
     <Compile Include="SplashActivity.cs" />
+    <Compile Include="UpdateService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

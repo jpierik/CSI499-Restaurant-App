@@ -28,7 +28,7 @@ namespace Project16_Mobile
         {
             try
             {
-                string url = "http://sqlloginapi.azurewebsites.net/api/SQL?username=" + username + "&password=" + password + "&process=" + proccess;
+                string url = "141.210.25.6/InLineWebApi/api/login";
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
                 request.ContentType = "application/json";
                 request.Method = "GET";
@@ -45,6 +45,7 @@ namespace Project16_Mobile
             }
 
         }
+
         /*
         private void ParseAndDisplay(JsonValue json)
         {

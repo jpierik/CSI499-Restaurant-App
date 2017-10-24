@@ -24,7 +24,7 @@ namespace Project16_Mobile.Droid
             SetContentView(Resource.Layout.Resturant);
 
             Intent intent = this.Intent;
-            int index =  intent.GetIntExtra(MyClass.EXTRA_INDEX, -1);
+            int index =  intent.GetIntExtra(UpdateService.EXTRA_INDEX, -1);
 
             TextView textView = FindViewById<TextView>(Resource.Id.resturantName);
             textView.Text = "" + index;

@@ -1,9 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="UserModel-Web.config Connection String" description="UserModel Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/UserModel.csdl|res://*/UserModel.ssdl|res://*/UserModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=141.210.25.6;initial catalog=CSI4999;user id=csi4999;password=Temp1234;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="c:\\users\\austin\ home\\documents\\visual\ studio\ 2017\\Projects\\InLineWebApi\\InLineWebApi\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='UserModel']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\CSI499-Restaurant-App\\InLineWebApi\\InLineWebApi\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='UserModel']/@connectionString" />
   </parameter>
   <parameter name="WaitingPartyModel-Web.config Connection String" description="WaitingPartyModel Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/WaitingPartyModel.csdl|res://*/WaitingPartyModel.ssdl|res://*/WaitingPartyModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=141.210.25.6;initial catalog=CSI4999;user id=csi4999;password=Temp1234;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="c:\\users\\austin\ home\\documents\\visual\ studio\ 2017\\Projects\\InLineWebApi\\InLineWebApi\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WaitingPartyModel']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\CSI499-Restaurant-App\\InLineWebApi\\InLineWebApi\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WaitingPartyModel']/@connectionString" />
+  </parameter>
+  <parameter name="RestaurantEntities-Web.config Connection String" description="RestaurantEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/RestaurantModel.csdl|res://*/RestaurantModel.ssdl|res://*/RestaurantModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=141.210.25.6;initial catalog=CSI4999;user id=csi4999;password=Temp1234;multipleactiveresultsets=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\CSI499-Restaurant-App\\InLineWebApi\\InLineWebApi\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='RestaurantEntities']/@connectionString" />
   </parameter>
 </parameters>

@@ -24,6 +24,25 @@ namespace InLineWebApi.Controllers
                 return entities.Users.FirstOrDefault(e => e.UserId == id);
             }
         }
-      
+        public IHttpActionResult Post(User user)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Invalid data.");
+            using (var ctx = new UserModel())
+            {
+                ctx.Users.Add(new User()
+                {
+                    RestaurantID = user.RestaurantID,
+                    username = user.username,
+                    alevel = user.alevel,
+                    pwd = user.pwd,
+                    email = user.email
+
+                });
+                ctx.SaveChanges();
+            }
+            return Ok();
+        }
+
     }
 }

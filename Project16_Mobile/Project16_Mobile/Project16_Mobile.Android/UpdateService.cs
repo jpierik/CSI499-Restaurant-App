@@ -34,8 +34,9 @@ namespace Project16_Mobile.Droid
 
         public override IBinder OnBind(Intent intent)
         {
-            // This method must always be implemented
-         
+            // This method must always be implemented        
+            this.Binder = new LocalBinder(this);
+            Console.WriteLine("Service Bounded: " + Binder);
             return this.Binder;
         }
 
@@ -68,7 +69,7 @@ namespace Project16_Mobile.Droid
             {
                 mUpateTimer = new Timer();
             }
-            mUpateTimer.ScheduleAtFixedRate(new UpdateTimerTask(this),0,10000);
+            mUpateTimer.ScheduleAtFixedRate(new UpdateTimerTask(this),0,30000);
         }
         public void stopUpdateTimer()
         {
@@ -96,28 +97,38 @@ namespace Project16_Mobile.Droid
         public class UpdateTimerTask : TimerTask
         {
             UpdateService mService;
+            SQLLibrary library;
             public UpdateTimerTask(UpdateService service)
             {
                 mService = service;
+                library = SQLLibrary.getInstance();
             }
             public override void Run()
             {
                 // Call sql
-
-                int id = 0;  //rest. id
-                if (!mService.doesExist(id))
+                List<Restaurant> list =  library.GetRestaurants();
+                if (list == null) return;
+                bool mFlag = false;
+                foreach (Restaurant r in list)
                 {
-                    string location = "";
-                    string time = "";
-                    ListItem item = new ListItem(mService.ApplicationContext, null);
-                    item.Index = id;
-                    item.setLocationAndWaitTime(location, time);
-                    mService.addListItem(item);
+                    int id = r.RestaurantId;  //rest. id
+                    if (!mService.doesExist(id))
+                    {
+                        string location = r.Name;
+                        string time = "30:00";
+                        ListItem item = new ListItem(mService.ApplicationContext, null);
+                        item.Index = id;
+                        item.setNameAndWaitTime(location, time);
+                        mService.addListItem(item);
+                        mFlag = true;
+                    }
                 }
-                
-                
-                Intent intent = new Intent("com.csi4999.project16.ACTION_UPDATE");
-                mService.SendBroadcast(intent);
+
+                if (mFlag)
+                {
+                    Intent intent = new Intent("com.csi4999.project16.ACTION_UPDATE");
+                    mService.SendBroadcast(intent);
+                }
             }
         }
 

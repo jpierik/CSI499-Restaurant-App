@@ -19,6 +19,7 @@ namespace Project16_Mobile.Droid
         RelativeLayout mSelection = null;
 
         public int Index { get; set; }
+        public string Address { get; set; }
 
         public ListItem(Context context, IAttributeSet attrs) :
             base(context, attrs)
@@ -43,9 +44,9 @@ namespace Project16_Mobile.Droid
         }
        
 
-        public void setLocationAndWaitTime(string location, string time)
+        public void setNameAndWaitTime(string name, string time)
         {
-            mLocationName.Text = location;
+            mLocationName.Text = name;
             mWaitTime.Text = time;
         }
     }

@@ -82,8 +82,8 @@ namespace Project16_Mobile.Droid
             {
                 // Testing Commit
                 // your code that you want to delay here
-                string output = library.TestConnection(email, password, "LOGIN");
-                if (output.Contains("Success"))
+                bool output = library.Login(email, password);
+                if (output)
                 {
                     onLoginSuccess();
                 }

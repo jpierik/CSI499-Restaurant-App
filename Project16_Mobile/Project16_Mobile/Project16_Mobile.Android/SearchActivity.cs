@@ -37,7 +37,7 @@ namespace Project16_Mobile.Droid
             // Create your application here
             
             SetContentView(Resource.Layout.Search);
-            mReceiver = new UpdateBroadcastReceiver(this);
+            mReceiver = new UpdateBroadcastReceiver();
 
             Intent updateService = new Intent(this, typeof(UpdateService));
             BindService(updateService, new ServiceConnection(this), Bind.AutoCreate);
@@ -120,14 +120,14 @@ namespace Project16_Mobile.Droid
             }
             public void OnServiceConnected(ComponentName name, IBinder service)
             {
-                if (name.ClassName.Equals(typeof(UpdateService).Name))
-                {
+                Console.WriteLine("Service Connected: " + name.ClassName);
+               
                     localBinder = service as UpdateService.LocalBinder;
 
                     searchActivity.RegisterReceiver(searchActivity.mReceiver, searchActivity.mUpdateIntentFilter());
                     searchActivity.mUpdateService = localBinder.Service;
                     searchActivity.mUpdateService.startUpdateTimer();
-                }
+                
             }
 
             public void OnServiceDisconnected(ComponentName name)
@@ -142,19 +142,15 @@ namespace Project16_Mobile.Droid
         [BroadcastReceiver(Enabled = true, Exported = false)]
         public class UpdateBroadcastReceiver : BroadcastReceiver
         {
-            SearchActivity searchActivity;
-            public UpdateBroadcastReceiver(SearchActivity activity)
-            {
-                searchActivity = activity;
-            }
+          
             public override void OnReceive(Context context, Intent intent)
             {
                 string action = intent.Action;
-
+                SearchActivity activity = (SearchActivity)context;
                 switch (action)
                 {
                     case "com.csi4999.project16.ACTION_UPDATE":
-                        searchActivity.addItemsToView(searchActivity.mUpdateService.mResturantList);
+                        activity.addItemsToView(activity.mUpdateService.mResturantList);
                         break;
 
                 }

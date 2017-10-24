@@ -18,13 +18,14 @@ namespace Project16_Mobile.Droid
         TextView mLocationName = null, mWaitTime = null;
         RelativeLayout mSelection = null;
 
-        int mIndex = -1;
+        public int Index { get; set; }
+        public string Address { get; set; }
 
         public ListItem(Context context, IAttributeSet attrs) :
             base(context, attrs)
         {
             Initialize(context);
-        }     
+        }
         private void Initialize(Context context)
         {
             
@@ -32,23 +33,21 @@ namespace Project16_Mobile.Droid
             mLocationName = (TextView)FindViewById(Resource.Id.lblName);
             mWaitTime = (TextView)FindViewById(Resource.Id.lblWaitTime);
             mSelection = (RelativeLayout)FindViewById(Resource.Id.selectedLocation);
-
+            Index = -1;
             mSelection.Click += delegate
             {
-                Intent intent = new Intent(context, typeof( ResturantActivity)/* Insert Reseraunt Activity*/);
-                intent.PutExtra(Constants.EXTRA_INDEX, mIndex);
+                Intent intent = new Intent(context, typeof(ResturantActivity)/* Insert Reseraunt Activity*/);
+                intent.PutExtra(UpdateService.EXTRA_INDEX, Index);
                 context.StartActivity(intent);
             };
 
 
         }
-       public void setIndex(int index)
-       {
-             mIndex = index;
-       }
-       public void setLocationAndWaitTime(string location, string time)
+       
+
+        public void setNameAndWaitTime(string name, string time)
         {
-            mLocationName.Text = location;
+            mLocationName.Text = name;
             mWaitTime.Text = time;
             //mDistance.Text = distance;
         }

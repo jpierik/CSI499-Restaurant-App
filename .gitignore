@@ -6,3 +6,4 @@
 *.ide
 Project16_Mobile/.vs/Project16_Mobile/v15/.suo
 /Project16_Mobile/Project16_Mobile/Project16_Mobile.Android
+*.cache

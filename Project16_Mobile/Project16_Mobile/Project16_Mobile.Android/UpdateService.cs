@@ -9,7 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-
+using Java.Util;
 using Android.Util;
 
 
@@ -18,19 +18,25 @@ namespace Project16_Mobile.Droid
     [Service]
     public class UpdateService : Service
     {
+        public static string EXTRA_INDEX = "com.csi4999.project16.EXTRA_INDEX";
+        public static string ACTION_UPDATE = "com.csi4999.project16.ACTION_UPDATE";
         public IBinder Binder { get; private set; }
+        private Timer mUpateTimer;
+        public List<ListItem> mResturantList;
 
         public override void OnCreate()
         {
             // This method is optional to implement
-            base.OnCreate();       
+            base.OnCreate();
+            mResturantList = new List<ListItem>();
            
         }
 
         public override IBinder OnBind(Intent intent)
         {
-            // This method must always be implemented
-         
+            // This method must always be implemented        
+            this.Binder = new LocalBinder(this);
+            Console.WriteLine("Service Bounded: " + Binder);
             return this.Binder;
         }
 
@@ -59,11 +65,71 @@ namespace Project16_Mobile.Droid
 
         public void startUpdateTimer()
         {
-
+            if(mUpateTimer == null)
+            {
+                mUpateTimer = new Timer();
+            }
+            mUpateTimer.ScheduleAtFixedRate(new UpdateTimerTask(this),0,30000);
         }
         public void stopUpdateTimer()
         {
+            if(mUpateTimer == null)
+            {
+                return;
+            }
+            mUpateTimer.Dispose();
+        }
+        public bool doesExist(int id)
+        {
+            if (mResturantList.Exists(e => e.Index == id)){
+                return true;
+            }
+            return false;
+        }
+        public void addListItem(ListItem item)
+        {
+            mResturantList.Add(item);
+        }
+        public List<ListItem> getResturantList()
+        {
+            return mResturantList;
+        }
+        public class UpdateTimerTask : TimerTask
+        {
+            UpdateService mService;
+            SQLLibrary library;
+            public UpdateTimerTask(UpdateService service)
+            {
+                mService = service;
+                library = SQLLibrary.getInstance();
+            }
+            public override void Run()
+            {
+                // Call sql
+                List<Restaurant> list =  library.GetRestaurants();
+                if (list == null) return;
+                bool mFlag = false;
+                foreach (Restaurant r in list)
+                {
+                    int id = r.RestaurantId;  //rest. id
+                    if (!mService.doesExist(id))
+                    {
+                        string location = r.Name;
+                        string time = "30:00";
+                        ListItem item = new ListItem(mService.ApplicationContext, null);
+                        item.Index = id;
+                        item.setNameAndWaitTime(location, time);
+                        mService.addListItem(item);
+                        mFlag = true;
+                    }
+                }
 
+                if (mFlag)
+                {
+                    Intent intent = new Intent("com.csi4999.project16.ACTION_UPDATE");
+                    mService.SendBroadcast(intent);
+                }
+            }
         }
 
     }

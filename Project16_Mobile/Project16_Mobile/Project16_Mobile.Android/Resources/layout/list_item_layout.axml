@@ -17,5 +17,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/lblName"
-        android:id="@+id/lblWaitTime" />  
+        android:id="@+id/lblWaitTime" />
+    <TextView
+        android:text="Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lblWaitTime"
+        android:id="@+id/mDistance"
+        android:paddingTop="5dp" />
 </RelativeLayout>

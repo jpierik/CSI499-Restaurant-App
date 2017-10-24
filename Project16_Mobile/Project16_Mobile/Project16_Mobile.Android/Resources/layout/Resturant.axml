@@ -36,11 +36,34 @@
         p1:minHeight="40dp"
         p1:gravity="right"
         p1:paddingRight="5dp" />
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/linearLayout2">
+        <TextView
+            p1:text="Size of Party:"
+            p1:layout_width="wrap_content"
+            p1:layout_height="match_parent"
+            p1:id="@+id/waitText"
+            p1:gravity="fill"
+            p1:textSize="25dp"
+            p1:paddingLeft="5dp"
+            p1:textAppearance="?android:attr/textAppearanceLarge" />
+        <EditText
+            p1:inputType="number"
+            p1:layout_width="wrap_content"
+            p1:layout_height="match_parent"
+            p1:id="@+id/partySize"
+            p1:layout_marginRight="0.0dp"
+            p1:minWidth="75dp"
+            p1:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
     <Button
         p1:text="Get InLine"
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
-        p1:id="@+id/btnGetInLine"
+        p1:id="@+id/inLine"
         p1:minHeight="55dp"
         p1:textSize="25dp"
         p1:textAllCaps="false" />

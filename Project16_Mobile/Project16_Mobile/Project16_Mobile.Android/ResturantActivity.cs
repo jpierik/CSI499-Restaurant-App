@@ -23,8 +23,22 @@ namespace Project16_Mobile.Droid
 
             SetContentView(Resource.Layout.Resturant);
 
+            EditText partySize = FindViewById<EditText>(Resource.Id.partySize);
+            Button backButton = FindViewById<Button>(Resource.Id.backButton);
+            Button inLine = FindViewById<Button>(Resource.Id.inLine);
+
+            backButton.Click += delegate
+            {
+               Finish();
+            };
+
+            inLine.Click += delegate
+            {
+                int sizeOfParty = int.Parse(partySize.Text);
+            };
+
             Intent intent = this.Intent;
-            int index =  intent.GetIntExtra(MyClass.EXTRA_INDEX, -1);
+            int index =  intent.GetIntExtra(Constants.EXTRA_INDEX, -1);
 
             TextView textView = FindViewById<TextView>(Resource.Id.resturantName);
             textView.Text = "" + index;

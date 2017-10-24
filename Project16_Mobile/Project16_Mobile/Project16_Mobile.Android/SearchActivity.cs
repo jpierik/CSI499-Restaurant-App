@@ -82,7 +82,7 @@ namespace Project16_Mobile.Droid
         public IntentFilter mUpdateIntentFilter()
         {
             IntentFilter intentFilter = new IntentFilter();
-            intentFilter.AddAction();
+            intentFilter.AddAction("com.csi4999.project16.ACTION_UPDATE");
             return intentFilter;
         }
 
@@ -132,7 +132,7 @@ namespace Project16_Mobile.Droid
 
                 switch (action)
                 {
-                    case :
+                    case "com.csi4999.project16.ACTION_UPDATE":
                         break;
 
                 }

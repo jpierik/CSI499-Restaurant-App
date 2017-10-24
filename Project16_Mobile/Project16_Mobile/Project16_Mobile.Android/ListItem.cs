@@ -27,6 +27,7 @@ namespace Project16_Mobile.Droid
         }     
         private void Initialize(Context context)
         {
+            
             LayoutInflater.From(context).Inflate(Resource.Layout.list_item_layout, this, true);
             mLocationName = (TextView)FindViewById(Resource.Id.lblName);
             mWaitTime = (TextView)FindViewById(Resource.Id.lblWaitTime);
@@ -35,7 +36,7 @@ namespace Project16_Mobile.Droid
             mSelection.Click += delegate
             {
                 Intent intent = new Intent(context, typeof( ResturantActivity)/* Insert Reseraunt Activity*/);
-                intent.PutExtra(MyClass.EXTRA_INDEX, mIndex);
+                intent.PutExtra(Constants.EXTRA_INDEX, mIndex);
                 context.StartActivity(intent);
             };
 
@@ -49,6 +50,7 @@ namespace Project16_Mobile.Droid
         {
             mLocationName.Text = location;
             mWaitTime.Text = time;
+            //mDistance.Text = distance;
         }
     }
 }

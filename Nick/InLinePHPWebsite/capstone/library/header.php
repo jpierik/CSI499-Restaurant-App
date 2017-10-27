@@ -60,6 +60,9 @@
             <a href="new.php" class="red">
                     <i class="fa fa-plus"></i> New Restaurant
                 </a>
+                <a href="myrest.php" class="red">
+                    <i class="fa fa-server"></i> My Restaurants
+                </a>
              <a href="register.php" class="green">
                     <i class="fa fa-user-plus"></i> Register
             </a>

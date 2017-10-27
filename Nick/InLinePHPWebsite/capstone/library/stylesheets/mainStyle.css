@@ -79,6 +79,24 @@ article {
     width: 760px;
 
 }
+.restlist {
+    border: 3px solid #3399cc;
+    height: 80px;
+    margin: 0px auto;
+    width: 760px;
+background-color: #3399cc;
+margin-bottom: 30px;
+font-family: sans-serif;
+}
+
+.restlist div {
+    float: left;
+    display: inline;
+    margin: 20px;
+    padding: 10px;
+    font-size: x-large;
+    color: #2b2b2b;
+}
 .floating-box {
     float: left;
     width: 150px;

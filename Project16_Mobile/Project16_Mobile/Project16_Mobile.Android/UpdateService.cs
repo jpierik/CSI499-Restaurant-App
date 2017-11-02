@@ -20,6 +20,11 @@ namespace Project16_Mobile.Droid
     {
         public static string EXTRA_INDEX = "com.csi4999.project16.EXTRA_INDEX";
         public static string ACTION_UPDATE = "com.csi4999.project16.ACTION_UPDATE";
+        public static string EXTRA_RESTAURANT = "com.csi4999.project16.EXTRA_RESTAURANT";
+        public static string EXTRA_WAITTIME = "com.csi4999.project16.EXTRA_WAITTIME";
+        public static string EXTRA_TABLES = "com.csi.project16.EXTRA_TABLES";
+        public static string EXTRA_RNAME = "com.csi.project16.EXTRA_RNAME";
+
         public IBinder Binder { get; private set; }
         private Timer mUpateTimer;
         public List<ListItem> mResturantList;
@@ -117,6 +122,7 @@ namespace Project16_Mobile.Droid
                         string location = r.Name;
                         string time = "30:00";
                         ListItem item = new ListItem(mService.ApplicationContext, null);
+                        item.Name = r.Name;
                         item.Index = id;
                         item.setNameAndWaitTime(location, time);
                         mService.addListItem(item);

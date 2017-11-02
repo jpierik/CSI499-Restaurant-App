@@ -40,11 +40,28 @@ namespace Project16_Mobile
                 using (WebResponse response = request.GetResponse())
                 {
                     responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                    Console.Write(responseString);
                 }
-                if (responseString.Contains("SUCCESS"))
-                    return true;
-                else
-                    return false;
+
+                //console write that stuff up there ^, then copy result to notepadd++, then go to json converter.
+                //after parsing check if list exists and check username and pass. if(list.exists(i => i.shitToCheck = stuff)) 
+                /*var array = JArray.Parse(responseString);
+                List<User> list = new List<User>();
+                foreach (var item in array)
+                {
+                    try
+                    {
+                        list.Add(item.ToObject<User>());
+                    }
+                    catch (Exception ex)
+                    {
+                        InvalidJsonElements = InvalidJsonElements ?? new List<string>();
+                        InvalidJsonElements.Add(item.ToString());
+                    }
+                }*/
+
+                return true;
+
             }
             catch (Exception ex)
             {
@@ -82,6 +99,38 @@ namespace Project16_Mobile
                 return false;
             }
         }
+
+        public bool waitingParty(int partyNum, int pID, int restID)
+        {
+            try
+            {
+                string url = "141.210.25.6/InLineWebApi/api/waitingparty";
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+                request.ContentType = "application/json";
+                request.Method = "POST";
+                string message = "{\"NoOfGuests\":\"" + pID + "\", \"PartyID\":\"" + restID + "\", \"RestaurantID\":\"" + restID + "\" }";
+
+                HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Post, "relativeAddress");
+                reqMessage.Content = new StringContent(message, Encoding.UTF8, "application/json");
+
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                client.SendAsync(reqMessage).ContinueWith(responseTask =>
+                {
+                    Console.WriteLine("Resonse: {0}", responseTask.Result);
+                });
+
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public static List<string> InvalidJsonElements;
         public List<Restaurant> GetRestaurants()
         {
@@ -98,7 +147,7 @@ namespace Project16_Mobile
                     responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 }
                 Console.WriteLine(responseString);
-
+                // copy this shit down here and replace restaurant with user
                 var array = JArray.Parse(responseString);
                 List<Restaurant> list = new List<Restaurant>();
                 foreach(var item in array)

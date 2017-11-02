@@ -15,17 +15,6 @@
         p1:minHeight="50dp"
         p1:gravity="center" />
     <TextView
-        p1:text="Available tables:"
-        p1:textAppearance="?android:attr/textAppearanceLarge"
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:textSize="25dp"
-        p1:id="@+id/numTables"
-        p1:editable="false"
-        p1:minHeight="50dp"
-        p1:gravity="fill"
-        p1:paddingLeft="5dp" />
-    <TextView
         p1:text="minute avg. wait time"
         p1:textAppearance="?android:attr/textAppearanceLarge"
         p1:layout_width="match_parent"
@@ -34,8 +23,8 @@
         p1:id="@+id/waitTime"
         p1:editable="false"
         p1:minHeight="40dp"
-        p1:gravity="right"
-        p1:paddingRight="5dp" />
+        p1:gravity="center_vertical"
+        p1:paddingLeft="5dp" />
     <LinearLayout
         p1:orientation="horizontal"
         p1:layout_width="match_parent"
@@ -68,11 +57,19 @@
         p1:textSize="25dp"
         p1:textAllCaps="false" />
     <Button
+        p1:text="See available deals/coupons"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/dealsButton"
+        p1:minHeight="55dp"
+        p1:textSize="20dp"
+        p1:textAllCaps="false" />
+    <Button
         p1:text="Back to Search"
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
         p1:id="@+id/backButton"
         p1:minHeight="55dp"
-        p1:textSize="25dp"
+        p1:textSize="20dp"
         p1:textAllCaps="false" />
 </LinearLayout>

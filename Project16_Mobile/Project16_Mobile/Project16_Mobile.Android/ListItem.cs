@@ -18,6 +18,7 @@ namespace Project16_Mobile.Droid
         TextView mLocationName = null, mWaitTime = null;
         RelativeLayout mSelection = null;
 
+        public string Name { get; set; }
         public int Index { get; set; }
         public string Address { get; set; }
 
@@ -37,7 +38,7 @@ namespace Project16_Mobile.Droid
             mSelection.Click += delegate
             {
                 Intent intent = new Intent(context, typeof(ResturantActivity)/* Insert Reseraunt Activity*/);
-                intent.PutExtra(UpdateService.EXTRA_INDEX, Index);
+                intent.PutExtra(UpdateService.EXTRA_RNAME, Name);
                 context.StartActivity(intent);
             };
 
@@ -47,6 +48,7 @@ namespace Project16_Mobile.Droid
 
         public void setNameAndWaitTime(string name, string time)
         {
+            
             mLocationName.Text = name;
             mWaitTime.Text = time;
             //mDistance.Text = distance;

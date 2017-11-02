@@ -16,7 +16,7 @@ using Android.Support.V7.App;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "Project16_Mobile.Android", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/Theme.AppCompat.Light")]
+    [Activity(Label = "InLine", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/Theme.AppCompat.Light")]
     public class SearchActivity : AppCompatActivity
     {
 

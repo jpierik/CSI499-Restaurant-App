@@ -32,7 +32,7 @@ namespace Project16_Mobile
         {
             try
             {
-                string url = "141.210.25.6/InLineWebApi/api/login";
+                string url = "http://141.210.25.6/InLineWebApi/api/login";
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
                 request.ContentType = "application/json";
                 request.Method = "GET";
@@ -69,17 +69,18 @@ namespace Project16_Mobile
             }
 
         }
-        public bool Register(int rID, string username, int level, string password, string email)
+        public bool Register(string fullname, string email, string password)
         {
+            bool mFlag = false;
             try
-            {
-                string url = "141.210.25.6/InLineWebApi/api/login";
+            { // string testUrl = "http://10.0.0.183/api/mobileuser";
+              string url = "http://141.210.25.6/InLineWebApi/api/mobileuser";
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
                 request.ContentType = "application/json";
                 request.Method = "POST";
-                string message = "{\"RestaurantID\":\"" + rID + "\", \"username\":\"" + username + "\", \"alevel\":\"" + level + "\", \"pwd\":\"" + password + "\", \"email\":\"" + email + "\" }";
+                string message = "{\"FullName\":\"" + fullname + "\", \"email\":\"" + email +  "\", \"pwd\":\"" + password + "\" }";
 
-                HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Post, "relativeAddress");
+                HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Post, url);
                 reqMessage.Content = new StringContent(message, Encoding.UTF8, "application/json");
 
                 HttpClient client = new HttpClient();
@@ -89,10 +90,13 @@ namespace Project16_Mobile
                 client.SendAsync(reqMessage).ContinueWith(responseTask =>
                 {
                     Console.WriteLine("Resonse: {0}", responseTask.Result);
+                    if(responseTask.Result.StatusCode == HttpStatusCode.OK)
+                    {
+                        mFlag = true;
+                    }
                 });
 
-              
-                    return true;
+                return mFlag;
             }
             catch (Exception ex)
             {
@@ -162,7 +166,6 @@ namespace Project16_Mobile
                         InvalidJsonElements.Add(item.ToString());
                     }
                 }
-
                 return list;
                
             }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:orientation="vertical"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:id="@+id/linearLayout1">
+    <TextView
+        p1:text="Deal Name"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/dealTitle"
+        p1:textSize="35dp"
+        p1:gravity="center" />
+    <TextView
+        p1:text="This is where the text of the deal is going to go once the information is filled out within the database. This is just a bunch of sample text so I can test the word wrapping and padding and whatnot"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/dealText"
+        p1:gravity="center"
+        p1:paddingLeft="40dp"
+        p1:paddingRight="40dp"
+        p1:backgroundTint="#00000000"
+        p1:textSize="20dp" />
+</LinearLayout>

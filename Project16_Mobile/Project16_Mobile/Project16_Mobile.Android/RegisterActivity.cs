@@ -65,7 +65,7 @@ namespace Project16_Mobile.Droid
             Action myAction = () =>
             {
                 // your code that you want to delay here
-                bool output = library.Register(1, name, 1, password, email);
+                bool output = library.Register(name, email, password);
                 if (output)
                 {
                     onSignupSuccess();

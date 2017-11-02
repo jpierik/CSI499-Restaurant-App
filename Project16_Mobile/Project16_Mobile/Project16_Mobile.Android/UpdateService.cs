@@ -81,7 +81,7 @@ namespace Project16_Mobile.Droid
         }
         public bool doesExist(int id)
         {
-            if (mResturantList.Exists(e => e.Index == id)){
+            if (mResturantList.Exists(item => item.Index == id)){
                 return true;
             }
             return false;

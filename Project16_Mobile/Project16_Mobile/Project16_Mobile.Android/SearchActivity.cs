@@ -16,7 +16,7 @@ using Android.Support.V7.App;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "InLine", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/Theme.AppCompat.Light")]
+    [Activity(Label = "InLine", Theme = "@style/Theme.AppCompat.Light")]
     public class SearchActivity : AppCompatActivity
     {
 
@@ -64,7 +64,7 @@ namespace Project16_Mobile.Droid
                     */
                 }
             };
-            StartActivity(typeof(LoginActivity));
+            //StartActivity(typeof(LoginActivity));
         }
 
         protected override void OnResume()

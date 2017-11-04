@@ -85,7 +85,7 @@ namespace Project16_Mobile.Droid
                 bool output = library.Login(email, password);
                 if (output)
                 {
-                    onLoginSuccess();
+                    onLoginSuccess(email, password);
                 }
                 else
                 {
@@ -99,9 +99,15 @@ namespace Project16_Mobile.Droid
 
 
         }
-        public void onLoginSuccess()
+        public void onLoginSuccess(string email ,string password)
         {
+            ISharedPreferences sharedPreferences = GetSharedPreferences("mypref", FileCreationMode.Private);
+            ISharedPreferencesEditor editor = sharedPreferences.Edit();
+            editor.PutString("username", email);
+            editor.PutString("password", password);
+            editor.Apply();
             btnLogin.Enabled = true;
+            StartActivity(typeof(SearchActivity));
             Finish();
         }
         public void onLoginFailed()

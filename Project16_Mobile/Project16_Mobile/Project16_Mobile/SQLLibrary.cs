@@ -32,7 +32,7 @@ namespace Project16_Mobile
         {
             try
             {
-                string url = "http://141.210.25.6/InLineWebApi/api/login";
+                string url = "http://141.210.25.6/InLineWebApi/api/mobileuser";
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
                 request.ContentType = "application/json";
                 request.Method = "GET";
@@ -45,7 +45,7 @@ namespace Project16_Mobile
 
                 //console write that stuff up there ^, then copy result to notepadd++, then go to json converter.
                 //after parsing check if list exists and check username and pass. if(list.exists(i => i.shitToCheck = stuff)) 
-                /*var array = JArray.Parse(responseString);
+                var array = JArray.Parse(responseString);
                 List<User> list = new List<User>();
                 foreach (var item in array)
                 {
@@ -58,9 +58,15 @@ namespace Project16_Mobile
                         InvalidJsonElements = InvalidJsonElements ?? new List<string>();
                         InvalidJsonElements.Add(item.ToString());
                     }
-                }*/
-
-                return true;
+                }
+                foreach(User u in list)
+                {
+                    if(u.email == username && u.pwd == password)
+                    {
+                        return true;
+                    }
+                }
+                return false;
 
             }
             catch (Exception ex)

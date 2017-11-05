@@ -173,14 +173,47 @@ namespace Project16_Mobile
                     }
                 }
                 return list;
-               
+            
             }
             catch (Exception ex)
             {
                 return null;
             }
         }
-        
+        public WeatherObject GetWeather(string city)
+        {
+            try
+            {
+                string url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial";
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+                request.ContentType = "application/json";
+                request.Method = "GET";
+                string responseString;
+                request.Headers.Add("x-api-key", "333b72fbdb1a3223348929ba8b979fe4");
+                using (WebResponse response = request.GetResponse())
+                {
+                    responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                }
+                Console.WriteLine(responseString);
+                // copy this shit down here and replace restaurant with user
+                var jobject = JObject.Parse(responseString);
+                WeatherObject weather = null;
+                try
+                {
+                    weather = jobject.ToObject<WeatherObject>();
+                }
+                catch (Exception ex)
+                {
+                    InvalidJsonElements = InvalidJsonElements ?? new List<string>();
+                    InvalidJsonElements.Add(jobject.ToString());
+                }
+
+                return weather;
+            }catch(Exception ex)
+            {
+                return null;
+            }
+        }
 
         /*public List<string[]> getRestaurantInfo(string restaurant, string addresss, int distance, int tables, int waitTime)
         {

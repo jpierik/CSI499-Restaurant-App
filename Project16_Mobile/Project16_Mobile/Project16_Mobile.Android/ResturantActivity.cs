@@ -14,7 +14,7 @@ using Android.Support.V7.App;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "ResturantActivity", Theme = "@style/Theme.AppCompat.Light", ParentActivity =typeof(SearchActivity))]
+    [Activity(Label = "Restaurant", Theme = "@style/Theme.AppCompat.Light", ParentActivity =typeof(SearchActivity))]
     
     public class ResturantActivity : AppCompatActivity
     {

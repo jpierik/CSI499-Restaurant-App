@@ -13,13 +13,15 @@ using Java.Lang;
 using Xamarin;
 using Android.Util;
 using Android.Support.V7.App;
+using Android;
+using Android.Content.PM;
 
 namespace Project16_Mobile.Droid
 {
 
 
 
-    [Activity(Label = "LoginActivity", Theme = "@style/Theme.AppCompat.Light")]
+    [Activity(Label = "Login", Theme = "@style/Theme.AppCompat.Light")]
     public class LoginActivity : AppCompatActivity
     {
 
@@ -27,6 +29,7 @@ namespace Project16_Mobile.Droid
         TextView lnkSignup;
         EditText txtEmail;
         EditText txtPassword;
+        public static int APP_PERMISSION = 2;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -47,6 +50,7 @@ namespace Project16_Mobile.Droid
             {
                 StartActivity(typeof(RegisterActivity));
             };
+            AskForPermissions();
 
         }
        //[Android.Runtime.Register("onBackPressed", "()V", "GetOnBackPressedHandler")]
@@ -58,7 +62,30 @@ namespace Project16_Mobile.Droid
         }
 
 
+        public void AskForPermissions()
+        {
+            if (Android.Support.V4.Content.ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessCoarseLocation) != (int)Permission.Granted ||
+                Android.Support.V4.Content.ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) != (int)Permission.Granted ||
+                Android.Support.V4.Content.ContextCompat.CheckSelfPermission(this, Manifest.Permission.Internet) != (int)Permission.Granted)
+            {
+                Android.Support.V4.App.ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.AccessFineLocation, Manifest.Permission.AccessCoarseLocation, Manifest.Permission.Internet }, APP_PERMISSION);
+            }
+        }
 
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            switch (requestCode)
+            {
+                case 2:
+                    {
+                        if (grantResults[0] == Permission.Granted)
+                        {
+
+                        }
+                    }
+                    break;
+            }
+        }
 
         public void login(Context context)
         {
@@ -107,7 +134,7 @@ namespace Project16_Mobile.Droid
             editor.PutString("password", password);
             editor.Apply();
             btnLogin.Enabled = true;
-            StartActivity(typeof(SearchActivity));
+            StartActivity(typeof(DashboardActivity));
             Finish();
         }
         public void onLoginFailed()

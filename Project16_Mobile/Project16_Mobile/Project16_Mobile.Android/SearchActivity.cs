@@ -16,7 +16,7 @@ using Android.Support.V7.App;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "InLine", Theme = "@style/Theme.AppCompat.Light")]
+    [Activity(Label = "Search", Theme = "@style/Theme.AppCompat.Light", ParentActivity = typeof(DashboardActivity))]
     public class SearchActivity : AppCompatActivity
     {
 

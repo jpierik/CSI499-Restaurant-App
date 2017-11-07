@@ -18,5 +18,7 @@ namespace DataAccess
         public string Address { get; set; }
         public string Name { get; set; }
         public Nullable<int> NoOfTables { get; set; }
+        public Nullable<int> OwnerId { get; set; }
+        public Nullable<System.DateTime> CurrentWait { get; set; }
     }
 }

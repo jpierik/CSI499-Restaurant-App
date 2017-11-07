@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5ce954a181f64aa992c653d817de1f9a" Name="Diagram1">
+      <Diagram DiagramId="ba10a6b525b444f480a2ee62017187e3" Name="Diagram1">
         <EntityTypeShape EntityType="CSI4999Model1.WaitingParty" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>

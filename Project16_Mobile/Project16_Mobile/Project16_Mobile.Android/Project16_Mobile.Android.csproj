@@ -92,6 +92,8 @@
   <ItemGroup>
     <Compile Include="DashboardActivity.cs" />
     <Compile Include="DealsActivity.cs" />
+    <Compile Include="InlineActivity.cs" />
+    <Compile Include="InlineItem.cs" />
     <Compile Include="ListItem.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="MainActivity.cs" />
@@ -141,6 +143,9 @@
     <AndroidResource Include="Resources\layout\inline_layout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_inline.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -157,7 +162,9 @@
     <AndroidResource Include="Resources\drawable-hdpi\logo.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\Styles.xml" />
+    <AndroidResource Include="Resources\values\Styles.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\colors.xml" />

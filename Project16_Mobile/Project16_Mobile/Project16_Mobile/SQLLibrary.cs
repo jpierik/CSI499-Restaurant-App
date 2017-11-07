@@ -28,11 +28,11 @@ namespace Project16_Mobile
 
         }
         //POST api/SQL?username={username}&password={password}
-        public bool Login(string username, string password)
+        public User Login(string username, string password)
         {
             try
             {
-                string url = "http://141.210.25.6/InLineWebApi/api/mobileuser";
+                string url = "http://141.210.25.6/InLineWebApi/api/login";
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
                 request.ContentType = "application/json";
                 request.Method = "GET";
@@ -63,15 +63,15 @@ namespace Project16_Mobile
                 {
                     if(u.email == username && u.pwd == password)
                     {
-                        return true;
+                        return u;
                     }
                 }
-                return false;
+                return null;
 
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
 
         }
@@ -110,7 +110,7 @@ namespace Project16_Mobile
             }
         }
 
-        public bool waitingParty(int partyNum, int pID, int restID)
+        public bool InsertWaitingParty(int partyNum, int pID, int restID)
         {
             try
             {
@@ -138,6 +138,44 @@ namespace Project16_Mobile
             catch (Exception ex)
             {
                 return false;
+            }
+        }
+        public List<WaitingParty> GetWaitingParties()
+        {
+            InvalidJsonElements = null;
+            try
+            {
+                string url = "http://141.210.25.6/InLineWebApi/api/waitingparty";
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+                request.ContentType = "application/json";
+                request.Method = "GET";
+                string responseString;
+                using (WebResponse response = request.GetResponse())
+                {
+                    responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                }
+                Console.WriteLine(responseString);
+                // copy this shit down here and replace restaurant with user
+                var array = JArray.Parse(responseString);
+                List<WaitingParty> list = new List<WaitingParty>();
+                foreach (var item in array)
+                {
+                    try
+                    {
+                        list.Add(item.ToObject<WaitingParty>());
+                    }
+                    catch (Exception ex)
+                    {
+                        InvalidJsonElements = InvalidJsonElements ?? new List<string>();
+                        InvalidJsonElements.Add(item.ToString());
+                    }
+                }
+                return list;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
 
@@ -174,6 +212,51 @@ namespace Project16_Mobile
                 }
                 return list;
             
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public Restaurant GetRestaurant(int id)
+        {
+            InvalidJsonElements = null;
+            try
+            {
+                string url = "http://141.210.25.6/InLineWebApi/api/restaurant";
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+                request.ContentType = "application/json";
+                request.Method = "GET";
+                string responseString;
+                using (WebResponse response = request.GetResponse())
+                {
+                    responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                }
+                Console.WriteLine(responseString);
+                // copy this shit down here and replace restaurant with user
+                var array = JArray.Parse(responseString);
+                List<Restaurant> list = new List<Restaurant>();
+                foreach (var item in array)
+                {
+                    try
+                    {
+                        list.Add(item.ToObject<Restaurant>());
+                    }
+                    catch (Exception ex)
+                    {
+                        InvalidJsonElements = InvalidJsonElements ?? new List<string>();
+                        InvalidJsonElements.Add(item.ToString());
+                    }
+                }
+                foreach(Restaurant r in list)
+                {
+                    if(r.RestaurantId == id)
+                    {
+                        return r;
+                    }
+                }
+                return null;
+
             }
             catch (Exception ex)
             {

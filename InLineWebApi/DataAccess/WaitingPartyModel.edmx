@@ -4,20 +4,23 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CSI4999Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CSI4999Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="WaitingParty">
           <Key>
             <PropertyRef Name="PartyId" />
           </Key>
           <Property Name="PartyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RestaurantID" Type="int" />
+          <Property Name="RestaurantID" Type="int" Nullable="false" />
           <Property Name="NoOfGuests" Type="int" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" />
+          <Property Name="PriorityLvl" Type="bit" />
+          <Property Name="FullName" Type="varchar" MaxLength="50" />
+          <Property Name="MobileUserId" Type="int" />
         </EntityType>
         <EntityContainer Name="CSI4999Model1StoreContainer">
           <EntitySet Name="WaitingParty" EntityType="Self.WaitingParty" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CSI4999Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -26,8 +29,12 @@
             <PropertyRef Name="PartyId" />
           </Key>
           <Property Name="PartyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RestaurantID" Type="Int32" />
+          <Property Name="RestaurantID" Type="Int32" Nullable="false" />
           <Property Name="NoOfGuests" Type="Int32" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Precision="3" />
+          <Property Name="PriorityLvl" Type="Boolean" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileUserId" Type="Int32" />
         </EntityType>
         <EntityContainer Name="WaitingPartyModel" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="WaitingParties" EntityType="Self.WaitingParty" />
@@ -41,9 +48,13 @@
           <EntitySetMapping Name="WaitingParties">
             <EntityTypeMapping TypeName="CSI4999Model1.WaitingParty">
               <MappingFragment StoreEntitySet="WaitingParty">
+                <ScalarProperty Name="MobileUserId" ColumnName="MobileUserId" />
                 <ScalarProperty Name="PartyId" ColumnName="PartyId" />
                 <ScalarProperty Name="RestaurantID" ColumnName="RestaurantID" />
                 <ScalarProperty Name="NoOfGuests" ColumnName="NoOfGuests" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="PriorityLvl" ColumnName="PriorityLvl" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

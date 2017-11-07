@@ -34,8 +34,12 @@ namespace InLineWebApi.Controllers
                 {
                     PartyId = party.PartyId,
                     RestaurantID = party.RestaurantID,
-                    NoOfGuests = party.NoOfGuests
-
+                    NoOfGuests = party.NoOfGuests,
+                    AddTime = party.AddTime,
+                    PriorityLvl = party.PriorityLvl,
+                    FullName = party.FullName,
+                    MobileUserId = party.MobileUserId
+                   
                 });
                 ctx.SaveChanges();
             }

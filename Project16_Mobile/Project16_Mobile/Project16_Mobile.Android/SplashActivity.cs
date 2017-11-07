@@ -30,9 +30,11 @@ namespace Project16_Mobile.Droid
             ISharedPreferences sharedPreferences = GetSharedPreferences("mypref", FileCreationMode.Private);
             string username = sharedPreferences.GetString("username", null);
             string password = sharedPreferences.GetString("password", null);
+            int id = sharedPreferences.GetInt("user_id", -1);
+            string fullname = sharedPreferences.GetString("fullname", null);
 
             Intent login = new Intent(this, typeof(LoginActivity));
-            if (username == null || password == null)
+            if (username == null || password == null || id == -1)
             {
                 StartActivity(login);
             }
@@ -40,10 +42,12 @@ namespace Project16_Mobile.Droid
             {
 
                 SQLLibrary library = SQLLibrary.getInstance();
-                bool output = library.Login(username, password);
-                if (output)
+                User user = library.Login(username, password);
+                if (user != null)
                 {
                     Intent search = new Intent(this, typeof(DashboardActivity));
+                    search.PutExtra("com.csi4999.inline.EXTRA_USER_ID", id);
+                    search.PutExtra("com.csi4999.inline.EXTRA_USER_FULLNAME", fullname);                
                     StartActivity(search);
                 }
                 else

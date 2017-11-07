@@ -12,23 +12,27 @@ using Android.Widget;
 using Android.Locations;
 using Android.Graphics;
 using Java.Util;
+using Android.Support.V7.App;
 
 
 namespace Project16_Mobile.Droid
 {
     [Activity(Label = "DashboardActivity", Theme = "@style/Theme.AppCompat.Light")]
-    public class DashboardActivity : Activity, ILocationListener
+    public class DashboardActivity : AppCompatActivity, ILocationListener
     {
         Location _currentLocation;
         LocationManager _locationManager;
         string location;
         string _locationProvider;
+        TextView mLocationName = null, mInfo = null;
+        Button mSelection = null;
         TextView weatherIcon = null;
         TextView txtDate, txtWeather;
         Typeface weatherFont;
         Handler handler;
         SQLLibrary library;
-        LinearLayout search, deals, profile, logout, checkIn;
+        LinearLayout search, deals, profile, logout, checkIn, inlineView;
+        int mUserId;
         ISharedPreferences sharedPreferences;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -36,6 +40,10 @@ namespace Project16_Mobile.Droid
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.activity_dashboard);
+            mSelection = (Button)FindViewById(Resource.Id.btnInlineView);
+            mLocationName = (TextView)FindViewById(Resource.Id.txtInlineName);
+            mInfo = (TextView)FindViewById(Resource.Id.txtInlineOther);
+            inlineView = FindViewById<LinearLayout>(Resource.Id.inlineView);
             weatherIcon = FindViewById<TextView>(Resource.Id.weatherIcon);
             weatherFont = Typeface.CreateFromAsset(Assets, "Fonts/weather.ttf");
             weatherIcon.SetTypeface(weatherFont, TypefaceStyle.Normal);
@@ -73,14 +81,43 @@ namespace Project16_Mobile.Droid
             };
             library = SQLLibrary.getInstance();
             InitializeLocationManager();
-          
-            
+
+            Intent i = this.Intent;
+            int mUserId = i.GetIntExtra("com.csi4999.inline.EXTRA_USER_ID", -1);
+            string fullName = i.GetStringExtra("com.csi4999.inline.EXTRA_USER_FULLNAME");
+            SupportActionBar.Title = "Welcome " + fullName;
+
+            List<WaitingParty> list = library.GetWaitingParties();
+            WaitingParty party = null;
+            foreach(WaitingParty wp in list)
+            {
+                if (wp.MobileUserId == mUserId)
+                    party = wp;
+            }
+            if (party != null)
+            {                
+                Restaurant restaurant = library.GetRestaurant(party.RestaurantID);
+                if (restaurant != null)
+                {
+                    mLocationName.Text = restaurant.Name;
+                    mInfo.Text = restaurant.Address;
+                    mSelection.Click += delegate
+                    {
+                        Intent intent = new Intent(this, typeof(InlineActivity));
+                        StartActivity(intent);
+                    };
+                }
+
+            }
+
             // Create your application here
 
             /*
             Address address = ReverseGeocodeCurrentLocation();
             DisplayAddress(address);
             */
+
+
         }
 
         protected override void OnResume()

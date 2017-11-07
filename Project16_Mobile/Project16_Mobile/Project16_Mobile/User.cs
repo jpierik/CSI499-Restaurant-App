@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Project16_Mobile
 {
-    class User
+    public class User
     {       
         public int UserId { get; set; }
         public string FullName { get; set; }

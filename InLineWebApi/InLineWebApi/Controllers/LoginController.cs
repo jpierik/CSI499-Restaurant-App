@@ -10,34 +10,32 @@ namespace InLineWebApi.Controllers
 {
     public class LoginController : ApiController
     {
-        public IEnumerable<User> Get()
+        public IEnumerable<MobileUser> Get()
         {
-            using (UserModel entities = new UserModel())
+            using (MobileUserEntities entities = new MobileUserEntities())
             {
-                return entities.Users.ToList();
+                return entities.MobileUsers.ToList();
             }
         }
-        public User Get(int id)
+        public MobileUser Get(int id)
         {
-            using (UserModel entities = new UserModel())
+            using (MobileUserEntities entities = new MobileUserEntities())
             {
-                return entities.Users.FirstOrDefault(e => e.UserId == id);
+                return entities.MobileUsers.FirstOrDefault(e => e.UserId == id);
             }
         }
-        public IHttpActionResult Post(User user)
+        public IHttpActionResult Post(MobileUser user)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid data.");
-            using (var ctx = new UserModel())
+            using (var ctx = new MobileUserEntities())
             {
-                ctx.Users.Add(new User()
+                ctx.MobileUsers.Add(new MobileUser()
                 {
-                    RestaurantID = user.RestaurantID,
-                    username = user.username,
-                    alevel = user.alevel,
-                    pwd = user.pwd,
-                    email = user.email
-
+                    UserId = user.UserId,
+                    FullName = user.FullName,
+                    email = user.email,
+                    pwd = user.pwd
                 });
                 ctx.SaveChanges();
             }

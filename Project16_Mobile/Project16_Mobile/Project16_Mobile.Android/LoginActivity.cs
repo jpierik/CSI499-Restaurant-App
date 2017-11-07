@@ -109,10 +109,11 @@ namespace Project16_Mobile.Droid
             {
                 // Testing Commit
                 // your code that you want to delay here
-                bool output = library.Login(email, password);
-                if (output)
+                User user = library.Login(email, password);
+
+                if (user != null)
                 {
-                    onLoginSuccess(email, password);
+                    OnLoginSuccess(user);
                 }
                 else
                 {
@@ -126,12 +127,14 @@ namespace Project16_Mobile.Droid
 
 
         }
-        public void onLoginSuccess(string email ,string password)
+        public void OnLoginSuccess(User user)
         {
             ISharedPreferences sharedPreferences = GetSharedPreferences("mypref", FileCreationMode.Private);
             ISharedPreferencesEditor editor = sharedPreferences.Edit();
-            editor.PutString("username", email);
-            editor.PutString("password", password);
+            editor.PutString("username", user.email);
+            editor.PutString("password", user.pwd);
+            editor.PutInt("user_id", user.UserId);
+            editor.PutString("fullname", user.FullName);
             editor.Apply();
             btnLogin.Enabled = true;
             StartActivity(typeof(DashboardActivity));

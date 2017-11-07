@@ -15,7 +15,11 @@ namespace DataAccess
     public partial class WaitingParty
     {
         public int PartyId { get; set; }
-        public Nullable<int> RestaurantID { get; set; }
+        public int RestaurantID { get; set; }
         public int NoOfGuests { get; set; }
+        public Nullable<System.DateTime> AddTime { get; set; }
+        public Nullable<bool> PriorityLvl { get; set; }
+        public string FullName { get; set; }
+        public Nullable<int> MobileUserId { get; set; }
     }
 }

@@ -31,6 +31,7 @@ namespace Project16_Mobile.Droid
             Intent searchIntent = this.Intent;
             var dealsActivity = new Intent(this, typeof(DealsActivity));
             string restaurantExtra = searchIntent.GetStringExtra(UpdateService.EXTRA_RNAME);
+            int id = searchIntent.GetIntExtra(UpdateService.EXTRA_RID, -1);
 
             backButton.Click += delegate
             {
@@ -40,6 +41,9 @@ namespace Project16_Mobile.Droid
             inLine.Click += delegate
             {
                 int sizeOfParty = int.Parse(partySize.Text);
+                SQLLibrary library = SQLLibrary.getInstance();
+                library.InsertWaitingParty(sizeOfParty, id);
+
             };
 
             dealsButton.Click += delegate {
@@ -47,9 +51,7 @@ namespace Project16_Mobile.Droid
                 StartActivity(dealsActivity);
             };
 
-            Intent intent = this.Intent;
-            int index =  intent.GetIntExtra(UpdateService.EXTRA_INDEX, -1);
-
+           
             TextView textView = FindViewById<TextView>(Resource.Id.resturantName);
             textView.Text = "" + restaurantExtra;
             TextView waitTime = FindViewById<TextView>(Resource.Id.waitTime);

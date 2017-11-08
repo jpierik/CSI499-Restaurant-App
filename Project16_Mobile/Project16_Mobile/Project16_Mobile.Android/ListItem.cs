@@ -39,6 +39,7 @@ namespace Project16_Mobile.Droid
             {
                 Intent intent = new Intent(context, typeof(ResturantActivity)/* Insert Reseraunt Activity*/);
                 intent.PutExtra(UpdateService.EXTRA_RNAME, Name);
+                intent.PutExtra(UpdateService.EXTRA_RID, Index);
                 context.StartActivity(intent);
             };
 

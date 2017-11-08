@@ -49,6 +49,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Deal.cs">
+      <DependentUpon>DealsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DealsModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealsModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DealsModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DealsModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealsModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="MobileUser.cs">
       <DependentUpon>MobileUserModel.tt</DependentUpon>
     </Compile>
@@ -129,6 +147,13 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MobileUserModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <EntityDeploy Include="DealsModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DealsModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DealsModel.edmx.diagram">
+      <DependentUpon>DealsModel.edmx</DependentUpon>
+    </None>
     <None Include="MobileUserModel.edmx.diagram">
       <DependentUpon>MobileUserModel.edmx</DependentUpon>
     </None>
@@ -159,6 +184,16 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DealsModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DealsModel.edmx</DependentUpon>
+      <LastGenOutput>DealsModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DealsModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DealsModel.edmx</DependentUpon>
+      <LastGenOutput>DealsModel.cs</LastGenOutput>
+    </Content>
     <Content Include="MobileUserModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MobileUserModel.edmx</DependentUpon>

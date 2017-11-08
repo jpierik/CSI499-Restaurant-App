@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CSI4999Model2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CSI4999Model2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Restaurant">
           <Key>
             <PropertyRef Name="RestaurantId" />
@@ -14,12 +14,13 @@
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="NoOfTables" Type="int" />
           <Property Name="OwnerId" Type="int" />
-          <Property Name="CurrentWait" Type="datetime" />
+          <Property Name="CurrentWait" Type="int" />
         </EntityType>
         <EntityContainer Name="CSI4999Model2StoreContainer">
           <EntitySet Name="Restaurant" EntityType="Self.Restaurant" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CSI4999Model2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -32,9 +33,9 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NoOfTables" Type="Int32" />
           <Property Name="OwnerId" Type="Int32" />
-          <Property Name="CurrentWait" Type="DateTime" Precision="3" />
+          <Property Name="CurrentWait" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="RestaurantEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="RestaurantModel" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Restaurants" EntityType="Self.Restaurant" />
         </EntityContainer>
       </Schema>
@@ -42,16 +43,16 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CSI4999Model2StoreContainer" CdmEntityContainer="RestaurantEntities">
+        <EntityContainerMapping StorageEntityContainer="CSI4999Model2StoreContainer" CdmEntityContainer="RestaurantModel">
           <EntitySetMapping Name="Restaurants">
             <EntityTypeMapping TypeName="CSI4999Model2.Restaurant">
               <MappingFragment StoreEntitySet="Restaurant">
-                <ScalarProperty Name="CurrentWait" ColumnName="CurrentWait" />
-                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
                 <ScalarProperty Name="RestaurantId" ColumnName="RestaurantId" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="NoOfTables" ColumnName="NoOfTables" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="CurrentWait" ColumnName="CurrentWait" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

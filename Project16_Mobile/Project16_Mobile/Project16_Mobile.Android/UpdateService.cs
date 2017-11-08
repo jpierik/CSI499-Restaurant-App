@@ -18,7 +18,7 @@ namespace Project16_Mobile.Droid
     [Service]
     public class UpdateService : Service
     {
-        public static string EXTRA_INDEX = "com.csi4999.project16.EXTRA_INDEX";
+        public static string EXTRA_RID = "com.csi4999.project16.EXTRA_RID";
         public static string ACTION_UPDATE = "com.csi4999.project16.ACTION_UPDATE";
         public static string EXTRA_RESTAURANT = "com.csi4999.project16.EXTRA_RESTAURANT";
         public static string EXTRA_WAITTIME = "com.csi4999.project16.EXTRA_WAITTIME";

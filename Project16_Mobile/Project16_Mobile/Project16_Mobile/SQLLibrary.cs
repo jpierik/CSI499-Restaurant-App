@@ -110,7 +110,7 @@ namespace Project16_Mobile
             }
         }
 
-        public bool InsertWaitingParty(int partyNum, int pID, int restID)
+        public bool InsertWaitingParty(int partyNum, int restID)
         {
             try
             {
@@ -118,7 +118,7 @@ namespace Project16_Mobile
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
                 request.ContentType = "application/json";
                 request.Method = "POST";
-                string message = "{\"NoOfGuests\":\"" + pID + "\", \"PartyID\":\"" + restID + "\", \"RestaurantID\":\"" + restID + "\" }";
+                string message = "{\"NoOfGuests\":\"" + partyNum + "\", \"PartyID\":\"" + restID + "\", \"RestaurantID\":\"" + restID + "\" }";
 
                 HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Post, "relativeAddress");
                 reqMessage.Content = new StringContent(message, Encoding.UTF8, "application/json");

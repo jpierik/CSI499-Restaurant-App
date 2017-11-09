@@ -11,7 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Java.Util;
 using Android.Util;
-
+using Android.Locations;
 
 namespace Project16_Mobile.Droid
 {
@@ -103,6 +103,7 @@ namespace Project16_Mobile.Droid
         {
             UpdateService mService;
             SQLLibrary library;
+            double TO_MILES = 0.000621371;
             public UpdateTimerTask(UpdateService service)
             {
                 mService = service;
@@ -112,6 +113,7 @@ namespace Project16_Mobile.Droid
             {
                 // Call sql
                 List<Restaurant> list =  library.GetRestaurants();
+                SQLLibrary.CurrentLocation currentLocation = library.GetCurrentLocation();
                 if (list == null) return;
                 bool mFlag = false;
                 foreach (Restaurant r in list)
@@ -120,11 +122,14 @@ namespace Project16_Mobile.Droid
                     if (!mService.doesExist(id))
                     {
                         string location = r.Name;
-                        string time = "30:00";
+                        int time = r.CurrentWait;
                         ListItem item = new ListItem(mService.ApplicationContext, null);
                         item.Name = r.Name;
                         item.Index = id;
-                        item.setNameAndWaitTime(location, time);
+                        item.WaitTime = r.CurrentWait;
+                        item.Address = r.Address;
+                        string distance = CalculateDistance(currentLocation, r.Address);
+                        item.setLables(r.Name, "Average Wait Time: " + r.CurrentWait + " mins", distance);
                         mService.addListItem(item);
                         mFlag = true;
                     }
@@ -134,6 +139,42 @@ namespace Project16_Mobile.Droid
                 {
                     Intent intent = new Intent("com.csi4999.project16.ACTION_UPDATE");
                     mService.SendBroadcast(intent);
+                }
+            }
+            private string CalculateDistance(SQLLibrary.CurrentLocation location, string address)
+            {
+
+                Location locA = new Location("Current");
+                locA.Latitude = location.Latitude;
+                locA.Longitude = location.Longitude;
+
+                Location locB = GetLocationFromAddress(address);
+                if(locB == null)
+                {
+                    return "";
+                }
+                double distance = locA.DistanceTo(locB);
+                return "" + (distance * TO_MILES).ToString("0.##") + " miles";
+                
+            }
+            private Location GetLocationFromAddress(string strAddress)
+            {
+                Location rLocation = null;
+                Geocoder coder = new Geocoder(mService.ApplicationContext);
+                IList<Address> address;
+                try
+                {
+                    address = coder.GetFromLocationName(strAddress, 5);
+                    Address location = address[0];
+                    rLocation = new Location("Store");
+                    rLocation.Latitude = location.Latitude;
+                    rLocation.Longitude = location.Longitude;
+                    return rLocation;
+
+                }
+                catch (Exception ex)
+                {
+                    return null;
                 }
             }
         }

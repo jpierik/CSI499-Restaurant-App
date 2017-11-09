@@ -51,18 +51,11 @@ namespace Project16_Mobile.Droid
 
             searchIcon.Click += delegate
             {
+                removeItemsFromView();
+                addItemsToView(mUpdateService.mResturantList, searchBox.Text);
+                
                 //resultListLayout.AddView(b1, resultParams);
-                {
-                    /*
-                    for (int i = 1; i <= 10; i++)
-                    {
-                        ListItem listItem = new ListItem(ApplicationContext, null);
-                        listItem.Index = i;
-                        listItem.setLocationAndWaitTime("Location: " + i, (20 + i) + " min");
-                        resultListLayout.AddView(listItem);
-                    }
-                    */
-                }
+               
             };
             //StartActivity(typeof(LoginActivity));
         }
@@ -103,6 +96,15 @@ namespace Project16_Mobile.Droid
             foreach (ListItem item in list)
             {
                 resultListLayout.AddView(item);
+            }
+        }
+        public void addItemsToView(List<ListItem> list, string filter)
+        {
+            removeItemsFromView();
+            foreach (ListItem item in list)
+            {
+                if(item.Name.Contains(filter) || item.Address.Contains(filter))
+                    resultListLayout.AddView(item);
             }
         }
 

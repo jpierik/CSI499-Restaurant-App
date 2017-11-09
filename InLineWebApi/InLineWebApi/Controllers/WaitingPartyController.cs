@@ -39,11 +39,51 @@ namespace InLineWebApi.Controllers
                     PriorityLvl = party.PriorityLvl,
                     FullName = party.FullName,
                     MobileUserId = party.MobileUserId
-                   
+
                 });
                 ctx.SaveChanges();
             }
             return Ok();
-        }      
+        }
+        public IHttpActionResult Put(WaitingParty party)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            using (var ctx = new WaitingPartyModel())
+            {
+                var existingParty = ctx.WaitingParties.Where(s => s.PartyId == party.PartyId)
+                                                        .FirstOrDefault<WaitingParty>();
+
+                if (existingParty != null)
+                {
+                    existingParty.PriorityLvl = party.PriorityLvl;                 
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+            return Ok();
+        }
+        public IHttpActionResult Delete(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Not a valid student id");
+
+            using (var ctx = new WaitingPartyModel())
+            {
+                var party = ctx.WaitingParties
+                    .Where(s => s.PartyId == id)
+                    .FirstOrDefault();
+
+                ctx.Entry(party).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
+            }
+
+            return Ok();
+        }
     }
 }

@@ -1,32 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-           android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="150px">
+<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:orientation="horizontal"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="match_parent"
+    p1:layout_height="300px"
+    p1:id="@+id/linearLayout1">
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:id="@+id/layout"
-        android:layout_height="match_parent">
+        p1:orientation="vertical"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_weight="1"
+        p1:layout_width="0dp"
+        p1:layout_height="match_parent"
+        p1:id="@+id/linearLayout2">
         <TextView
-            android:id="@+id/txtInlineName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Red Robin"
-            android:textSize="32sp" />
+            p1:text="Large Text"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/txtInlineName" />
         <TextView
-            android:id="@+id/txtInlineOther"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Other text....."
-            android:textSize="28sp" />
+            p1:text="Medium Text"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/txtInlineNumOfGuest" />
+        <TextView
+            p1:text="Medium Text"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/txtInlineDate" />
     </LinearLayout>
-    <Button
-        android:layout_width="20dp"
-        android:layout_height="match_parent"
-        android:text="&gt;"
-        android:textSize="40sp"
-        android:id="@+id/btnInlineView"
-        android:background="@android:color/transparent" />
+    <LinearLayout
+        p1:orientation="vertical"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="150px"
+        p1:layout_height="match_parent"
+        p1:gravity="center"
+        p1:id="@+id/linearLayout2">
+        <ImageView
+            p1:src="@drawable/check_icon"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/btnCheckIn" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="vertical"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="150px"
+         p1:gravity="center"
+        p1:layout_height="match_parent"
+        p1:id="@+id/linearLayout2">
+        <ImageView
+            p1:src="@drawable/close_icon"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/btnCheckOut" />
+    </LinearLayout>
 </LinearLayout>

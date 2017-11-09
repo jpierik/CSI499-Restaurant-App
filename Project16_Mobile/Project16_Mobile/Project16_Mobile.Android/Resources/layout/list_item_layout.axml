@@ -7,8 +7,10 @@
     android:layout_height="match_parent">
     <TextView
         android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_blue_dark"
         android:layout_marginBottom="6dp"
         android:id="@+id/lblName" />
     <TextView
@@ -16,13 +18,15 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@android:color/darker_gray"
         android:layout_below="@id/lblName"
         android:id="@+id/lblWaitTime" />
     <TextView
         android:text="Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@android:color/darker_gray"
         android:layout_below="@id/lblWaitTime"
-        android:id="@+id/mDistance"
+        android:id="@+id/lblDistance"
         android:paddingTop="5dp" />
 </RelativeLayout>

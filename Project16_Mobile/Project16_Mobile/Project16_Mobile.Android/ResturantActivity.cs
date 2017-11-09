@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Support.V7.App;
-
+using System.Threading.Tasks;
 
 namespace Project16_Mobile.Droid
 {
@@ -18,6 +18,7 @@ namespace Project16_Mobile.Droid
     
     public class ResturantActivity : AppCompatActivity
     {
+        SQLLibrary library;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -32,6 +33,7 @@ namespace Project16_Mobile.Droid
             var dealsActivity = new Intent(this, typeof(DealsActivity));
             string restaurantExtra = searchIntent.GetStringExtra(UpdateService.EXTRA_RNAME);
             int id = searchIntent.GetIntExtra(UpdateService.EXTRA_RID, -1);
+            int time = searchIntent.GetIntExtra(UpdateService.EXTRA_WAITTIME, -1); 
 
             backButton.Click += delegate
             {
@@ -41,9 +43,10 @@ namespace Project16_Mobile.Droid
             inLine.Click += delegate
             {
                 int sizeOfParty = int.Parse(partySize.Text);
-                SQLLibrary library = SQLLibrary.getInstance();
-                library.InsertWaitingParty(sizeOfParty, id);
-
+                library = SQLLibrary.getInstance();
+                User user = library.GetUser();
+                InsertWaitingParty(id, sizeOfParty, user.FullName, user.UserId);            
+             
             };
 
             dealsButton.Click += delegate {
@@ -55,7 +58,7 @@ namespace Project16_Mobile.Droid
             TextView textView = FindViewById<TextView>(Resource.Id.resturantName);
             textView.Text = "" + restaurantExtra;
             TextView waitTime = FindViewById<TextView>(Resource.Id.waitTime);
-            waitTime.Text = "" + (20 + index);
+            waitTime.Text = "Average Wait Time: " + time + " mins";
             // Create your application here
 
             //Button backButton = FindViewById<Button>(Resource.Id.backButton);
@@ -75,6 +78,16 @@ namespace Project16_Mobile.Droid
             base.OnResume();
 
             
+        }
+        public async void InsertWaitingParty(int id, int size, string name, int uId)
+        {
+            Task<bool> output = library.InsertWaitingParty(id, size, name, uId);
+            bool value = await output;
+
+            if (!value)
+                Toast.MakeText(ApplicationContext, "Error: Please try again later", ToastLength.Long).Show();
+            else
+                Toast.MakeText(ApplicationContext, "Success: You are InLine!", ToastLength.Long).Show();
         }
     }
    

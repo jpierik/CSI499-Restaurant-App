@@ -5,7 +5,6 @@ using System.Net;
 using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
-using System.Json;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 
@@ -344,6 +343,84 @@ namespace Project16_Mobile
         }
    */
 
+        public List<Deal> GetDeals()
+        {
+            InvalidJsonElements = null;
+            try
+            {
+                string url = "http://141.210.25.6/InLineWebApi/api/deals";
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+                request.ContentType = "application/json";
+                request.Method = "GET";
+                string responseString;
+                using (WebResponse response = request.GetResponse())
+                {
+                    responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                }
+                var array = JArray.Parse(responseString);
+                List<Deal> list = new List<Deal>();
+                foreach (var item in array)
+                {
+                    try
+                    {
+                        list.Add(item.ToObject<Deal>());
+                    }
+                    catch (Exception ex)
+                    {
+                        InvalidJsonElements = InvalidJsonElements ?? new List<string>();
+                        InvalidJsonElements.Add(item.ToString());
+                    }
+                }
+                return list;
 
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public List<Deal> GetDeals(int id)
+        {
+            InvalidJsonElements = null;
+            try
+            {
+                string url = "http://141.210.25.6/InLineWebApi/api/deals";
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+                request.ContentType = "application/json";
+                request.Method = "GET";
+                string responseString;
+                using (WebResponse response = request.GetResponse())
+                {
+                    responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                }
+                Console.WriteLine(responseString);
+                var array = JArray.Parse(responseString);
+                List<Deal> list = new List<Deal>();
+                foreach (var item in array)
+                {
+                    try
+                    {
+                        list.Add(item.ToObject<Deal>());
+                    }
+                    catch (Exception ex)
+                    {
+                        InvalidJsonElements = InvalidJsonElements ?? new List<string>();
+                        InvalidJsonElements.Add(item.ToString());
+                        return null;
+                    }
+                }
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].RestaurantId != id)
+                        list.RemoveAt(i);
+                }
+                return list;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

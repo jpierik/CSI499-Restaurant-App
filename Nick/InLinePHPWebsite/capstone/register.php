@@ -37,23 +37,27 @@ if (isset($_REQUEST['submission'])) {
 		$pass2 = strip_tags($_REQUEST['passConf']);
 	}
 	
-	$result = $conn->query("SELECT email FROM users WHERE email='$email'");
-	$testEmail = $result->fetch_array(MYSQLI_NUM);
+	$sql = "SELECT email FROM users WHERE email='$email'";
+	$result = odbc_exec($conn, $sql);
+	$testEmail = odbc_result($result, 1);
+	// $testEmail = $result->fetch_array(MYSQLI_NUM);
 	
-	$result = $conn->query("SELECT username FROM users WHERE username='$uname'");
-	$testUser = $result->fetch_array(MYSQLI_NUM);
+	$sql = "SELECT username FROM users WHERE username='$uname'";
+	$result = odbc_exec($conn, $sql);
+	$testUser = odbc_result($result, 1);
+	// $testUser = $result->fetch_array(MYSQLI_NUM);
 	
 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "<center> check email format </center>";
         $error=true;
     }
     
-    if ($testEmail[0]) {
+    if ($testEmail) {
         echo "<center> this email is already being used </center>";
         $error=true;
     }
     
-    if ($testUser[0]) {
+    if ($testUser) {
         echo "<center> this username is already being used </center>";
            $error=true;
     }
@@ -74,8 +78,8 @@ if (isset($_REQUEST['submission'])) {
     } 
     
     if (!$error) {
-        $sql = "INSERT INTO users (email, password, username) VALUES ('$email', '$pass', '$uname');";
-        $result = $conn->query($sql);
+        $sql = "INSERT INTO users (email, pwd, username, restaurantid) VALUES ('$email', '$pass', '$uname', '5');";
+        odbc_exec($conn, $sql);
      
         header("Location:login.php");
         $success = "<center>" . "User Created!" . "</center>";

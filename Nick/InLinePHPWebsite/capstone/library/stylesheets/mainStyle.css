@@ -30,7 +30,6 @@ section.banner h1 {
     margin: 0 auto;
     letter-spacing: 1px;
     line-height: 130%;
-    margin: 0 auto 10px auto;
 }
 
 section.banner  p {
@@ -49,7 +48,17 @@ main.content {
 
 }
 
-/* ---------- ARTICLES CONTAINER ---------- */
+aside.sidebar {
+	position: absolute;
+	width: 510px;
+	border: 3px solid #3399cc;
+	
+}
+aside.sidebar h2 {
+	width: 100%;
+	text-align: center;
+	
+}
 
 section.articles {
     width: 50%;
@@ -72,6 +81,41 @@ article {
     color: #000;
 }
 
+.waitlist {
+	border-left: 3px solid #ffffff;
+	border-right: 3px solid #ffffff;
+	margin-left: 800px;
+	height: 1000px;
+}
+
+.waititem {	
+	width: 325px;
+	background-color: #3399cc;
+	margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 10px;
+    margin-left: auto;
+	height: 50px;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	font-size: 30px;
+	line-height: 50px;
+	border-radius: 5px;
+}
+
+.xhover:hover {
+	color: #f44336;
+}
+.newparty {
+	/*background-color: #6b6666;*/
+	width: 270px;
+	height: 1000px;
+	margin-left: 525px;
+	position: absolute;
+	text-align: center;
+	
+	
+}
+
 .tables {
     border: 3px solid #3399cc;
     height: 760px;
@@ -80,22 +124,23 @@ article {
 
 }
 .restlist {
-    border: 3px solid #3399cc;
+    border: 3px solid #5f686d;
     height: 80px;
     margin: 0px auto;
     width: 760px;
 background-color: #3399cc;
 margin-bottom: 30px;
 font-family: sans-serif;
+border-radius: 10px;
 }
 
 .restlist div {
     float: left;
     display: inline;
-    margin: 20px;
+	margin-top: 0px;
     padding: 10px;
-    font-size: x-large;
-    color: #2b2b2b;
+    font-size: xx-large;
+    color: #fff;
 }
 .floating-box {
     float: left;

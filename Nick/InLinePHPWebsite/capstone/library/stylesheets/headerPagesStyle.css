@@ -49,9 +49,15 @@ button {
     border: none;
     cursor: pointer;
     width: 100%;
-    font-family: 'Space Mono', consolas, monospace !important;
+    /* font-family: 'Space Mono', consolas, monospace !important; */
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+button.restl {
+	text-transform: none;
+	letter-spacing: 0px;
+	font-family: "Veranda", sans-serif;
 }
 
 .container {
@@ -62,8 +68,3 @@ button {
     background-color: #f44336;
 }
 
-.topSpacer {
-    width: 100%;
-    height: 20%;
-    background: orange;
-}

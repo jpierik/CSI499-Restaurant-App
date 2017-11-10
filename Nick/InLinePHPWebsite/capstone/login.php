@@ -15,16 +15,16 @@ if (isset($_REQUEST['logout'])) {
     header( 'Location: '.$url, true, '307');
 }
 
-if (isset($_SESSION['user'])){
-$USER = $_SESSION['user'];
+//if (isset($_SESSION['user'])){
+//$USER = $_SESSION['user'];
 
-$sql = "SELECT FName FROM users WHERE username = '$USER';";
-$result = $conn->query($sql);
+//$sql = "SELECT FName FROM users WHERE username = '$USER';";
+//$result = $conn->query($sql);
        //  $row = $result->fetch_assoc();
 // echo $row["FName"];
 // $uname =  $row["FName"];
 
-}
+//}
 
 if (isset($_REQUEST['cancel'])) {
     header("Location:index.php");
@@ -33,29 +33,30 @@ if (isset($_REQUEST['cancel'])) {
 // echo "hi";
 // Setup a login form, and check the username and password.
 if (isset($_REQUEST['submission'])) {
-$username = $_POST['username'];
 // $password = $_POST['password'];
 $usercorrect = false;
 $passcorrect = false;
 $passwd = '';
-$userid = '';
-	$sql_params = array();
+$username = '';
+//	$sql_params = array();
 	// For each input check if it set, if so set the data object and the params object.
 	if (isset($_REQUEST['username']) && $_REQUEST['username']) {
-		$userid = strip_tags($_REQUEST['username']);
-		 $sql = "SELECT * FROM users WHERE username = '$userid';";
-         $result = $conn->query($sql);
-         if(! $result )
+		$username = strip_tags($_REQUEST['username']);
+		 $sql = "SELECT * FROM users WHERE username = '$username';";
+		 $result = odbc_exec($conn, $sql);
+		 $res = odbc_result($result, 1);
+       //  $result = $conn->query($sql);
+         if(! $res )
 {
   die('Could not get data: ');
 }
 else { 
 // echo "hij";
-// echo $userid;
+// echo $username;
 }
 //$orca = $result->num_rows;
 //echo $orca;
-if (mysqli_num_rows($result) > 0) {
+if (odbc_num_rows($result) > 0) {
 		//	echo "username correct";
 			$usercorrect = true;
 		}
@@ -67,16 +68,18 @@ if (mysqli_num_rows($result) > 0) {
 	// For each input check if it set, if so set the data object and the params object.
 	if (isset($_REQUEST['city']) && $_REQUEST['city']) {
 		$passwd = strip_tags($_REQUEST['city']);
-		 $sql = "SELECT * FROM users WHERE password = '$passwd' AND username = '$userid';";
-         $result = $conn->query($sql);
-         if(! $result )
+		 $sql = "SELECT * FROM users WHERE pwd = '$passwd' AND username = '$username';";
+		 $result = odbc_exec($conn, $sql);
+       //  $result = $conn->query($sql);
+	   $res = odbc_result($result, 1);
+         if(! $res )
 {
-  die('Could not get data: ' . mysql_error());
+  die('Could not get data: ' . odbc_error());
 }
 // else { 
 //echo "fff";
 //}
-if ($result->num_rows > 0) {
+if (odbc_num_rows($result) > 0) {
 			echo "pass correct";
 			$passcorrect = true;
 		}
@@ -86,6 +89,7 @@ if ($result->num_rows > 0) {
 	if ($passcorrect && $usercorrect){ echo "Login Success"; 
 
 $_SESSION['user'] = $_REQUEST['username'];
+$_SESSION['currentRest'] = false; 
     header("Location:index.php");
    // didjd();
     }

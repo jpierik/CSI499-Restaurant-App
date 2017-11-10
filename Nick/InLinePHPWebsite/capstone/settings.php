@@ -6,11 +6,11 @@ if (isset($_SESSION['user'])){
 $USER = $_SESSION['user'];
 }
 output_header();
+
 if ($USER) {
-$sql = "SELECT id FROM users WHERE username = '$USER';";
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
-$id = $row['id'];
+$sql = "SELECT userid FROM users WHERE username = '$USER';";
+$result = odbc_exec($conn, $sql);
+$id = odbc_result($result, 1);
 }
 
 
@@ -40,31 +40,33 @@ if (isset($_REQUEST['submission'])) {
 		$pass2 = strip_tags($_REQUEST['passConf']);
 	}  
 
-    $result = $conn->query("SELECT email FROM users WHERE email='$email'");
-	$testEmail = $result->fetch_array(MYSQLI_NUM);
+    $sql = "SELECT email FROM users WHERE email='$email'";
+	$result = odbc_exec($conn, $sql);
+	$testEmail = odbc_result($result, 1);
 	
-	$result = $conn->query("SELECT username FROM users WHERE username='$uname'");
-	$testUser = $result->fetch_array(MYSQLI_NUM);
+	$sql = "SELECT username FROM users WHERE username='$uname'";
+	$result = odbc_exec($conn, $sql);
+	$testUser = odbc_result($result, 1);
 
     if ($email){
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo "<center> check email format </center>";
-        } else if ($testEmail[0]) {
+        } else if ($testEmail) {
             echo "<center> this email is already being used </center>";
         } else {
-            $sql = "UPDATE users SET email = '$email' WHERE id = '$id';";
-            $result = $conn->query($sql);
+            $sql = "UPDATE users SET email = '$email' WHERE userid = '$id';";
+			odbc_exec($conn, $sql);
         }
     }
     
     if ($uname){
-        if ($testUser[0]) {
+        if ($testUser) {
             echo "<center> this username is already being used </center>";
         } else if (!preg_match('/^[\w]{1,16}$/', $uname)) {
             echo "<center>" . "username can only have letters and numbers, and 1 - 16 characters" . "</center>";
         } else {
-            $sql = "UPDATE users SET username = '$uname' WHERE id = '$id';";
-            $result = $conn->query($sql);
+            $sql = "UPDATE users SET username = '$uname' WHERE userid = '$id';";
+			odbc_exec($conn, $sql);
             $_SESSION['user'] = $uname;
         }
     // $USER = $uname;
@@ -76,8 +78,8 @@ if (isset($_REQUEST['submission'])) {
         } else if ($pass != $pass2){
     	    echo "<center>" . "passwords did not match" . "</center>";
         } else {
-            $sql = "UPDATE users SET password = '$pass' WHERE id = '$id';";
-            $result = $conn->query($sql);
+            $sql = "UPDATE users SET pwd = '$pass' WHERE userid = '$id';";
+            odbc_exec($conn, $sql);
         }
      
     }
@@ -101,7 +103,7 @@ update_info();
     <body>
         <center>
             <div class="topSpacer"></div>
-            <form>
+            <form class="form1">
                 <div class="container">
                     <label><b>Change Email</b></label>
                     <input type="text" placeholder="New Email" name="email" >

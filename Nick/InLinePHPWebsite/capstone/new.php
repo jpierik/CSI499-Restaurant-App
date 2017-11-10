@@ -3,6 +3,11 @@ require('library/library.php');
 if (isset($_SESSION['user'])){
 $USER = $_SESSION['user'];
 }
+if ($USER) {
+$sql = "SELECT userid FROM users WHERE username = '$USER';";
+$result = odbc_exec($conn, $sql);
+$id = odbc_result($result, 1);
+}
 output_header();
 
 // echo $USER;
@@ -13,15 +18,64 @@ if (isset($_REQUEST['sll0'])) {
 }
 
 
-if (isset($_REQUEST['submission'])) {
- echo "hi";
+if (isset($_REQUEST['submission'])) {	
+	$restName = $_REQUEST['restname'];
+	$restAddress = $_REQUEST['restaddress'];
+	$countTables = 0;
+	
+	
 for($z = 0; $z <= 24; $z++){
     $str = "sll" . $z;
     $tables[$z] = $_REQUEST[$str];
+	if ($tables[$z] !== "empty") {
+		$countTables = $countTables + 1;
+	}
 }
-echo $tables[2];
-var_dump($tables);
+
+$sql = "INSERT INTO Restaurant (Address, Name, NoOfTables, OwnerId) VALUES ('$restAddress', '$restName', '$countTables', '$id');";
+odbc_exec($conn, $sql);
+
+$sql = "SELECT RestaurantID FROM Restaurant WHERE Address = '$restAddress' AND OwnerId = '$id';";
+$res = odbc_exec($conn, $sql);
+$restID = odbc_result($res, 1);
+
+
+// echo $tables[2];
+// var_dump($tables);
+
+for($z = 0; $z <= 24; $z++){
+	
+	$tableNum = $z;
+	$maxO = '';
+	$tableType = '';
+	if ($tables[$z] == "vertbar"){
+		$maxO = 2;
+		$tableType = "vertbar";
+	}
+		else if ($tables[$z] == "4seat"){
+			$maxO = 4;
+			$tableType = "4seat";
+		}
+		else if ($tables[$z] == "2seat"){
+			$maxO = 2;
+			$tableType = "2seat";
+		}
+		else {
+			$maxO = 0;
+			$tableType = "empty";
+		}
+	
+	
+	
+ $sql = "INSERT INTO Seatings (TableNumber, RestaurantID, maxOccupancy, TableType) VALUES ('$tableNum', '$restID', '$maxO', '$tableType');";
+ odbc_exec($conn, $sql);
 }
+
+header("Location:myrest.php");
+
+}
+
+
 
 ?>
 
@@ -50,7 +104,8 @@ var_dump($tables);
             <section class="articles">
 <h2>Restaurant Name:</h2>                
 <input class ="newinput" type="text" placeholder="Restaurant Name" name="restname" required>
-
+<h2>Restaurant Address:</h2>                
+<input class ="newinput" type="text" placeholder="Restaurant Address" name="restaddress" required>
 <button type="submit" name="submission" >Save</button>
             </section>
 

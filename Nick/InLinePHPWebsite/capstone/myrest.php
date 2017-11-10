@@ -5,12 +5,16 @@ $USER = $_SESSION['user'];
 }
 output_header();
 
-// echo $USER;
-// echo "debug ";
-if (isset($_REQUEST['sll0'])) {
-    // echo "debug ";
-//    echo $_REQUEST['sll0'];
+if ($USER) {
+$sql = "SELECT userid FROM users WHERE username = '$USER';";
+$result = odbc_exec($conn, $sql);
+$id = odbc_result($result, 1);
 }
+
+$sql = "SELECT RestaurantId, Name FROM Restaurant WHERE OwnerId = '$id';";
+$result = odbc_exec($conn, $sql);
+
+
 
 
 if (isset($_REQUEST['submission'])) {
@@ -23,6 +27,7 @@ echo $tables[2];
 var_dump($tables);
 }
 
+$ffont = '"Veranda"';
 ?>
 
 <html>
@@ -49,111 +54,73 @@ var_dump($tables);
             
             <section class="articles">
 
-
-
-
-
             </section>
-        <section class="restlist">
-            
-          
+			
+			
+			<?php 
+			
+			while (odbc_fetch_row($result)){
+$rid = odbc_result($result, 1);
+$rname = odbc_result($result, 2);
+
+
+echo '
+
+        <section class="restlist">          
+              <div style="margin-top: 20px;">
+                  '.$rname.'
+              </div>
+            <div style="float: right; ">
+              
+			  <button class="restl" type="submit" name="view" style="margin: 0px; border: 2px solid #FFF; border-radius: 5px; font-size: x-large;" onClick="moving1('.$rid.');");">Delete</button>
+          </div>  <div style="float: right;">
+              
+			  <button class="restl" type="submit" name="view" style="margin: 0px; border: 2px solid #FFF; border-radius: 5px; font-size: x-large;" onClick="moving1('.$rid.');");">Edit</button>
+          </div>      <div style="float: right;">
+              
+			  <button class="restl" type="submit" name="view" style="margin: 0px; border: 2px solid #FFF; border-radius: 5px; font-size: x-large;" onClick="moving1('.$rid.');");">View</button>
+          </div>          
+        </section>
+
+
+
+';
+}
+			
+			
+			?>
+			<!--
+        <section class="restlist">          
               <div>
                   Red Robin
               </div>
-             
-          
             <div style="float: right; color: red; background-color: white">
               Delete
           </div>  <div style="float: right; background-color: white">
               Edit
-          </div>  <div style="float: right; background-color: white">
-              View
-          </div>  
-         
+          </div>  <div style="float: right; margin-top: 0px;">
+              
+			  <button type="submit" name="view" style="margin: 0px; border: 2px solid #FFF; font-weight: bold; border-radius: 5px; font-size: x-large; font-family: "Veranda", sans-serif;" onClick="moving1(<?php echo "$rid";?>);");">View</button>
+          </div>   
+		  
         </section>
-                    </section>
-        <section class="restlist">
-            
-          
-              <div>
-                  Olive Garden
-              </div>
-             
-          
-            <div style="float: right; color: red; background-color: white">
-              Delete
-          </div>  <div style="float: right; background-color: white">
-              Edit
-          </div>  <div style="float: right; background-color: white">
-              View
-          </div>  
-         
-        </section>
-                </section>
-                    </section>
-        <section class="restlist">
-            
-          
-              <div>
-                  Jagged Fork
-              </div>
-             
-          
-            <div style="float: right; color: red; background-color: white">
-              Delete
-          </div>  <div style="float: right; background-color: white">
-              Edit
-          </div>  <div style="float: right; background-color: white">
-              View
-          </div>  
-         
-        </section>
-                </section>
-                    </section>
-        <section class="restlist">
-            
-          
-              <div>
-                  Art & Jakes
-              </div>
-             
-          
-            <div style="float: right; color: red; background-color: white">
-              Delete
-          </div>  <div style="float: right; background-color: white">
-              Edit
-          </div>  <div style="float: right; background-color: white">
-              View
-          </div>  
-         
-        </section>
-                </section>
-                    </section>
-        <section class="restlist">
-            
-          
-              <div>
-                  PF Chang's
-              </div>
-             
-          
-            <div style="float: right; color: red; background-color: white">
-              Delete
-          </div>  <div style="float: right; background-color: white">
-              Edit
-          </div>  <div style="float: right; background-color: white">
-              View
-          </div>  
-         
-        </section>
+              -->   
 
-        
 
             
             
         </main>
 
-    </body>
+		</body>
+		
+		<script>
+		function moving1(v){
+			var yy = "./restaurant.php?rid="
+			var x = yy + v
+	window.location = x;
+		}
+		</script>
+   
     
     
 

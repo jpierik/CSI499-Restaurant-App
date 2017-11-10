@@ -2,19 +2,22 @@
 
 
 session_start();
-$servername = "127.0.0.1";
-$username = "nickj99";
-$password = "capstone";
-$dbname = "capstone";
+$serverName = "AFDANAJ\SQLEXPRESS";
+$connectionInfo = array("Database"=>"CSI4999", "UID"=>"csi4999", "PWD"=>"Temp1234");
+
+$username = "csi4999";
+$password = "Temp1234";
+$dbname = "CSI4999";
+$database = "CSI4999";
+
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+//$conn2 = sqlsrv_connect($serverName, $connectionInfo);
+$conn = odbc_connect("Driver={SQL Server Native Client 11.0};Server=$serverName;Database=$database;", $username, $password);
 // Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-
-}
-
-
+//if (!$conn){
+  //   echo "Connection could not be established.<br />";
+    // die( print_r( sqlsrv_errors(), true));
+//}
 
 $USER = false;
 
@@ -34,3 +37,5 @@ function update_info() {
 //global $uname;
     // Check that there is a logged in user, and if so, setup the USER object
 }
+
+?>

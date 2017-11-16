@@ -40,16 +40,14 @@ namespace Project16_Mobile.Droid
                 intent.PutExtra(UpdateService.EXTRA_RNAME, Name);
                 context.StartActivity(intent);
             };
-
-
         }
-
-
-        public void setNameAndWaitTime(string name, string time)
+        public void SetName(string name)
         {
-
             mRestName.Text = name;
-            mDealText.Text = time;
+        }
+        public void SetText(string text)
+        {
+            mDealText.Text = text;
         }
     }
 }

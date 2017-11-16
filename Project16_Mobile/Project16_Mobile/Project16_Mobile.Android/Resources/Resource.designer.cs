@@ -2285,8 +2285,8 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f07002f
 			public const int auto = 2131165231;
 			
-			// aapt resource value: 0x7f0700c1
-			public const int backButton = 2131165377;
+			// aapt resource value: 0x7f0700c3
+			public const int backButton = 2131165379;
 			
 			// aapt resource value: 0x7f070020
 			public const int beginning = 2131165216;
@@ -2348,17 +2348,38 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f070054
 			public const int customPanel = 2131165268;
 			
+			// aapt resource value: 0x7f070090
+			public const int dealListLayout = 2131165328;
+			
+			// aapt resource value: 0x7f0700d0
+			public const int dealListLayoutSP = 2131165392;
+			
+			// aapt resource value: 0x7f0700ce
+			public const int dealRestNameSP = 2131165390;
+			
 			// aapt resource value: 0x7f07008c
 			public const int dealText = 2131165324;
 			
-			// aapt resource value: 0x7f07008e
-			public const int dealTitle = 2131165326;
+			// aapt resource value: 0x7f0700cb
+			public const int dealTextSP = 2131165387;
 			
-			// aapt resource value: 0x7f0700c0
-			public const int dealsButton = 2131165376;
+			// aapt resource value: 0x7f0700bb
+			public const int dealTitle = 2131165371;
+			
+			// aapt resource value: 0x7f0700c2
+			public const int dealsButton = 2131165378;
+			
+			// aapt resource value: 0x7f07008d
+			public const int dealsLayout = 2131165325;
+			
+			// aapt resource value: 0x7f0700cc
+			public const int dealsLayoutSP = 2131165388;
 			
 			// aapt resource value: 0x7f07008f
 			public const int dealsView = 2131165327;
+			
+			// aapt resource value: 0x7f0700cf
+			public const int dealsViewSP = 2131165391;
 			
 			// aapt resource value: 0x7f070062
 			public const int decor_content_parent = 2131165282;
@@ -2420,8 +2441,8 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f07003f
 			public const int @fixed = 2131165247;
 			
-			// aapt resource value: 0x7f0700c3
-			public const int gridLayout1 = 2131165379;
+			// aapt resource value: 0x7f0700c5
+			public const int gridLayout1 = 2131165381;
 			
 			// aapt resource value: 0x7f070005
 			public const int home = 2131165189;
@@ -2441,8 +2462,8 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f070046
 			public const int image = 2131165254;
 			
-			// aapt resource value: 0x7f0700bf
-			public const int inLine = 2131165375;
+			// aapt resource value: 0x7f0700c1
+			public const int inLine = 2131165377;
 			
 			// aapt resource value: 0x7f0700b0
 			public const int info = 2131165360;
@@ -2498,11 +2519,11 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f0700b7
 			public const int line3 = 2131165367;
 			
-			// aapt resource value: 0x7f07008d
-			public const int linearLayout1 = 2131165325;
+			// aapt resource value: 0x7f0700ba
+			public const int linearLayout1 = 2131165370;
 			
-			// aapt resource value: 0x7f0700bc
-			public const int linearLayout2 = 2131165372;
+			// aapt resource value: 0x7f0700be
+			public const int linearLayout2 = 2131165374;
 			
 			// aapt resource value: 0x7f07000f
 			public const int listMode = 2131165199;
@@ -2519,11 +2540,11 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f0700a2
 			public const int mDistance = 2131165346;
 			
-			// aapt resource value: 0x7f0700c2
-			public const int mainView = 2131165378;
+			// aapt resource value: 0x7f0700c4
+			public const int mainView = 2131165380;
 			
-			// aapt resource value: 0x7f0700c8
-			public const int masked = 2131165384;
+			// aapt resource value: 0x7f0700d2
+			public const int masked = 2131165394;
 			
 			// aapt resource value: 0x7f0700a9
 			public const int media_actions = 2131165353;
@@ -2558,14 +2579,20 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f0700ab
 			public const int notification_main_column_container = 2131165355;
 			
+			// aapt resource value: 0x7f07008e
+			public const int offerText = 2131165326;
+			
+			// aapt resource value: 0x7f0700cd
+			public const int offerTextSP = 2131165389;
+			
 			// aapt resource value: 0x7f070037
 			public const int parallax = 2131165239;
 			
 			// aapt resource value: 0x7f07004d
 			public const int parentPanel = 2131165261;
 			
-			// aapt resource value: 0x7f0700be
-			public const int partySize = 2131165374;
+			// aapt resource value: 0x7f0700c0
+			public const int partySize = 2131165376;
 			
 			// aapt resource value: 0x7f070038
 			public const int pin = 2131165240;
@@ -2582,11 +2609,11 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f07008b
 			public const int restName = 2131165323;
 			
-			// aapt resource value: 0x7f0700ba
-			public const int resturantName = 2131165370;
+			// aapt resource value: 0x7f0700bc
+			public const int resturantName = 2131165372;
 			
-			// aapt resource value: 0x7f070090
-			public const int resultListLayout = 2131165328;
+			// aapt resource value: 0x7f0700c9
+			public const int resultListLayout = 2131165385;
 			
 			// aapt resource value: 0x7f070035
 			public const int right = 2131165237;
@@ -2612,17 +2639,17 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f070050
 			public const int scrollView = 2131165264;
 			
-			// aapt resource value: 0x7f0700c6
-			public const int scrollView1 = 2131165382;
+			// aapt resource value: 0x7f0700c8
+			public const int scrollView1 = 2131165384;
 			
 			// aapt resource value: 0x7f070040
 			public const int scrollable = 2131165248;
 			
-			// aapt resource value: 0x7f0700c4
-			public const int searchBox = 2131165380;
+			// aapt resource value: 0x7f0700c6
+			public const int searchBox = 2131165382;
 			
-			// aapt resource value: 0x7f0700c5
-			public const int searchIcon = 2131165381;
+			// aapt resource value: 0x7f0700c7
+			public const int searchIcon = 2131165383;
 			
 			// aapt resource value: 0x7f070068
 			public const int search_badge = 2131165288;
@@ -2659,6 +2686,9 @@ namespace Project16_Mobile.Droid
 			
 			// aapt resource value: 0x7f07008a
 			public const int selectedDeal = 2131165322;
+			
+			// aapt resource value: 0x7f0700ca
+			public const int selectedDealSP = 2131165386;
 			
 			// aapt resource value: 0x7f07009f
 			public const int selectedLocation = 2131165343;
@@ -2795,14 +2825,14 @@ namespace Project16_Mobile.Droid
 			// aapt resource value: 0x7f07000e
 			public const int view_offset_helper = 2131165198;
 			
-			// aapt resource value: 0x7f0700c7
-			public const int visible = 2131165383;
+			// aapt resource value: 0x7f0700d1
+			public const int visible = 2131165393;
+			
+			// aapt resource value: 0x7f0700bf
+			public const int waitText = 2131165375;
 			
 			// aapt resource value: 0x7f0700bd
-			public const int waitText = 2131165373;
-			
-			// aapt resource value: 0x7f0700bb
-			public const int waitTime = 2131165371;
+			public const int waitTime = 2131165373;
 			
 			// aapt resource value: 0x7f070074
 			public const int weatherIcon = 2131165300;
@@ -3080,10 +3110,13 @@ namespace Project16_Mobile.Droid
 			public const int select_dialog_singlechoice_material = 2130903110;
 			
 			// aapt resource value: 0x7f030047
-			public const int SpecificDeal = 2130903111;
+			public const int specific_deal_item_layout = 2130903111;
 			
 			// aapt resource value: 0x7f030048
-			public const int support_simple_spinner_dropdown_item = 2130903112;
+			public const int SpecificDeal = 2130903112;
+			
+			// aapt resource value: 0x7f030049
+			public const int support_simple_spinner_dropdown_item = 2130903113;
 			
 			static Layout()
 			{

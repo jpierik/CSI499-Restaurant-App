@@ -90,6 +90,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activity1.cs" />
+    <Compile Include="SpecificDealsActivity.cs" />
+    <Compile Include="DealItem.cs" />
     <Compile Include="DashboardActivity.cs" />
     <Compile Include="DealsActivity.cs" />
     <Compile Include="InlineActivity.cs" />
@@ -144,6 +147,15 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_inline.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\deal_item_layout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\SpecificDeal.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\specific_deal_item_layout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

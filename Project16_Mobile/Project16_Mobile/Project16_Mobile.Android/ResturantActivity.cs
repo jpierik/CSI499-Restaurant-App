@@ -29,7 +29,7 @@ namespace Project16_Mobile.Droid
             Button inLine = FindViewById<Button>(Resource.Id.inLine);
             Button dealsButton = FindViewById<Button>(Resource.Id.dealsButton);
             Intent searchIntent = this.Intent;
-            var dealsActivity = new Intent(this, typeof(DealsActivity));
+            var specificDealsActivity = new Intent(this, typeof(SpecificDealsActivity));
             string restaurantExtra = searchIntent.GetStringExtra(UpdateService.EXTRA_RNAME);
 
             backButton.Click += delegate
@@ -43,8 +43,9 @@ namespace Project16_Mobile.Droid
             };
 
             dealsButton.Click += delegate {
-                dealsActivity.PutExtra(UpdateService.EXTRA_RESTAURANT, restaurantExtra); //Need to add the restaurant name to this1
-                StartActivity(dealsActivity);
+                specificDealsActivity.PutExtra(UpdateService.EXTRA_RESTAURANT, restaurantExtra); //Need to add the restaurant name to this1
+                specificDealsActivity.PutExtra(UpdateService.EXTRA_DEALS_ID, restaurantExtra); //Need to add the restaurant name to this1
+                StartActivity(specificDealsActivity);
             };
 
             Intent intent = this.Intent;
@@ -63,16 +64,14 @@ namespace Project16_Mobile.Droid
             LayoutInflater inflater = this.LayoutInflater;
             View view = inflater.Inflate(Resource.Layout.PopupDeal, null);
             builder.SetView(view);
-            dealsActivity.PutExtra(UpdateService.EXTRA_RESTAURANT, restaurantExtra); //Need to add the restaurant name to this
-            builder.SetPositiveButton("View More", (s, e) => { StartActivity(dealsActivity); });
+            specificDealsActivity.PutExtra(UpdateService.EXTRA_RESTAURANT, restaurantExtra); //Need to add the restaurant name to this
+            builder.SetPositiveButton("View More", (s, e) => { StartActivity(specificDealsActivity); });
             builder.SetNegativeButton("Exit", (s, e) => { });
             builder.Show();
         }
         protected override void OnResume()
         {
             base.OnResume();
-
-            
         }
     }
    

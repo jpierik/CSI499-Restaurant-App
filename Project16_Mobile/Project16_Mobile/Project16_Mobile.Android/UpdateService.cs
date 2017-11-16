@@ -24,6 +24,7 @@ namespace Project16_Mobile.Droid
         public static string EXTRA_WAITTIME = "com.csi4999.project16.EXTRA_WAITTIME";
         public static string EXTRA_TABLES = "com.csi.project16.EXTRA_TABLES";
         public static string EXTRA_RNAME = "com.csi.project16.EXTRA_RNAME";
+        public static string EXTRA_DEALS_ID = "com.csi.project16.EXTRA_ID";
 
         public IBinder Binder { get; private set; }
         private Timer mUpateTimer;

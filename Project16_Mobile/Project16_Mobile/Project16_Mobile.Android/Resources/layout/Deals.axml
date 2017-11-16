@@ -5,26 +5,19 @@
     p1:minHeight="25px"
     p1:layout_width="match_parent"
     p1:layout_height="match_parent"
-    p1:id="@+id/linearLayout1">
+    p1:id="@+id/dealsLayout">
     <TextView
-        p1:text="Available offers from:"
+        p1:text="Available offers:"
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
-        p1:id="@+id/dealTitle"
+        p1:id="@+id/offerText"
         p1:textSize="25dp"
-        p1:gravity="center" />
-    <TextView
-        p1:text="restName"
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:id="@+id/restName"
-        p1:textSize="30dp"
         p1:gravity="center" />
     <ScrollView
         p1:minWidth="25px"
         p1:minHeight="25px"
         p1:layout_width="match_parent"
-        p1:layout_height="0dp"
+        p1:layout_height="wrap_content"
         p1:id="@+id/dealsView">
         <LinearLayout
             p1:orientation="vertical"
@@ -32,6 +25,6 @@
             p1:minHeight="25px"
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
-            p1:id="@+id/resultListLayout" />
+            p1:id="@+id/dealListLayout" />
     </ScrollView>
 </LinearLayout>

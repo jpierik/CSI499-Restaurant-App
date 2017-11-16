@@ -24,21 +24,33 @@ namespace Project16_Mobile.Droid
 
             SQLLibrary dLibrary = SQLLibrary.getInstance();
             var dealList = new List<Deal>(dLibrary.GetDeals());
+            var restList = new List<Restaurant>(dLibrary.GetRestaurants());
             TextView dRestName = null, dDealText = null;
-            ScrollView dScrollView = null;
+            LinearLayout dDealLayout = null;
             RelativeLayout dRelativeLayout = null;
             SetContentView(Resource.Layout.Deals);
-            dRelativeLayout = (RelativeLayout)FindViewById(Resource.Id.selectedDeal);
-            dScrollView = (ScrollView)FindViewById(Resource.Id.dealsView);
+           // dRelativeLayout = (RelativeLayout)FindViewById(Resource.Id.selectedDeal);
+            dDealLayout = (LinearLayout)FindViewById(Resource.Id.dealListLayout);
             dRestName = (TextView)FindViewById(Resource.Id.restName);
             dDealText = (TextView)FindViewById(Resource.Id.dealText);
-
+            bool x = false;
             foreach (Deal d in dealList)
             {
-                int id = d.DealId;
-                dRestName.Text = Name;  //passed in with the intent from the ResturantActivity class, don't know how to utilize it yet
-                dDealText.Text = Deal.Descript; //Don't know how exactly to reference the values of Deal.cs
-                dScrollView.AddView(dRelativeLayout);
+                DealItem item = new DealItem(ApplicationContext, null);
+
+                int sizeOfRestList = restList.Count();
+                int id = d.RestaurantId;
+                foreach (Restaurant r in restList)
+                {
+                    if (id == r.RestaurantId)
+                    {                      
+                        item.SetName(r.Name);
+                        item.Name = r.Name;
+                        item.Id = r.RestaurantId;
+                    }
+                }
+                item.SetText(d.Descript);
+                dDealLayout.AddView(item);
             }
 
             

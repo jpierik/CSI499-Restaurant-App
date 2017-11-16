@@ -50,6 +50,7 @@ namespace Project16_Mobile.Droid
             txtDate = FindViewById<TextView>(Resource.Id.txtDate);
             txtWeather = FindViewById<TextView>(Resource.Id.txtWeather);
             search = FindViewById<LinearLayout>(Resource.Id.layoutSearch);
+
             search.Click += delegate
             {
                 StartActivity(typeof(SearchActivity));
@@ -57,7 +58,7 @@ namespace Project16_Mobile.Droid
             deals = FindViewById<LinearLayout>(Resource.Id.layoutDeals);
             deals.Click += delegate
             {
-
+                StartActivity(typeof(DealsActivity));
             };
             checkIn = FindViewById<LinearLayout>(Resource.Id.layoutCheckIn);
             checkIn.Click += delegate
@@ -109,7 +110,6 @@ namespace Project16_Mobile.Droid
                 }
 
             }
-
             // Create your application here
 
             /*

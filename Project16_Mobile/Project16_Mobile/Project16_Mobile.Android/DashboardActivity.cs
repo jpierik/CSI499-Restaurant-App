@@ -20,7 +20,7 @@ namespace Project16_Mobile.Droid
     [Activity(Label = "DashboardActivity", Theme = "@style/Theme.AppCompat.Light")]
     public class DashboardActivity : AppCompatActivity, ILocationListener
     {
-        
+        Context mContext;
         Location _currentLocation;
         LocationManager _locationManager;
         string location;
@@ -35,15 +35,22 @@ namespace Project16_Mobile.Droid
         LinearLayout search, deals, profile, logout, checkIn, inlineView;
         int mUserId;
         ISharedPreferences sharedPreferences;
+        Android.Support.V7.App.AlertDialog.Builder mBuilder;
+        Android.Support.V7.App.AlertDialog mAlertDialog;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-
+            base.OnCreate(savedInstanceState);            
             SetContentView(Resource.Layout.activity_dashboard);
+
+            mContext = this;
+
             mSelection = (Button)FindViewById(Resource.Id.btnInlineView);
+            mSelection.Visibility = ViewStates.Invisible;
             mLocationName = (TextView)FindViewById(Resource.Id.txtInlineName);
+            mLocationName.Visibility = ViewStates.Invisible;
             mInfo = (TextView)FindViewById(Resource.Id.txtInlineOther);
+            mInfo.Visibility = ViewStates.Invisible;
             inlineView = FindViewById<LinearLayout>(Resource.Id.inlineView);
             weatherIcon = FindViewById<TextView>(Resource.Id.weatherIcon);
             weatherFont = Typeface.CreateFromAsset(Assets, "Fonts/weather.ttf");
@@ -84,43 +91,14 @@ namespace Project16_Mobile.Droid
             InitializeLocationManager();
 
             Intent i = this.Intent;
-            int mUserId = i.GetIntExtra("com.csi4999.inline.EXTRA_USER_ID", -1);
+            mUserId = i.GetIntExtra("com.csi4999.inline.EXTRA_USER_ID", -1);
             string fullName = i.GetStringExtra("com.csi4999.inline.EXTRA_USER_FULLNAME");
             SupportActionBar.Title = "Welcome " + fullName;
             User user = new User();
             user.UserId = mUserId;
             user.FullName = fullName;
             library.SetUser(user);
-            List<WaitingParty> list = library.GetWaitingParties();
-            WaitingParty party = null;
-            foreach(WaitingParty wp in list)
-            {
-                if (wp.MobileUserId == mUserId)
-                    party = wp;
-            }
-            if (party != null)
-            {                
-                Restaurant restaurant = library.GetRestaurant(party.RestaurantID);
-                if (restaurant != null)
-                {
-                    mLocationName.Text = restaurant.Name;
-                    mInfo.Text = restaurant.Address;
-                    mSelection.Click += delegate
-                    {
-                        Android.Support.V7.App.AlertDialog.Builder builder = new Android.Support.V7.App.AlertDialog.Builder(this);
-                        builder.SetTitle("");
-                        LayoutInflater inflater = this.LayoutInflater;
-                        CheckInCheckOutItem item = new CheckInCheckOutItem(ApplicationContext, null);
-                        item.ID = party.PartyId;
-                        item.Address = restaurant.Address;                       
-                        builder.SetView(item);                  
-                      
-                        builder.SetNegativeButton("Exit", (s, e) => { });
-                        builder.Show();
-                    };
-                }
-
-            }
+            
 
             // Create your application here
 
@@ -131,13 +109,59 @@ namespace Project16_Mobile.Droid
 
 
         }
+        public void DismissDialog()
+        {
+            mAlertDialog.Dismiss();
+            mSelection.Visibility = ViewStates.Invisible;
+            mLocationName.Visibility = ViewStates.Invisible;
+            mInfo.Visibility = ViewStates.Invisible;
+            CheckForWaitingParty();
+        }
 
+        public void CheckForWaitingParty()
+        {
+            List<WaitingParty> list = library.GetWaitingParties();
+            WaitingParty party = null;
+            foreach (WaitingParty wp in list)
+            {
+                if (wp.MobileUserId == mUserId)
+                    party = wp;
+            }
+            if (party != null)
+            {
+                Restaurant restaurant = library.GetRestaurant(party.RestaurantID);
+                if (restaurant != null)
+                {
+                    mSelection.Visibility = ViewStates.Visible;
+                    mLocationName.Visibility = ViewStates.Visible;
+                    mInfo.Visibility = ViewStates.Visible;
+                    mLocationName.Text = restaurant.Name;
+                    mInfo.Text = restaurant.Address;
+                    mSelection.Click += delegate
+                    {
+                        mBuilder = new Android.Support.V7.App.AlertDialog.Builder(this);
+                        mBuilder.SetTitle("");
+                        LayoutInflater inflater = this.LayoutInflater;
+                        CheckInCheckOutItem item = new CheckInCheckOutItem(mContext, mBuilder.Context, null);
+                        item.ID = party.PartyId;
+                        item.Address = restaurant.Address;
+                        mBuilder.SetView(item);
+                        mBuilder.SetCancelable(true);
+                        mBuilder.SetNegativeButton("Exit", (s, e) => { });
+
+                        mAlertDialog = mBuilder.Create();
+                        mAlertDialog.Show();
+                    };
+                }
+
+            }
+        }
         protected override void OnResume()
         {
             base.OnResume();
             _locationManager.RequestLocationUpdates(_locationProvider, 0, 0, this);
             sharedPreferences = GetSharedPreferences("mypref", FileCreationMode.Private);
-          
+            CheckForWaitingParty();         
 
         }
         protected override void OnPause()

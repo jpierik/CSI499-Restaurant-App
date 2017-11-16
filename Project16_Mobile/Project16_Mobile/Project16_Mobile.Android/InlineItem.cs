@@ -22,7 +22,7 @@ namespace Project16_Mobile.Droid
         SQLLibrary library;
 
         public string Name { get; set; }
-        public int ID { get; set; }
+        public int PartyId { get; set; }
         public string Address { get; set; }
         public int NumOfGuests { get; set; }
         public DateTime Date { get; set; }
@@ -106,7 +106,7 @@ namespace Project16_Mobile.Droid
         }
         public async void UpdateWaitingParty()
         {
-            Task<bool> output = library.UpdateWaitingParty(ID);
+            Task<bool> output = library.UpdateWaitingParty(PartyId);
             bool value = await output;
             if (value)
             {
@@ -119,12 +119,12 @@ namespace Project16_Mobile.Droid
         }
         public async void RemoveWaitingParty()
         {
-            Task<bool> output = library.RemoveWaitingParty(ID);
+            Task<bool> output = library.RemoveWaitingParty(PartyId);
             bool value = await output;
             if (value)
             {
                 Toast.MakeText(mContext, "You are now Checked Out!", ToastLength.Long).Show();
-                ((InlineActivity)mContext).RemoveItemFromView(ID);
+                ((InlineActivity)mContext).RemoveItemFromView(PartyId);
             }
             else
             {

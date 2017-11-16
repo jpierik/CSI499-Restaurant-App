@@ -41,7 +41,7 @@ namespace Project16_Mobile.Droid
                         item.Name = restaurant.Name;
                         item.NumOfGuests = wp.NoOfGuests;
                         item.Date = wp.AddTime;
-                        item.Id = wp.PartyId;
+                        item.PartyId = wp.PartyId;
                         item.Address = restaurant.Address;
                         item.SetLabels(restaurant.Name, "Party Size: " + wp.NoOfGuests, wp.AddTime.ToLongDateString() + " - " + wp.AddTime.ToShortTimeString());
                         itemList.Add(item);
@@ -56,7 +56,7 @@ namespace Project16_Mobile.Droid
         {
             for(int i = 0; i < itemList.Count; i++)
             {
-                if(itemList[i].ID == pID)
+                if(itemList[i].PartyId == pID)
                 {
                     inlineView.RemoveView(itemList[i]);
                 }

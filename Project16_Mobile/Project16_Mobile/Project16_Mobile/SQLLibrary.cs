@@ -180,7 +180,7 @@ namespace Project16_Mobile
                 request.Method = "PUT";
                 string message = "{\"PartyId\":\"" + pID + "\", \"PriorityLvl\":" + 1 + "\" }";
 
-                HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Post, url);
+                HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Put, url);
                 reqMessage.Content = new StringContent(message, Encoding.UTF8, "application/json");
 
                 HttpClient client = new HttpClient();
@@ -214,7 +214,7 @@ namespace Project16_Mobile
                 request.Method = "DELETE";
                 string message = "";
 
-                HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Post, url);
+                HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Delete, url);
                 reqMessage.Content = new StringContent(message, Encoding.UTF8, "application/json");
 
                 HttpClient client = new HttpClient();

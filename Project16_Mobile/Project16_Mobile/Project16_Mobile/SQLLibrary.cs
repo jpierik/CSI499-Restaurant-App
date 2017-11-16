@@ -22,9 +22,34 @@ namespace Project16_Mobile
             }
             return instance;
         }
+        CurrentLocation mCurrentLocation;
+        User mUser;
         private SQLLibrary()
         {
+            mCurrentLocation = new CurrentLocation();
+        }
 
+        public struct CurrentLocation
+        {
+            public double Latitude { get; set; }
+            public double Longitude { get; set; }
+        }; 
+        public User GetUser()
+        {
+            return mUser;
+        }
+        public void SetUser(User user)
+        {
+            mUser = user;
+        }
+        public void SetCurrentLocation(double lati, double longi)
+        {
+            mCurrentLocation.Latitude = lati;
+            mCurrentLocation.Longitude = longi;
+        }
+        public CurrentLocation GetCurrentLocation()
+        {
+            return mCurrentLocation;
         }
         //POST api/SQL?username={username}&password={password}
         public User Login(string username, string password)
@@ -74,7 +99,7 @@ namespace Project16_Mobile
             }
 
         }
-        public bool Register(string fullname, string email, string password)
+        public async Task<bool> Register(string fullname, string email, string password)
         {
             bool mFlag = false;
             try
@@ -92,7 +117,7 @@ namespace Project16_Mobile
                 client.BaseAddress = new Uri(url);
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                client.SendAsync(reqMessage).ContinueWith(responseTask =>
+                await client.SendAsync(reqMessage).ContinueWith(responseTask =>
                 {
                     Console.WriteLine("Resonse: {0}", responseTask.Result);
                     if(responseTask.Result.StatusCode == HttpStatusCode.OK)
@@ -109,30 +134,102 @@ namespace Project16_Mobile
             }
         }
 
-        public bool InsertWaitingParty(int partyNum, int pID, int restID)
+        public async Task<bool> InsertWaitingParty(int restID, int partyNum, string fullName, int mID )
         {
+            bool mFlag = false;
             try
             {
-                string url = "141.210.25.6/InLineWebApi/api/waitingparty";
+                string url = "http://141.210.25.6/InLineWebApi/api/waitingparty";
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
                 request.ContentType = "application/json";
                 request.Method = "POST";
-                string message = "{\"NoOfGuests\":\"" + pID + "\", \"PartyID\":\"" + restID + "\", \"RestaurantID\":\"" + restID + "\" }";
+                string message = "{\"RestaurantID\":\"" + restID + "\", \"NoOfGuests\":\"" + partyNum + "\", \"AddTime\":\"" + DateTime.Now.ToString() + "\", \"PriorityLvl\":" + 0 + ", \"FullName\":\"" + fullName + "\", \"MobileUserId\":\"" + mID + "\" }";
 
-                HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Post, "relativeAddress");
+                HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Post, url);
                 reqMessage.Content = new StringContent(message, Encoding.UTF8, "application/json");
 
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(url);
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                client.SendAsync(reqMessage).ContinueWith(responseTask =>
+                await client.SendAsync(reqMessage).ContinueWith(responseTask =>
                 {
                     Console.WriteLine("Resonse: {0}", responseTask.Result);
+                    if (responseTask.Result.StatusCode == HttpStatusCode.OK)
+                    {
+                        mFlag = true;
+                    }
+                    return mFlag;
                 });
+                return mFlag;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public async Task<bool> UpdateWaitingParty(int pID)
+        {
+            bool mFlag = false;
+            try
+            {
+                string url = "http://141.210.25.6/InLineWebApi/api/waitingparty";
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+                request.ContentType = "application/json";
+                request.Method = "PUT";
+                string message = "{\"PartyId\":\"" + pID + "\", \"PriorityLvl\":" + 1 + "\" }";
 
+                HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Put, url);
+                reqMessage.Content = new StringContent(message, Encoding.UTF8, "application/json");
 
-                return true;
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                await client.SendAsync(reqMessage).ContinueWith(responseTask =>
+                {
+                    Console.WriteLine("Resonse: {0}", responseTask.Result);
+                    if (responseTask.Result.StatusCode == HttpStatusCode.OK)
+                    {
+                        mFlag = true;
+                    }
+                    return mFlag;
+                });
+                return mFlag;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public async Task<bool> RemoveWaitingParty(int pID)
+        {
+            bool mFlag = false;
+            try
+            {
+                string url = "http://141.210.25.6/InLineWebApi/api/waitingparty?id=" + pID;
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+                request.ContentType = "application/json";
+                request.Method = "DELETE";
+                string message = "";
+
+                HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Delete, url);
+                reqMessage.Content = new StringContent(message, Encoding.UTF8, "application/json");
+
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                await client.SendAsync(reqMessage).ContinueWith(responseTask =>
+                {
+                    Console.WriteLine("Resonse: {0}", responseTask.Result);
+                    if (responseTask.Result.StatusCode == HttpStatusCode.OK)
+                    {
+                        mFlag = true;
+                    }
+                    return mFlag;
+                });
+                return mFlag;
             }
             catch (Exception ex)
             {

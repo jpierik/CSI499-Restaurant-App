@@ -20,6 +20,7 @@ namespace Project16_Mobile.Droid
     [Activity(Label = "DashboardActivity", Theme = "@style/Theme.AppCompat.Light")]
     public class DashboardActivity : AppCompatActivity, ILocationListener
     {
+        Context mContext;
         Location _currentLocation;
         LocationManager _locationManager;
         string location;
@@ -34,15 +35,22 @@ namespace Project16_Mobile.Droid
         LinearLayout search, deals, profile, logout, checkIn, inlineView;
         int mUserId;
         ISharedPreferences sharedPreferences;
+        Android.Support.V7.App.AlertDialog.Builder mBuilder;
+        Android.Support.V7.App.AlertDialog mAlertDialog;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-
+            base.OnCreate(savedInstanceState);            
             SetContentView(Resource.Layout.activity_dashboard);
+
+            mContext = this;
+
             mSelection = (Button)FindViewById(Resource.Id.btnInlineView);
+            mSelection.Visibility = ViewStates.Invisible;
             mLocationName = (TextView)FindViewById(Resource.Id.txtInlineName);
+            mLocationName.Visibility = ViewStates.Invisible;
             mInfo = (TextView)FindViewById(Resource.Id.txtInlineOther);
+            mInfo.Visibility = ViewStates.Invisible;
             inlineView = FindViewById<LinearLayout>(Resource.Id.inlineView);
             weatherIcon = FindViewById<TextView>(Resource.Id.weatherIcon);
             weatherFont = Typeface.CreateFromAsset(Assets, "Fonts/weather.ttf");
@@ -63,7 +71,7 @@ namespace Project16_Mobile.Droid
             checkIn = FindViewById<LinearLayout>(Resource.Id.layoutCheckIn);
             checkIn.Click += delegate
             {
-
+                StartActivity(typeof(InlineActivity));
             };
             profile = FindViewById<LinearLayout>(Resource.Id.layoutProfile);
             profile.Click += delegate
@@ -84,32 +92,15 @@ namespace Project16_Mobile.Droid
             InitializeLocationManager();
 
             Intent i = this.Intent;
-            int mUserId = i.GetIntExtra("com.csi4999.inline.EXTRA_USER_ID", -1);
+            mUserId = i.GetIntExtra("com.csi4999.inline.EXTRA_USER_ID", -1);
             string fullName = i.GetStringExtra("com.csi4999.inline.EXTRA_USER_FULLNAME");
             SupportActionBar.Title = "Welcome " + fullName;
+            User user = new User();
+            user.UserId = mUserId;
+            user.FullName = fullName;
+            library.SetUser(user);
+            
 
-            List<WaitingParty> list = library.GetWaitingParties();
-            WaitingParty party = null;
-            foreach(WaitingParty wp in list)
-            {
-                if (wp.MobileUserId == mUserId)
-                    party = wp;
-            }
-            if (party != null)
-            {                
-                Restaurant restaurant = library.GetRestaurant(party.RestaurantID);
-                if (restaurant != null)
-                {
-                    mLocationName.Text = restaurant.Name;
-                    mInfo.Text = restaurant.Address;
-                    mSelection.Click += delegate
-                    {
-                        Intent intent = new Intent(this, typeof(InlineActivity));
-                        StartActivity(intent);
-                    };
-                }
-
-            }
             // Create your application here
 
             /*
@@ -119,13 +110,59 @@ namespace Project16_Mobile.Droid
 
 
         }
+        public void DismissDialog()
+        {
+            mAlertDialog.Dismiss();
+            mSelection.Visibility = ViewStates.Invisible;
+            mLocationName.Visibility = ViewStates.Invisible;
+            mInfo.Visibility = ViewStates.Invisible;
+            CheckForWaitingParty();
+        }
 
+        public void CheckForWaitingParty()
+        {
+            List<WaitingParty> list = library.GetWaitingParties();
+            WaitingParty party = null;
+            foreach (WaitingParty wp in list)
+            {
+                if (wp.MobileUserId == mUserId)
+                    party = wp;
+            }
+            if (party != null)
+            {
+                Restaurant restaurant = library.GetRestaurant(party.RestaurantID);
+                if (restaurant != null)
+                {
+                    mSelection.Visibility = ViewStates.Visible;
+                    mLocationName.Visibility = ViewStates.Visible;
+                    mInfo.Visibility = ViewStates.Visible;
+                    mLocationName.Text = restaurant.Name;
+                    mInfo.Text = restaurant.Address;
+                    mSelection.Click += delegate
+                    {
+                        mBuilder = new Android.Support.V7.App.AlertDialog.Builder(this);
+                        mBuilder.SetTitle("");
+                        LayoutInflater inflater = this.LayoutInflater;
+                        CheckInCheckOutItem item = new CheckInCheckOutItem(mContext, mBuilder.Context, null);
+                        item.ID = party.PartyId;
+                        item.Address = restaurant.Address;
+                        mBuilder.SetView(item);
+                        mBuilder.SetCancelable(true);
+                        mBuilder.SetNegativeButton("Exit", (s, e) => { });
+
+                        mAlertDialog = mBuilder.Create();
+                        mAlertDialog.Show();
+                    };
+                }
+
+            }
+        }
         protected override void OnResume()
         {
             base.OnResume();
             _locationManager.RequestLocationUpdates(_locationProvider, 0, 0, this);
             sharedPreferences = GetSharedPreferences("mypref", FileCreationMode.Private);
-          
+            CheckForWaitingParty();         
 
         }
         protected override void OnPause()
@@ -142,35 +179,43 @@ namespace Project16_Mobile.Droid
         public void OnLocationChanged(Location location)
         {
             _currentLocation = location;
+            
             if (_currentLocation == null)
             {
                 //_locationText.Text = "Unable to determine your location. Try again in a short while.";
             }
             else
             {
+                library.SetCurrentLocation(location.Latitude, location.Longitude);
                 //_locationText.Text = string.Format("{0:f6},{1:f6}", _currentLocation.Latitude, _currentLocation.Longitude);
                 Address address = ReverseGeocodeCurrentLocation();
+                if (address == null)
+                    return;
                 //DisplayAddress(address);
                 long update = sharedPreferences.GetLong("update_weather", 0);
                 long now = DateTime.Now.Ticks;
-                long sunrise;
-                long sunset;
-                int weatherId;
-                int temperature;
+                long sunrise = -1;
+                long sunset = -1;
+                int weatherId = -1;
+                int temperature = -1;
                 if (update < now - (TimeSpan.TicksPerMinute * 10))
                 {
                     WeatherObject w = library.GetWeather(address.Locality);
-                    sunrise = w.sys.sunrise;
-                    sunset = w.sys.sunset;
-                    weatherId = w.weather[0].id;
-                    temperature = w.main.temp;
-                    ISharedPreferencesEditor editor = sharedPreferences.Edit();
-                    editor.PutLong("update_weather", now);
-                    editor.PutInt("weatherId", weatherId);
-                    editor.PutInt("temperature", temperature);
-                    editor.PutLong("sunrise", sunrise);
-                    editor.PutLong("sunset", sunset);
-                    editor.Apply();
+                    if (w != null)
+                    {
+                        ISharedPreferencesEditor editor = sharedPreferences.Edit();
+                        sunrise = w.sys.sunrise;
+                        sunset = w.sys.sunset;
+                        weatherId = w.weather[0].id;
+                        temperature = w.main.temp;
+
+                        editor.PutLong("update_weather", now);
+                        editor.PutInt("weatherId", weatherId);
+                        editor.PutInt("temperature", temperature);
+                        editor.PutLong("sunrise", sunrise);
+                        editor.PutLong("sunset", sunset);
+                        editor.Apply();
+                    }
 
                 }
                 else
@@ -181,19 +226,24 @@ namespace Project16_Mobile.Droid
                     temperature = sharedPreferences.GetInt("temperature", -1);
                     // setWeatherIcon(w.weather[0].id, w.sys.sunrise , w.sys.sunset);
                 }
+          
+                if (weatherId != -1 && sunrise != -1 && sunset != -1 && temperature != -1)
+                {
+                    setWeatherIcon(weatherId, sunrise, sunset);
+                    txtWeather.Text = address.Locality + " " + temperature + " °F";
+                }
 
-                setWeatherIcon(weatherId, sunrise, sunset);
                 DateTime date = DateTime.Now;
                 string format = "ddd, dd MMM";
                 txtDate.Text = date.ToString(format);
-                txtWeather.Text = address.Locality + " " + temperature + " °F";
+                
             }
         }
         private void setWeatherIcon(int actualId, long sunrise, long sunset)
         {
             int id = actualId / 100;
             string icon = "";
-            if (actualId == 800)            {
+            if (actualId == 800){
                
                 long currentTime = new Date().Time;
                 if (currentTime >= sunrise && currentTime < sunset)
@@ -269,11 +319,17 @@ namespace Project16_Mobile.Droid
         }
         private Address ReverseGeocodeCurrentLocation()
         {
-            Geocoder geocoder = new Geocoder(this);
-            IList<Address> addressList = geocoder.GetFromLocation(_currentLocation.Latitude, _currentLocation.Longitude, 10);
+            try
+            {
+                Geocoder geocoder = new Geocoder(this);
+                IList<Address> addressList = geocoder.GetFromLocation(_currentLocation.Latitude, _currentLocation.Longitude, 10);
 
-            Address address = addressList.FirstOrDefault();
-            return address;
+                Address address = addressList.FirstOrDefault();
+                return address;
+            }catch(Exception ex)
+            {
+                return null;
+            }
         }
       
     }

@@ -13,10 +13,10 @@ namespace DataAccess
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RestaurantModel : DbContext
+    public partial class DealsModel : DbContext
     {
-        public RestaurantModel()
-            : base("name=RestaurantModel")
+        public DealsModel()
+            : base("name=DealsModel")
         {
         }
     
@@ -25,6 +25,6 @@ namespace DataAccess
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Restaurant> Restaurants { get; set; }
+        public virtual DbSet<Deal> Deals { get; set; }
     }
 }

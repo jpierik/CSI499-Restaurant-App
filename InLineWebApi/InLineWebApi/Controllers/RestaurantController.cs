@@ -12,14 +12,14 @@ namespace InLineWebApi.Controllers
     {
         public IEnumerable<Restaurant> Get()
         {
-            using (RestaurantEntities entities = new RestaurantEntities())
+            using (RestaurantModel entities = new RestaurantModel())
             {
                 return entities.Restaurants.ToList();
             }
         }
         public Restaurant Get(int id)
         {
-            using (RestaurantEntities entities = new RestaurantEntities())
+            using (RestaurantModel entities = new RestaurantModel())
             {
                 return entities.Restaurants.FirstOrDefault(e => e.RestaurantId == id);
             }

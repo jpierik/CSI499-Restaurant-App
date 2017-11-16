@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\CSI499-Restaurant-App\InLineWebApi\DataAccess\RestaurantModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\CSI499-Restaurant-App\InLineWebApi\DataAccess\DealsModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

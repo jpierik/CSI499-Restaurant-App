@@ -93,6 +93,7 @@
     <Compile Include="SpecificDealItem.cs" />
     <Compile Include="SpecificDealsActivity.cs" />
     <Compile Include="DealItem.cs" />
+    <Compile Include="CheckInCheckOutItem.cs" />
     <Compile Include="DashboardActivity.cs" />
     <Compile Include="DealsActivity.cs" />
     <Compile Include="InlineActivity.cs" />
@@ -158,6 +159,9 @@
     <AndroidResource Include="Resources\layout\specific_deal_item_layout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\PopupInline.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -201,6 +205,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\logout_icon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\check_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\close_icon.png" />
   </ItemGroup>
   <Import Project="..\Project16_Mobile\Project16_Mobile.projitems" Label="Shared" Condition="Exists('..\Project16_Mobile\Project16_Mobile.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />

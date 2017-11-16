@@ -17,7 +17,7 @@
             p1:singleLine="true"
             p1:capitalize="words"
             p1:layout_columnWeight="1"
-            p1:text="Search for a resturant"
+            p1:hint="Search for a resturant"
             p1:textSize="23dp"
             p1:gravity="fill" />
         <ImageView

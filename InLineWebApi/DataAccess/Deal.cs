@@ -12,13 +12,12 @@ namespace DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Restaurant
+    public partial class Deal
     {
+        public int DealId { get; set; }
         public int RestaurantId { get; set; }
-        public string Address { get; set; }
-        public string Name { get; set; }
-        public Nullable<int> NoOfTables { get; set; }
-        public Nullable<int> OwnerId { get; set; }
-        public Nullable<int> CurrentWait { get; set; }
+        public string Title { get; set; }
+        public string Descript { get; set; }
+        public Nullable<int> category { get; set; }
     }
 }

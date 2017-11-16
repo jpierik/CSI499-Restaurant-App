@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Support.V7.App;
+using System.Threading.Tasks;
 
 namespace Project16_Mobile.Droid
 {
@@ -42,6 +43,20 @@ namespace Project16_Mobile.Droid
             };
 
         }
+        public async void RegisterUser(string name, string email, string password)
+        {
+            SQLLibrary library = SQLLibrary.getInstance();
+            Task<bool> output = library.Register(name, email, password);
+            bool value = await output;
+            if (value)
+            {
+                onSignupSuccess();
+            }
+            else
+            {
+                onSignupFailed();
+            }            
+        }
         public void signup(Context context)
         {
             Console.WriteLine("Signup Started...");
@@ -65,17 +80,8 @@ namespace Project16_Mobile.Droid
             Action myAction = () =>
             {
                 // your code that you want to delay here
-                bool output = library.Register(name, email, password);
-                if (output)
-                {
-                    onSignupSuccess();
-                }
-                else
-                {
-                    onSignupFailed();
-                }
-                progressDialog.Dismiss();
-
+                RegisterUser(name, email, password);             
+               
             };
 
             h.Post(myAction);

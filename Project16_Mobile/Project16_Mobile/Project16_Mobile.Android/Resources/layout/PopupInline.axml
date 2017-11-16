@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="300px">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/linearLayout1">
+        <Space
+            android:layout_width="100px"
+            android:layout_height="match_parent"
+            android:id="@+id/space1" />
+        <ImageView
+            android:src="@drawable/check_icon"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/prevCheckIn" />
+        <Space
+            android:layout_width="100px"
+            android:layout_height="match_parent"
+            android:id="@+id/space2" />
+        <ImageView
+            android:src="@drawable/close_icon"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/prevCheckOut" />
+        <Space
+            android:layout_width="100px"
+            android:layout_height="match_parent"
+            android:id="@+id/space3" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:id="@+id/linearLayout2">
+        <Space
+            android:layout_width="100px"
+            android:layout_height="match_parent"
+            android:id="@+id/space1" />
+        <TextView
+            android:text="Check In"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dp"
+              android:textColor="@android:color/holo_blue_dark"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/textView1" />
+        <Space
+            android:layout_width="100px"
+            android:layout_height="match_parent"
+            android:id="@+id/space1" />
+        <TextView
+            android:text="Check Out"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dp"
+            android:gravity="center"
+              android:textColor="@android:color/holo_blue_dark"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/textView2" />
+        <Space
+            android:layout_width="100px"
+            android:layout_height="match_parent"
+            android:id="@+id/space1" />
+    </LinearLayout>
+</LinearLayout>

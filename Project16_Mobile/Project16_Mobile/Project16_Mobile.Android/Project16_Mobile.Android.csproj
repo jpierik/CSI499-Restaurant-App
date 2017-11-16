@@ -90,7 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activity1.cs" />
+    <Compile Include="SpecificDealItem.cs" />
     <Compile Include="SpecificDealsActivity.cs" />
     <Compile Include="DealItem.cs" />
     <Compile Include="DashboardActivity.cs" />

@@ -6,9 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:text="Small Text"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
         android:id="@+id/dealTextSP"
+        android:textSize="20dp" />
+    <TextView
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dealTextSP"
+        android:id="@+id/dealDescriptSP"
         android:textSize="15dp" />
 </RelativeLayout>

@@ -15,7 +15,7 @@ namespace Project16_Mobile.Droid
 {
     public class DealItem : RelativeLayout
     {
-        TextView mRestName = null, mDealText = null;
+        TextView mRestName = null, mDealText = null, mDealDescript = null;
         RelativeLayout mSelectedDeal = null;
 
         public string Name { get; set; }
@@ -33,6 +33,7 @@ namespace Project16_Mobile.Droid
             mRestName = (TextView)FindViewById(Resource.Id.restName);
             mDealText = (TextView)FindViewById(Resource.Id.dealText);
             mSelectedDeal = (RelativeLayout)FindViewById(Resource.Id.selectedDeal);
+            mDealDescript = (TextView)FindViewById(Resource.Id.dealDescript);
             Index = -1;
             mSelectedDeal.Click += delegate
             {
@@ -48,6 +49,10 @@ namespace Project16_Mobile.Droid
         public void SetText(string text)
         {
             mDealText.Text = text;
+        }
+        public void SetDescript(string text)
+        {
+            mDealDescript.Text = text;
         }
     }
 }

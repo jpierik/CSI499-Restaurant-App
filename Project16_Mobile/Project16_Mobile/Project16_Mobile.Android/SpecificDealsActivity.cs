@@ -42,14 +42,16 @@ namespace Project16_Mobile.Droid
             dDealRestNameSP = (TextView)FindViewById(Resource.Id.dealRestNameSP);
             dDealTextSP = (TextView)FindViewById(Resource.Id.dealText);
 
-            /*
-            foreach (Deal d in dealList)
+           foreach (Deal d in dealList)
             {
-                dDealRestNameSP.Text = dName;  //passed in with the intent from the ResturantActivity class, don't know how to utilize it yet
-                dDealTextSP.Text = d.Descript;
-                dDealLayout.AddView(dRelativeLayout);
+                SpecificDealItem item = new SpecificDealItem(ApplicationContext, null);
+
+                int id = d.RestaurantId;
+                item.SetText(d.Title);
+                item.SetDescript(d.Descript);
+                dDealLayout.AddView(item);
             }
-            */
+            
         }
     }
 }

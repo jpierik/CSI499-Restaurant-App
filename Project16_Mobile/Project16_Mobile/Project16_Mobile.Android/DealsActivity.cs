@@ -33,6 +33,7 @@ namespace Project16_Mobile.Droid
             dDealLayout = (LinearLayout)FindViewById(Resource.Id.dealListLayout);
             dRestName = (TextView)FindViewById(Resource.Id.restName);
             dDealText = (TextView)FindViewById(Resource.Id.dealText);
+            mDealDescript = (TextView)FindViewById(Resource.Id.dealDescript);
             bool x = false;
             foreach (Deal d in dealList)
             {
@@ -49,7 +50,8 @@ namespace Project16_Mobile.Droid
                         item.Id = r.RestaurantId;
                     }
                 }
-                item.SetText(d.Descript);
+                item.SetText(d.Title);
+                item.SetDescript(d.Descript);
                 dDealLayout.AddView(item);
             }
 

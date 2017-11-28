@@ -12,9 +12,9 @@
           <Property Name="PartyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RestaurantID" Type="int" Nullable="false" />
           <Property Name="NoOfGuests" Type="int" Nullable="false" />
-          <Property Name="AddTime" Type="datetime" />
-          <Property Name="PriorityLvl" Type="bit" />
-          <Property Name="FullName" Type="varchar" MaxLength="50" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
+          <Property Name="PriorityLvl" Type="bit" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MobileUserId" Type="int" />
         </EntityType>
         <EntityContainer Name="CSI4999Model1StoreContainer">
@@ -31,9 +31,9 @@
           <Property Name="PartyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RestaurantID" Type="Int32" Nullable="false" />
           <Property Name="NoOfGuests" Type="Int32" Nullable="false" />
-          <Property Name="AddTime" Type="DateTime" Precision="3" />
-          <Property Name="PriorityLvl" Type="Boolean" />
-          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AddTime" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="PriorityLvl" Type="Boolean" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MobileUserId" Type="Int32" />
         </EntityType>
         <EntityContainer Name="WaitingPartyModel" annotation:LazyLoadingEnabled="true">

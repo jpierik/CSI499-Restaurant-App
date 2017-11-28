@@ -12,7 +12,7 @@ namespace Project16_Mobile
         public DateTime AddTime { get; set; }
         public bool PriorityLvl { get; set; }
         public string FullName { get; set; }
-        public int MobileUserId { get; set; }
+        public int? MobileUserId { get; set; }
 
     }
 }

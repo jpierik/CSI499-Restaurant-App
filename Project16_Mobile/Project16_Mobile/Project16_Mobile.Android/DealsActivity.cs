@@ -22,6 +22,10 @@ namespace Project16_Mobile.Droid
 
             SetContentView(Resource.Layout.Deals);
             // Create your application here
+
+
+            
+
         }
     }
 }

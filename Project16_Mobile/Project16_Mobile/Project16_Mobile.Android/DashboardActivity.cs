@@ -121,6 +121,9 @@ namespace Project16_Mobile.Droid
         public void CheckForWaitingParty()
         {
             List<WaitingParty> list = library.GetWaitingParties();
+            if (list == null)
+                return;
+
             WaitingParty party = null;
             foreach (WaitingParty wp in list)
             {
@@ -147,13 +150,12 @@ namespace Project16_Mobile.Droid
                         item.Address = restaurant.Address;
                         mBuilder.SetView(item);
                         mBuilder.SetCancelable(true);
-                        mBuilder.SetNegativeButton("Exit", (s, e) => { });
+                        mBuilder.SetNegativeButton("Exit", (s, e) => { mAlertDialog.Dismiss(); });
 
                         mAlertDialog = mBuilder.Create();
                         mAlertDialog.Show();
                     };
                 }
-
             }
         }
         protected override void OnResume()
@@ -161,6 +163,9 @@ namespace Project16_Mobile.Droid
             base.OnResume();
             _locationManager.RequestLocationUpdates(_locationProvider, 0, 0, this);
             sharedPreferences = GetSharedPreferences("mypref", FileCreationMode.Private);
+            mSelection.Visibility = ViewStates.Invisible;
+            mLocationName.Visibility = ViewStates.Invisible;
+            mInfo.Visibility = ViewStates.Invisible;
             CheckForWaitingParty();         
 
         }

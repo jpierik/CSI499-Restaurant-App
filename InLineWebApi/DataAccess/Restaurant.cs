@@ -17,8 +17,8 @@ namespace DataAccess
         public int RestaurantId { get; set; }
         public string Address { get; set; }
         public string Name { get; set; }
-        public Nullable<int> NoOfTables { get; set; }
-        public Nullable<int> OwnerId { get; set; }
-        public Nullable<int> CurrentWait { get; set; }
+        public int NoOfTables { get; set; }
+        public int OwnerId { get; set; }
+        public int CurrentWait { get; set; }
     }
 }

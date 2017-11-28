@@ -12,13 +12,10 @@
         p1:textSize="35dp"
         p1:gravity="center" />
     <TextView
-        p1:text="This is where the text of the deal is going to go once the information is filled out within the database. This is just a bunch of sample text so I can test the word wrapping and padding and whatnot"
+        p1:text="Large Text"
+        p1:textAppearance="?android:attr/textAppearanceLarge"
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
-        p1:id="@+id/dealText"
         p1:gravity="center"
-        p1:paddingLeft="40dp"
-        p1:paddingRight="40dp"
-        p1:backgroundTint="#00000000"
-        p1:textSize="20dp" />
+        p1:id="@+id/descriptTitle" />
 </LinearLayout>

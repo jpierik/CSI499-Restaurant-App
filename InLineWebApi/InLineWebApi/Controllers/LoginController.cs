@@ -41,6 +41,30 @@ namespace InLineWebApi.Controllers
             }
             return Ok();
         }
+        public IHttpActionResult Put(MobileUser user)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            using (var ctx = new MobileUserEntities())
+            {
+                var existingUser = ctx.MobileUsers.Where(s => s.UserId == user.UserId)
+                                                        .FirstOrDefault<MobileUser>();
+
+                if (existingUser != null)
+                {
+                    existingUser.FullName = user.FullName;
+                    existingUser.email = user.email;
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+            return Ok();
+        }
 
     }
 }

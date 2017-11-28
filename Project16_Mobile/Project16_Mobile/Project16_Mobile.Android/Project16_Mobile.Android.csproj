@@ -90,6 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProfileActivity.cs" />
     <Compile Include="SpecificDealItem.cs" />
     <Compile Include="SpecificDealsActivity.cs" />
     <Compile Include="DealItem.cs" />
@@ -162,6 +163,9 @@
     <AndroidResource Include="Resources\layout\PopupInline.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_profile.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -213,22 +217,28 @@
     <AndroidResource Include="Resources\drawable-hdpi\close_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\app.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\discount.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\app2.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\beer.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\dessert.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\dessert2.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\appetizer.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\meal.jpg" />
+    <AndroidResource Include="Resources\drawable-hdpi\mixeddrink.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\meal2.jpg" />
+    <AndroidResource Include="Resources\drawable-hdpi\background_page.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\loading_page.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\new_inline_logo.png" />
   </ItemGroup>
   <Import Project="..\Project16_Mobile\Project16_Mobile.projitems" Label="Shared" Condition="Exists('..\Project16_Mobile\Project16_Mobile.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />

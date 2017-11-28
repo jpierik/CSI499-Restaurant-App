@@ -11,5 +11,6 @@ namespace Project16_Mobile
         public string Title { get; set; }
         public string Descript { get; set; }
         public int category { get; set; }
+        public bool Priority { get; set; }
     }
 }

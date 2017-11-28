@@ -33,7 +33,7 @@ namespace Project16_Mobile.Droid
             dDealLayout = (LinearLayout)FindViewById(Resource.Id.dealListLayout);
             dRestName = (TextView)FindViewById(Resource.Id.restName);
             dDealText = (TextView)FindViewById(Resource.Id.dealText);
-            mDealDescript = (TextView)FindViewById(Resource.Id.dealDescript);
+            //mDealDescript = (TextView)FindViewById(Resource.Id.dealDescript);
             bool x = false;
             foreach (Deal d in dealList)
             {

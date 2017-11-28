@@ -33,13 +33,7 @@ namespace Project16_Mobile.Droid
             mDealText = (TextView)FindViewById(Resource.Id.dealTextSP);
             mSelectedDeal = (RelativeLayout)FindViewById(Resource.Id.selectedDealSP);
             mDealDescript = (TextView)FindViewById(Resource.Id.dealDescriptSP);
-            Index = -1;
-            mSelectedDeal.Click += delegate
-            {
-                Intent intent = new Intent(context, typeof(ResturantActivity)/* Insert Reseraunt Activity*/);
-                intent.PutExtra(UpdateService.EXTRA_RNAME, Name);
-                context.StartActivity(intent);
-            };
+           
         }
         public void SetName(string name)
         {

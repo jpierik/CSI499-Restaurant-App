@@ -13,7 +13,7 @@ using Android.Locations;
 using Android.Graphics;
 using Java.Util;
 using Android.Support.V7.App;
-
+using System.Threading.Tasks;
 
 namespace Project16_Mobile.Droid
 {
@@ -58,6 +58,7 @@ namespace Project16_Mobile.Droid
             txtDate = FindViewById<TextView>(Resource.Id.txtDate);
             txtWeather = FindViewById<TextView>(Resource.Id.txtWeather);
             search = FindViewById<LinearLayout>(Resource.Id.layoutSearch);
+
             search.Click += delegate
             {
                 StartActivity(typeof(SearchActivity));
@@ -65,18 +66,14 @@ namespace Project16_Mobile.Droid
             deals = FindViewById<LinearLayout>(Resource.Id.layoutDeals);
             deals.Click += delegate
             {
-
+                StartActivity(typeof(DealsActivity));
             };
             checkIn = FindViewById<LinearLayout>(Resource.Id.layoutCheckIn);
             checkIn.Click += delegate
             {
                 StartActivity(typeof(InlineActivity));
             };
-            profile = FindViewById<LinearLayout>(Resource.Id.layoutProfile);
-            profile.Click += delegate
-            {
-
-            };
+          
             logout = FindViewById<LinearLayout>(Resource.Id.layoutLogout);
             logout.Click += delegate
             {                
@@ -93,13 +90,34 @@ namespace Project16_Mobile.Droid
             Intent i = this.Intent;
             mUserId = i.GetIntExtra("com.csi4999.inline.EXTRA_USER_ID", -1);
             string fullName = i.GetStringExtra("com.csi4999.inline.EXTRA_USER_FULLNAME");
+            string email = i.GetStringExtra("com.csi4999.inline.EXTRA_EMAIL");
             SupportActionBar.Title = "Welcome " + fullName;
             User user = new User();
             user.UserId = mUserId;
             user.FullName = fullName;
+            user.email = email;
             library.SetUser(user);
-            
 
+            profile = FindViewById<LinearLayout>(Resource.Id.layoutProfile);
+            profile.Click += delegate
+            {
+                Android.Support.V7.App.AlertDialog.Builder profileBuilder = new Android.Support.V7.App.AlertDialog.Builder(this);
+                profileBuilder.SetTitle("User Profile");
+
+                View profileView = LayoutInflater.Inflate(Resource.Layout.activity_profile, null);
+                EditText txtName = profileView.FindViewById<EditText>(Resource.Id.txtName);
+                txtName.Text = fullName;
+                EditText txtEmail = profileView.FindViewById<EditText>(Resource.Id.txtEmail);
+                txtEmail.Text = user.email;
+                profileBuilder.SetView(profileView);
+                profileBuilder.SetPositiveButton("Save", (s, e) => 
+                {
+                    UpdateUser(user.UserId, txtName.Text, txtEmail.Text);
+                    //library.UpdateUser(user.UserId, txtName.Text, txtEmail.Text);
+                });
+                profileBuilder.SetNegativeButton("Exit", (s, e) => { });
+                profileBuilder.Show();
+            };
             // Create your application here
 
             /*
@@ -108,6 +126,15 @@ namespace Project16_Mobile.Droid
             */
 
 
+        }
+        public async void UpdateUser(int id, string name, string email)
+        {
+            Task<bool> output = library.UpdateUser(id, name, email);
+            bool value = await output;
+            if (value)
+                Toast.MakeText(ApplicationContext, "Profile Updated", ToastLength.Short).Show();
+            else
+                Toast.MakeText(ApplicationContext, "Please try again later", ToastLength.Short).Show();
         }
         public void DismissDialog()
         {
@@ -143,7 +170,7 @@ namespace Project16_Mobile.Droid
                     mSelection.Click += delegate
                     {
                         mBuilder = new Android.Support.V7.App.AlertDialog.Builder(this);
-                        mBuilder.SetTitle("");
+                        mBuilder.SetTitle("Get InLine");
                         LayoutInflater inflater = this.LayoutInflater;
                         CheckInCheckOutItem item = new CheckInCheckOutItem(mContext, mBuilder.Context, null);
                         item.ID = party.PartyId;
@@ -202,12 +229,13 @@ namespace Project16_Mobile.Droid
                 long sunset = -1;
                 int weatherId = -1;
                 int temperature = -1;
-                if (update < now - (TimeSpan.TicksPerMinute * 10))
+                if (update < now - (TimeSpan.TicksPerMinute * 5))
                 {
+                    ISharedPreferencesEditor editor = sharedPreferences.Edit();
                     WeatherObject w = library.GetWeather(address.Locality);
                     if (w != null)
                     {
-                        ISharedPreferencesEditor editor = sharedPreferences.Edit();
+                      
                         sunrise = w.sys.sunrise;
                         sunset = w.sys.sunset;
                         weatherId = w.weather[0].id;
@@ -218,8 +246,13 @@ namespace Project16_Mobile.Droid
                         editor.PutInt("temperature", temperature);
                         editor.PutLong("sunrise", sunrise);
                         editor.PutLong("sunset", sunset);
-                        editor.Apply();
+                       
                     }
+                    else
+                    {
+                        editor.PutLong("update_weather", now);
+                    }
+                    editor.Apply();
 
                 }
                 else

@@ -15,6 +15,7 @@ using Android.Util;
 using Android.Support.V7.App;
 using Android;
 using Android.Content.PM;
+using System.Threading;
 
 namespace Project16_Mobile.Droid
 {
@@ -98,32 +99,31 @@ namespace Project16_Mobile.Droid
             btnLogin.Enabled = false;
             ProgressDialog progressDialog = new ProgressDialog(context);
             progressDialog.SetMessage("Authenticating...");
-            progressDialog.Indeterminate = true;
+            // progressDialog.Indeterminate = true;
+            progressDialog.SetProgressStyle(ProgressDialogStyle.Spinner);
             progressDialog.Show();
 
             string email = txtEmail.Text;
             string password = txtPassword.Text;
             SQLLibrary library = SQLLibrary.getInstance();
-            Handler h = new Handler();
-            Action myAction = () =>
+            new System.Threading.Thread(new ThreadStart(() =>
             {
-                // Testing Commit
-                // your code that you want to delay here
-                User user = library.Login(email, password);
-
-                if (user != null)
+                RunOnUiThread(() =>
                 {
-                    OnLoginSuccess(user);
-                }
-                else
-                {
-                    onLoginFailed();
-                }
-                progressDialog.Dismiss();
+                    User user = library.Login(email, password);
 
-            };
-
-            h.Post(myAction);
+                    if (user != null)
+                    {
+                        OnLoginSuccess(user);
+                    }
+                    else
+                    {
+                        onLoginFailed();
+                    }
+                    progressDialog.Dismiss();
+                });             
+               
+            })).Start();            
 
 
         }
@@ -137,7 +137,11 @@ namespace Project16_Mobile.Droid
             editor.PutString("fullname", user.FullName);
             editor.Apply();
             btnLogin.Enabled = true;
-            StartActivity(typeof(DashboardActivity));
+            Intent search = new Intent(this, typeof(DashboardActivity));
+            search.PutExtra("com.csi4999.inline.EXTRA_USER_ID", user.UserId);
+            search.PutExtra("com.csi4999.inline.EXTRA_USER_FULLNAME", user.FullName);
+            search.PutExtra("com.csi4999.inline.EXTRA_EMAIL", user.email);
+            StartActivity(search);
             Finish();
         }
         public void onLoginFailed()

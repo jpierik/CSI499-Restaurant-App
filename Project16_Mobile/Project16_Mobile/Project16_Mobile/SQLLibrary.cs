@@ -5,7 +5,6 @@ using System.Net;
 using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
-using System.Json;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 
@@ -100,12 +99,13 @@ namespace Project16_Mobile
             }
 
         }
+
         public async Task<bool> Register(string fullname, string email, string password)
         {
             bool mFlag = false;
             try
             { // string testUrl = "http://10.0.0.183/api/mobileuser";
-              string url = "http://141.210.25.6/InLineWebApi/api/mobileuser";
+              string url = "http://141.210.25.6/InLineWebApi/api/login";
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
                 request.ContentType = "application/json";
                 request.Method = "POST";
@@ -127,6 +127,40 @@ namespace Project16_Mobile
                     }
                 });
 
+                return mFlag;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public async Task<bool> UpdateUser(int mID, string fullname, string email)
+        {
+            bool mFlag = false;
+            try
+            {
+                string url = "http://141.210.25.6/InLineWebApi/api/login";
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+                request.ContentType = "application/json";
+                request.Method = "PUT";
+                string message = "{\"UserId\":\"" + mID + "\", \"FullName\":" + fullname + "\", \"email\":\"" + email + "\" }";
+
+                HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Put, url);
+                reqMessage.Content = new StringContent(message, Encoding.UTF8, "application/json");
+
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                await client.SendAsync(reqMessage).ContinueWith(responseTask =>
+                {
+                    Console.WriteLine("Resonse: {0}", responseTask.Result);
+                    if (responseTask.Result.StatusCode == HttpStatusCode.OK)
+                    {
+                        mFlag = true;
+                    }
+                    return mFlag;
+                });
                 return mFlag;
             }
             catch (Exception ex)
@@ -156,7 +190,7 @@ namespace Project16_Mobile
                 await client.SendAsync(reqMessage).ContinueWith(responseTask =>
                 {
                     Console.WriteLine("Resonse: {0}", responseTask.Result);
-                    if (responseTask.Result.StatusCode == HttpStatusCode.OK)
+                     if (responseTask.Result.StatusCode == HttpStatusCode.OK)
                     {
                         mFlag = true;
                     }
@@ -441,6 +475,84 @@ namespace Project16_Mobile
         }
    */
 
+        public List<Deal> GetDeals()
+        {
+            InvalidJsonElements = null;
+            try
+            {
+                string url = "http://141.210.25.6/InLineWebApi/api/deals";
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+                request.ContentType = "application/json";
+                request.Method = "GET";
+                string responseString;
+                using (WebResponse response = request.GetResponse())
+                {
+                    responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                }
+                var array = JArray.Parse(responseString);
+                List<Deal> list = new List<Deal>();
+                foreach (var item in array)
+                {
+                    try
+                    {
+                        list.Add(item.ToObject<Deal>());
+                    }
+                    catch (Exception ex)
+                    {
+                        InvalidJsonElements = InvalidJsonElements ?? new List<string>();
+                        InvalidJsonElements.Add(item.ToString());
+                    }
+                }
+                return list;
 
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public List<Deal> GetDeals(int id)
+        {
+            InvalidJsonElements = null;
+            try
+            {
+                string url = "http://141.210.25.6/InLineWebApi/api/deals";
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+                request.ContentType = "application/json";
+                request.Method = "GET";
+                string responseString;
+                using (WebResponse response = request.GetResponse())
+                {
+                    responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                }
+                Console.WriteLine(responseString);
+                var array = JArray.Parse(responseString);
+                List<Deal> list = new List<Deal>();
+                foreach (var item in array)
+                {
+                    try
+                    {
+                        list.Add(item.ToObject<Deal>());
+                    }
+                    catch (Exception ex)
+                    {
+                        InvalidJsonElements = InvalidJsonElements ?? new List<string>();
+                        InvalidJsonElements.Add(item.ToString());
+                        return null;
+                    }
+                }
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].RestaurantId != id)
+                        list.RemoveAt(i);
+                }
+                return list;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

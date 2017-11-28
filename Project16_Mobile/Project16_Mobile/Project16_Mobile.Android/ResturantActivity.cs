@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Support.V7.App;
 using System.Threading.Tasks;
+using Android.Util;
 
 namespace Project16_Mobile.Droid
 {
@@ -30,10 +31,11 @@ namespace Project16_Mobile.Droid
             Button inLine = FindViewById<Button>(Resource.Id.inLine);
             Button dealsButton = FindViewById<Button>(Resource.Id.dealsButton);
             Intent searchIntent = this.Intent;
-            var dealsActivity = new Intent(this, typeof(DealsActivity));
+            var specificDealsActivity = new Intent(this, typeof(SpecificDealsActivity));
             string restaurantExtra = searchIntent.GetStringExtra(UpdateService.EXTRA_RNAME);
             int id = searchIntent.GetIntExtra(UpdateService.EXTRA_RID, -1);
-            int time = searchIntent.GetIntExtra(UpdateService.EXTRA_WAITTIME, -1); 
+            int time = searchIntent.GetIntExtra(UpdateService.EXTRA_WAITTIME, -1);
+            library = SQLLibrary.getInstance();
 
             backButton.Click += delegate
             {
@@ -43,15 +45,16 @@ namespace Project16_Mobile.Droid
             inLine.Click += delegate
             {
                 int sizeOfParty = int.Parse(partySize.Text);
-                library = SQLLibrary.getInstance();
+                //library = SQLLibrary.getInstance();
                 User user = library.GetUser();
                 InsertWaitingParty(id, sizeOfParty, user.FullName, user.UserId);            
              
             };
 
             dealsButton.Click += delegate {
-                dealsActivity.PutExtra(UpdateService.EXTRA_RESTAURANT, restaurantExtra); //Need to add the restaurant name to this1
-                StartActivity(dealsActivity);
+                specificDealsActivity.PutExtra(UpdateService.EXTRA_RESTAURANT, restaurantExtra); //Need to add the restaurant name to this1
+                specificDealsActivity.PutExtra(UpdateService.EXTRA_DEALS_ID, restaurantExtra); //Need to add the restaurant name to this1
+                StartActivity(specificDealsActivity);
             };
 
            
@@ -61,23 +64,53 @@ namespace Project16_Mobile.Droid
             waitTime.Text = "Average Wait Time: " + time + " mins";
             // Create your application here
 
-            //Button backButton = FindViewById<Button>(Resource.Id.backButton);
 
-            Android.Support.V7.App.AlertDialog.Builder builder = new Android.Support.V7.App.AlertDialog.Builder(this);
-            builder.SetTitle("");
-            LayoutInflater inflater = this.LayoutInflater;
-            View view = inflater.Inflate(Resource.Layout.PopupDeal, null);
-            builder.SetView(view);
-            dealsActivity.PutExtra(UpdateService.EXTRA_RESTAURANT, restaurantExtra); //Need to add the restaurant name to this
-            builder.SetPositiveButton("View More", (s, e) => { StartActivity(dealsActivity); });
-            builder.SetNegativeButton("Exit", (s, e) => { });
-            builder.Show();
+            //Button backButton = FindViewById<Button>(Resource.Id.backButton);
+            List<Deal> deals = library.GetDeals();
+            foreach(Deal item in deals)
+            {
+                if(item.Priority && item.RestaurantId == id)
+                {
+                    Android.Support.V7.App.AlertDialog.Builder builder = new Android.Support.V7.App.AlertDialog.Builder(this);
+                    builder.SetTitle(item.Title);
+                    builder.SetMessage(item.Descript);
+
+                    ImageView image = new ImageView(this);
+                    image.SetMinimumWidth(50);
+                    image.SetMinimumHeight(50);                    
+                  
+                    switch (item.category)
+                    {
+                        case 0:
+                            image.SetBackgroundResource(Resource.Drawable.discount);
+                            break;
+                        case 1:
+                            image.SetBackgroundResource(Resource.Drawable.beer);
+                            break;
+                        case 2:
+                            image.SetBackgroundResource(Resource.Drawable.appetizer);
+                            break;
+                        case 3:
+                            image.SetBackgroundResource(Resource.Drawable.dessert);
+                            break;
+                        default:
+                            break;
+                    }
+                    builder.SetView(image);
+                    specificDealsActivity.PutExtra(UpdateService.EXTRA_RESTAURANT, restaurantExtra); //Need to add the restaurant name to this
+                    builder.SetPositiveButton("View More", (s, e) => { StartActivity(specificDealsActivity); });
+                    builder.SetNegativeButton("Exit", (s, e) => { });
+                    builder.Show();
+                    return;
+                }
+            }
+
+
+           
         }
         protected override void OnResume()
         {
             base.OnResume();
-
-            
         }
         public async void InsertWaitingParty(int id, int size, string name, int uId)
         {

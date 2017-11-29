@@ -30,11 +30,11 @@ namespace Project16_Mobile.Droid
         private void Initialize(Context context)
         {
 
-            LayoutInflater.From(context).Inflate(Resource.Layout.specific_deal_item_layout, this, true);
-            mDealText = (TextView)FindViewById(Resource.Id.dealTextSP);
-            mSelectedDeal = (RelativeLayout)FindViewById(Resource.Id.selectedDealSP);
-            mDealDescript = (TextView)FindViewById(Resource.Id.dealDescriptSP);
-            mDealIcon = (ImageView)FindViewById(Resource.Id.dealIconSP);
+            LayoutInflater.From(context).Inflate(Resource.Layout.specific_deal_item_layout_right, this, true);
+            mDealText = (TextView)FindViewById(Resource.Id.dealTextSPR);
+            mSelectedDeal = (RelativeLayout)FindViewById(Resource.Id.selectedDealSPR);
+            mDealDescript = (TextView)FindViewById(Resource.Id.dealDescriptSPR);
+            mDealIcon = (ImageView)FindViewById(Resource.Id.dealIconSPR);
             Index = -1;
             mSelectedDeal.Click += delegate
             {
@@ -43,19 +43,19 @@ namespace Project16_Mobile.Droid
                 context.StartActivity(intent);
             };
         }
-        public void SetNameSP(string name)
+        public void SetNameSPR(string name)
         {
             mRestName.Text = name;
         }
-        public void SetTextSP(string text)
+        public void SetTextSPR(string text)
         {
             mDealText.Text = text;
         }
-        public void SetDescriptSP(string text)
+        public void SetDescriptSPR(string text)
         {
             mDealDescript.Text = text;
         }
-        public void SetImageSP(int x)
+        public void SetImageSPR(int x)
         {
             int a = 0;
             Random rand = new Random();

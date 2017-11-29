@@ -40,18 +40,36 @@ namespace Project16_Mobile.Droid
             dRelativeLayout = (RelativeLayout)FindViewById(Resource.Id.selectedDeal);
             dDealLayout = (LinearLayout)FindViewById(Resource.Id.dealListLayoutSP);
             dDealRestNameSP = (TextView)FindViewById(Resource.Id.dealRestNameSP);
-            dDealTextSP = (TextView)FindViewById(Resource.Id.dealText);
+            dDealTextSP = (TextView)FindViewById(Resource.Id.dealTextSP);
+            bool x = false;
+            int y = 0;
 
-           foreach (Deal d in dealList)
+            foreach (Deal d in dealList)
             {
-                SpecificDealItem item = new SpecificDealItem(ApplicationContext, null);
+                if (x == false)
+                {
+                    SpecificDealItem item = new SpecificDealItem(ApplicationContext, null);
 
-                int id = d.RestaurantId;
-                item.SetText(d.Title);
-                item.SetDescript(d.Descript);
-                dDealLayout.AddView(item);
+                    y = d.DealID;
+                    int id = d.RestaurantId;
+                    item.SetTextSP(d.Title);
+                    item.SetDescriptSP(d.Descript);
+                    item.SetImageSP(y);
+                    dDealLayout.AddView(item);
+                }
+
+                else
+                {
+                    SpecificDealItemRight item = new SpecificDealItemRight(ApplicationContext, null);
+
+                    y = d.DealId;
+                    int id = d.RestaurantId;
+                    item.SetTextSPR(d.Title);
+                    item.SetDescriptSPR(d.Descript);
+                    item.setImageSPR(y);
+                    dDealLayout.AddView(item);
+                }
             }
-            
         }
     }
 }

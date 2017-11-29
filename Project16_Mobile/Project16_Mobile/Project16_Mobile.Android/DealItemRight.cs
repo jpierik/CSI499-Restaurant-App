@@ -13,16 +13,15 @@ using Android.Widget;
 
 namespace Project16_Mobile.Droid
 {
-    public class SpecificDealItem : RelativeLayout
+    public class DealItem : RelativeLayout
     {
         TextView mRestName = null, mDealText = null, mDealDescript = null;
         RelativeLayout mSelectedDeal = null;
-        ImageView mDealIcon = null;
 
         public string Name { get; set; }
         public int Index { get; set; }
 
-        public SpecificDealItem(Context context, IAttributeSet attrs) :
+        public DealItem(Context context, IAttributeSet attrs) :
             base(context, attrs)
         {
             Initialize(context);
@@ -30,11 +29,11 @@ namespace Project16_Mobile.Droid
         private void Initialize(Context context)
         {
 
-            LayoutInflater.From(context).Inflate(Resource.Layout.specific_deal_item_layout, this, true);
-            mDealText = (TextView)FindViewById(Resource.Id.dealTextSP);
-            mSelectedDeal = (RelativeLayout)FindViewById(Resource.Id.selectedDealSP);
-            mDealDescript = (TextView)FindViewById(Resource.Id.dealDescriptSP);
-            mDealIcon = (ImageView)FindViewById(Resource.Id.dealIconSP);
+            LayoutInflater.From(context).Inflate(Resource.Layout.deal_item_layout_right, this, true);
+            mRestName = (TextView)FindViewById(Resource.Id.restName);
+            mDealText = (TextView)FindViewById(Resource.Id.dealText);
+            mSelectedDeal = (RelativeLayout)FindViewById(Resource.Id.selectedDeal);
+            mDealDescript = (TextView)FindViewById(Resource.Id.dealDescript);
             Index = -1;
             mSelectedDeal.Click += delegate
             {
@@ -43,19 +42,19 @@ namespace Project16_Mobile.Droid
                 context.StartActivity(intent);
             };
         }
-        public void SetNameSP(string name)
+        public void SetNameR(string name)
         {
             mRestName.Text = name;
         }
-        public void SetTextSP(string text)
+        public void SetTextR(string text)
         {
             mDealText.Text = text;
         }
-        public void SetDescriptSP(string text)
+        public void SetDescriptR(string text)
         {
             mDealDescript.Text = text;
         }
-        public void SetImageSP(int x)
+        public void SetImageR(int x)
         {
             int a = 0;
             Random rand = new Random();

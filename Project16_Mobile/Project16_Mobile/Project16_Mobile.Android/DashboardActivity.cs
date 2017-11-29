@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "DashboardActivity", Theme = "@style/Theme.AppCompat.Light")]
+    [Activity(Label = "DashboardActivity", Theme = "@style/CustomActionBarTheme")]
     public class DashboardActivity : AppCompatActivity, ILocationListener
     {
         Context mContext;

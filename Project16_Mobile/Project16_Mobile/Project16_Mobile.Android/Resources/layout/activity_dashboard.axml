@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-              android:background="@drawable/background_page"
+    android:background="@drawable/background_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -61,7 +61,7 @@
                     android:id="@+id/txtInlineName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                     android:textColor="@android:color/holo_blue_dark"
+                    android:textColor="@android:color/holo_blue_dark"
                     android:text="Red Robin"
                     android:textSize="32sp" />
                 <TextView
@@ -84,13 +84,27 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="330px">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/layoutSearch"
-            android:background="@drawable/search_icon" />
+      <LinearLayout
+          android:orientation="vertical"
+          android:padding="15dp"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:gravity="center"
+          android:id="@+id/layoutSearch">
+        
+        <ImageView  
+          android:src="@drawable/search_icon"
+          android:layout_width="200px"
+          android:rotation="45"
+          android:background="@color/white"
+          android:layout_height="200px"
+        />
+        
+        
+        
+        
+      </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
             android:layout_weight="1"

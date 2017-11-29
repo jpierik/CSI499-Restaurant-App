@@ -19,5 +19,6 @@ namespace DataAccess
         public string Title { get; set; }
         public string Descript { get; set; }
         public Nullable<int> category { get; set; }
+        public bool Priority { get; set; }
     }
 }

@@ -47,7 +47,8 @@ namespace Project16_Mobile.Droid
                 {
                     Intent search = new Intent(this, typeof(DashboardActivity));
                     search.PutExtra("com.csi4999.inline.EXTRA_USER_ID", id);
-                    search.PutExtra("com.csi4999.inline.EXTRA_USER_FULLNAME", fullname);                
+                    search.PutExtra("com.csi4999.inline.EXTRA_USER_FULLNAME", fullname);
+                     search.PutExtra("com.csi4999.inline.EXTRA_EMAIL", username);
                     StartActivity(search);
                 }
                 else

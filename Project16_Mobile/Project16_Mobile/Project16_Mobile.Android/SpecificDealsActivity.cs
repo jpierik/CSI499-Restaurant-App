@@ -36,7 +36,7 @@ namespace Project16_Mobile.Droid
             TextView dDealRestNameSP = null, dDealTextSP = null;
             LinearLayout dDealLayout = null;
             RelativeLayout dRelativeLayout = null;
-            SetContentView(Resource.Layout.Deals);
+            //SetContentView(Resource.Layout.);
             dRelativeLayout = (RelativeLayout)FindViewById(Resource.Id.selectedDeal);
             dDealLayout = (LinearLayout)FindViewById(Resource.Id.dealListLayoutSP);
             dDealRestNameSP = (TextView)FindViewById(Resource.Id.dealRestNameSP);

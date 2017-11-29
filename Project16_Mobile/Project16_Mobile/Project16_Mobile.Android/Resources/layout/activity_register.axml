@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+              android:background="@drawable/background_page"
     android:fitsSystemWindows="true">
     <LinearLayout
         android:orientation="vertical"
@@ -11,7 +12,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
         <ImageView
-            android:src="@drawable/logo"
+            android:src="@drawable/new_inline_logo"
             android:layout_width="wrap_content"
             android:layout_height="72dp"
             android:layout_marginBottom="24dp"
@@ -20,11 +21,13 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+              android:theme="@style/TextInput"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
             <EditText
                 android:id="@+id/inputName"
                 android:layout_width="match_parent"
+                 android:textColor="@color/white"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
                 android:hint="Name" />
@@ -33,11 +36,13 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+              android:theme="@style/TextInput"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
             <EditText
                 android:id="@+id/inputEmail"
                 android:layout_width="match_parent"
+                 android:textColor="@color/white"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:hint="Email" />
@@ -46,11 +51,13 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+                android:theme="@style/TextInput"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
             <EditText
                 android:id="@+id/inputPassword"
                 android:layout_width="match_parent"
+                 android:textColor="@color/white"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:hint="Password" />
@@ -67,6 +74,7 @@
         <TextView
             android:id="@+id/lnkLogin"
             android:layout_width="fill_parent"
+             android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:text="Already a member? Login"

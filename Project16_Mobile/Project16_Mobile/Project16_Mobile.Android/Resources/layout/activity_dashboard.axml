@@ -14,12 +14,14 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="@color/white"
             android:layout_height="match_parent"
             android:id="@+id/txtTime" />
         <TextView
             android:layout_height="match_parent"
             android:layout_width="150dp"
             android:gravity="center"
+            
             android:textSize="72sp"
             android:textColor="@android:color/holo_blue_bright"
             android:id="@+id/weatherIcon" />
@@ -30,6 +32,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+            android:textColor="@color/white"
         android:id="@+id/txtDate" />
     <TextView
         android:text=""
@@ -37,6 +40,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+            android:textColor="@color/white"
         android:id="@+id/txtWeather" />
     <LinearLayout
         android:orientation="vertical"
@@ -68,6 +72,7 @@
                     android:id="@+id/txtInlineOther"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                        android:textColor="@color/white"
                     android:text="Other text....."
                     android:textSize="18sp" />
             </LinearLayout>
@@ -77,6 +82,7 @@
                 android:text="&gt;"
                 android:textSize="40sp"
                 android:id="@+id/btnInlineView"
+                    android:textColor="@color/white"
                 android:background="@android:color/transparent" />
         </LinearLayout>
     </LinearLayout>
@@ -84,41 +90,34 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="330px">
-      <LinearLayout
-          android:orientation="vertical"
-          android:padding="15dp"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:gravity="center"
-          android:id="@+id/layoutSearch">
-        
-        <ImageView  
-          android:src="@drawable/search_icon"
-          android:layout_width="200px"
-          android:rotation="45"
-          android:background="@color/white"
-          android:layout_height="200px"
-        />
-        
-        
-        
-        
-      </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/layoutSearch">
+            <Button
+                android:background="@drawable/search_icon"
+                android:layout_width="match_parent"  
+                android:id="@+id/btnSearch"
+                android:layout_height="match_parent" />
+        </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/layoutDeals"
-            android:background="@drawable/deals_icon2" />
+            android:background="@drawable/deals_icon" />
         <LinearLayout
             android:orientation="vertical"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/layoutCheckIn"
-            android:background="@drawable/check_in_icon" />
+            android:background="@drawable/location_icon" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"

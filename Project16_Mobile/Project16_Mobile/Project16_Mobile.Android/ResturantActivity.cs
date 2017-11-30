@@ -76,22 +76,22 @@ namespace Project16_Mobile.Droid
                     builder.SetMessage(item.Descript);
 
                     ImageView image = new ImageView(this);
-                    image.SetMinimumWidth(50);
-                    image.SetMinimumHeight(50);                    
+                    image.SetMinimumWidth(200);
+                    image.SetMinimumHeight(200);                    
                   
                     switch (item.category)
                     {
                         case 0:
-                            image.SetBackgroundResource(Resource.Drawable.discount);
+                            image.SetBackgroundResource(Resource.Drawable.steak);
                             break;
                         case 1:
                             image.SetBackgroundResource(Resource.Drawable.beer);
                             break;
                         case 2:
-                            image.SetBackgroundResource(Resource.Drawable.appetizer);
+                            image.SetBackgroundResource(Resource.Drawable.app1);
                             break;
                         case 3:
-                            image.SetBackgroundResource(Resource.Drawable.dessert);
+                            image.SetBackgroundResource(Resource.Drawable.dessert1);
                             break;
                         default:
                             break;

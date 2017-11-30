@@ -51,10 +51,10 @@ namespace Project16_Mobile.Droid
                             item.SetName(r.Name);
                         }
                     }
-                    y = d.Id;
+                    y = d.category;
                     item.SetText(d.Title);
                     item.SetDescript(d.Descript);
-                    item.setImage(y);
+                    item.SetImage(y);
                     dDealLayout.AddView(item);
                     x = true;
                 }
@@ -71,9 +71,10 @@ namespace Project16_Mobile.Droid
                             item.SetNameR(r.Name);
                         }
                     }
+                    y = d.category;
                     item.SetTextR(d.Title);
                     item.SetDescriptR(d.Descript);
-                    item.setImageR(y);
+                    item.SetImageR(y);
                     dDealLayout.AddView(item);
                     x = false;
                 }

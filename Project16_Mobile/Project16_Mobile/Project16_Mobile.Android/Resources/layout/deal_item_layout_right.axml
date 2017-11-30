@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="12dp"
     android:orientation="horizontal"
     android:id="@+id/selectedDealR"
     android:clickable="true"
     android:layout_width="match_parent"
-    android:layout_height="300px">
+    android:layout_height="400px">
     <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/selectedDealRightR"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+        <ImageView
+            android:src="@drawable/app1"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/dealIconR" />
+    </LinearLayout>
+    <LinearLayout
+         android:padding="6dp"
         android:orientation="vertical"
         android:id="@+id/selectedDealLeftR"
         android:layout_width="0dp"
@@ -35,17 +48,5 @@
             android:layout_marginBottom="6dp"
             android:id="@+id/dealDescriptR"
             android:textSize="15dp" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/selectedDealRightR"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent">
-        <ImageView
-            android:src="@drawable/app"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/dealIconR" />
     </LinearLayout>
 </LinearLayout>

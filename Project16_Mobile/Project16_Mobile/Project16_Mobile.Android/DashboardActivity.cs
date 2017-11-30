@@ -232,7 +232,7 @@ namespace Project16_Mobile.Droid
                 if (update < now - (TimeSpan.TicksPerMinute * 5))
                 {
                     ISharedPreferencesEditor editor = sharedPreferences.Edit();
-                    WeatherObject w = library.GetWeather(address.Locality);
+                    WeatherObject w = library.GetWeather(address.PostalCode);
                     if (w != null)
                     {
                       

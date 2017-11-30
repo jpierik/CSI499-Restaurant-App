@@ -394,11 +394,11 @@ namespace Project16_Mobile
                 return null;
             }
         }
-        public WeatherObject GetWeather(string city)
+        public WeatherObject GetWeather(string zipcode)
         {
             try
             {
-                string url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial";
+                string url = "http://api.openweathermap.org/data/2.5/weather?zip=" + zipcode + ",us&units=imperial";
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
                 request.ContentType = "application/json";
                 request.Method = "GET";

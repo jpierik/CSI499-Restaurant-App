@@ -13,16 +13,16 @@ using Android.Widget;
 
 namespace Project16_Mobile.Droid
 {
-    public class SpecificDealItem : RelativeLayout
+    public class SpecificDealItemRight : RelativeLayout
     {
         TextView mRestName = null, mDealText = null, mDealDescript = null;
-        RelativeLayout mSelectedDeal = null;
+        LinearLayout mSelectedDeal = null;
         ImageView mDealIcon = null;
 
         public string Name { get; set; }
         public int Index { get; set; }
 
-        public SpecificDealItem(Context context, IAttributeSet attrs) :
+        public SpecificDealItemRight(Context context, IAttributeSet attrs) :
             base(context, attrs)
         {
             Initialize(context);
@@ -31,8 +31,8 @@ namespace Project16_Mobile.Droid
         {
 
             LayoutInflater.From(context).Inflate(Resource.Layout.specific_deal_item_layout_right, this, true);
-            mDealText = (TextView)FindViewById(Resource.Id.dealTextSPR);
-            mSelectedDeal = (RelativeLayout)FindViewById(Resource.Id.selectedDealSPR);
+            mDealText = (TextView)FindViewById(Resource.Id.dealDescriptSPR);
+            mSelectedDeal = (LinearLayout)FindViewById(Resource.Id.selectedDealSPR);
             mDealDescript = (TextView)FindViewById(Resource.Id.dealDescriptSPR);
             mDealIcon = (ImageView)FindViewById(Resource.Id.dealIconSPR);
             Index = -1;
@@ -62,7 +62,7 @@ namespace Project16_Mobile.Droid
             if (x == 0)
             {
                 a = rand.Next(1, 6);
-                switch (apps)
+                switch (a)
                 {
                     case 1:
                         mDealIcon.SetImageResource(Resource.Drawable.app1);
@@ -90,7 +90,7 @@ namespace Project16_Mobile.Droid
             if (x == 1)
             {
                 a = rand.Next(1, 9);
-                switch (drinks)
+                switch (a)
                 {
                     case 1:
                         mDealIcon.SetImageResource(Resource.Drawable.drink1);
@@ -128,7 +128,7 @@ namespace Project16_Mobile.Droid
             if (x == 2)
             {
                 a = rand.Next(1, 7);
-                switch (meals)
+                switch (a)
                 {
                     case 1:
                         mDealIcon.SetImageResource(Resource.Drawable.meal1);
@@ -158,7 +158,8 @@ namespace Project16_Mobile.Droid
             }
             if (x == 3)
             {
-                switch (desserts)
+                a = rand.Next(1, 4);
+                switch (a)
                 {
                     case 1:
                         mDealIcon.SetImageResource(Resource.Drawable.dessert1);

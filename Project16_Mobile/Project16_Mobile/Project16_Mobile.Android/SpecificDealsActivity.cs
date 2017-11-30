@@ -50,7 +50,7 @@ namespace Project16_Mobile.Droid
                 {
                     SpecificDealItem item = new SpecificDealItem(ApplicationContext, null);
 
-                    y = d.DealID;
+                    y = d.category; 
                     int id = d.RestaurantId;
                     item.SetTextSP(d.Title);
                     item.SetDescriptSP(d.Descript);
@@ -62,11 +62,11 @@ namespace Project16_Mobile.Droid
                 {
                     SpecificDealItemRight item = new SpecificDealItemRight(ApplicationContext, null);
 
-                    y = d.DealId;
+                    y = d.category;
                     int id = d.RestaurantId;
                     item.SetTextSPR(d.Title);
                     item.SetDescriptSPR(d.Descript);
-                    item.setImageSPR(y);
+                    item.SetImageSPR(y);
                     dDealLayout.AddView(item);
                 }
             }

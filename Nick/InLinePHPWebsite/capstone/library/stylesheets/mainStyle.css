@@ -1,7 +1,7 @@
 body {
     background: #2b2b2b;
     color: #fff;
-    font-family: 'Space Mono', consolas, monospace;
+    font-family: 'Helvetica', sans-serif;
     font-size: 14px;
     line-height: 150%;
     margin: 0;
@@ -9,6 +9,21 @@ body {
 
 a:-webkit-any-link {
     text-decoration: none;
+}
+
+.bg {
+	    /* The image used */
+		
+    background-image: url("/InLineWebApp/Icons/restaurant.jpg");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+	
 }
 
 /* ---------- BANNER ---------- */
@@ -84,20 +99,19 @@ article {
 .waitlist {
 	border-left: 3px solid #ffffff;
 	border-right: 3px solid #ffffff;
-	margin-left: 800px;
+	margin-left: 830px;
 	height: 1000px;
 }
 
 .waititem {	
-	width: 325px;
+	width: 299px;
 	background-color: #3399cc;
 	margin-top: 0px;
     margin-right: auto;
     margin-bottom: 10px;
     margin-left: auto;
 	height: 50px;
-	font-family: 'Yanone Kaffeesatz', sans-serif;
-	font-size: 30px;
+	font-size: 25px;
 	line-height: 50px;
 	border-radius: 5px;
 }
@@ -109,7 +123,7 @@ article {
 	/*background-color: #6b6666;*/
 	width: 270px;
 	height: 1000px;
-	margin-left: 525px;
+	margin-left: 540px;
 	position: absolute;
 	text-align: center;
 	
@@ -130,7 +144,6 @@ article {
     width: 760px;
 background-color: #3399cc;
 margin-bottom: 30px;
-font-family: sans-serif;
 border-radius: 10px;
 }
 
@@ -146,8 +159,31 @@ border-radius: 10px;
     float: left;
     width: 150px;
     height: 150px;
-    margin: 0px;
-    border: 1px solid #fff;  
+	z-index:99999;
+    margin: 0px;  
+}
+
+#pInfo {
+	background-color: #424242;
+	padding: 10px;
+	visibility: hidden;
+	border-radius: 15px;
+	margin-top: 20px;
+}
+#pInfo span {
+	font-size: x-large;
+	color: #82d5ff;
+}
+
+.fade_div{
+	display: none;
+	position:absolute;
+	width: 100%;
+	text-align: center;
+	line-height: normal;
+	font-size: x-large;
+	color: #f44336;
+	
 }
 
 .icons{
@@ -155,6 +191,9 @@ border-radius: 10px;
     opacity: 1; 
     
     visibility: hidden;
+}
+.zindex {
+	z-index: -15;
 }
 
 .styled-select select {
@@ -164,7 +203,6 @@ border-radius: 10px;
    width: 130px;
    margin-left: 10px;
    margin-top: 5px;
-   font-family: 'Space Mono';
 
 }
 
@@ -172,8 +210,19 @@ input.newinput {
     width: 100%;
     padding: 3px 15px;
     box-sizing: border-box;
-    font-family: 'Space Mono', consolas, monospace !important;
+	height: 30px;
 }
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
 
 
 /* ---------- FOOTER ---------- */

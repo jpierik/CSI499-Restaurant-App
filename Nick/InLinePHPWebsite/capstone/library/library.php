@@ -5,6 +5,8 @@ session_start();
 $serverName = "AFDANAJ\SQLEXPRESS";
 $connectionInfo = array("Database"=>"CSI4999", "UID"=>"csi4999", "PWD"=>"Temp1234");
 
+$registerCode = "capstone";
+
 $username = "csi4999";
 $password = "Temp1234";
 $dbname = "CSI4999";

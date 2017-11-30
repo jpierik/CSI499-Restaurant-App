@@ -48,9 +48,9 @@ $username = '';
        //  $result = $conn->query($sql);
          if(! $res )
 {
-  die('Could not get data: ');
+  // die('Could not get data: ');
 }
-else { 
+	} else { 
 // echo "hij";
 // echo $username;
 }
@@ -60,8 +60,8 @@ if (odbc_num_rows($result) > 0) {
 		//	echo "username correct";
 			$usercorrect = true;
 		}
-	} else {
-		echo "Username Incorrect";
+	 else {
+	//	echo "Username Incorrect";
 	//	frgrg();
 	}
 	
@@ -74,7 +74,9 @@ if (odbc_num_rows($result) > 0) {
 	   $res = odbc_result($result, 1);
          if(! $res )
 {
-  die('Could not get data: ' . odbc_error());
+ // die('Could not get data: ' . odbc_error());
+  
+ 
 }
 // else { 
 //echo "fff";
@@ -83,12 +85,18 @@ if (odbc_num_rows($result) > 0) {
 			echo "pass correct";
 			$passcorrect = true;
 		}
-	} else {
-		echo "Password Incorrect";
+	 else {
+	//	echo "Password Incorrect";
+	}
 	}
 	if ($passcorrect && $usercorrect){ echo "Login Success"; 
 
 $_SESSION['user'] = $_REQUEST['username'];
+$tempu = $_SESSION['user'];
+$sql = "SELECT alevel FROM users WHERE username = '$tempu';";
+$result = odbc_exec($conn, $sql);
+$alevel = odbc_result($result, 1);
+$_SESSION['acclevel'] = $alevel;
 $_SESSION['currentRest'] = false; 
     header("Location:index.php");
    // didjd();

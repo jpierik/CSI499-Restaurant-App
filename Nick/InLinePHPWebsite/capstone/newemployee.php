@@ -5,6 +5,12 @@ if (isset($_SESSION['user'])){
 $USER = $_SESSION['user'];
 }
 
+if ($USER) {
+$sql = "SELECT userid FROM users WHERE username = '$USER';";
+$result = odbc_exec($conn, $sql);
+$id = odbc_result($result, 1);
+}
+
 output_header();
 
 
@@ -23,8 +29,8 @@ if (isset($_REQUEST['submission'])) {
 	if (isset($_REQUEST['email']) && $_REQUEST['email']) {
 		$email = strip_tags($_REQUEST['email']);
 	}  
-	if (isset($_REQUEST['code']) && $_REQUEST['code']) {
-		$code = strip_tags($_REQUEST['code']);
+	if (isset($_REQUEST['restaurant']) && $_REQUEST['restaurant']) {
+		$restaurant = strip_tags($_REQUEST['restaurant']);
 	}  
     
 	if (isset($_REQUEST['username']) && $_REQUEST['username']) {
@@ -74,10 +80,6 @@ if (isset($_REQUEST['submission'])) {
         echo "<center>" . "password can only have letters and numbers, and 8 - 16 characters" . "</center>";
            $error=true;
     }
-    if (!($code == $registerCode)) {
-        echo "<center>" . "Access Code Incorrect" . "</center>";
-           $error=true;
-    }	
     
     if ($pass != $pass2){
 	    echo "<center>" . "passwords did not match" . "</center>";
@@ -85,10 +87,10 @@ if (isset($_REQUEST['submission'])) {
     } 
     
     if (!$error) {
-        $sql = "INSERT INTO users (email, pwd, username, restaurantid) VALUES ('$email', '$pass', '$uname', '5');";
+        $sql = "INSERT INTO users (email, pwd, username, restaurantid, alevel) VALUES ('$email', '$pass', '$uname', '$restaurant', '1');";
         odbc_exec($conn, $sql);
      
-        header("Location:login.php");
+        header("Location:index.php");
         $success = "<center>" . "User Created!" . "</center>";
         echo $success;
     }
@@ -105,16 +107,27 @@ if (isset($_REQUEST['submission'])) {
             <div class="topSpacer"></div>
                 <form class="form1">
                     <div class="container">
+						<label><b>Employee Email</b></label>
                         <input class="oldinput" type="text" placeholder="Email" name="email" required>
-                    
+						<label><b>Employee Username</b></label>
                         <input class="oldinput" type="text" placeholder="Username" name="username" required>
-                    
-						<input class="oldinput" type="text" placeholder="Access Code" name="code" required>
-					
+						<label><b>Employee Restaurant</b></label>
+						<select class="oldinput" name="restaurant" required>
+						
+						<?php
+						$sql = "SELECT Name, RestaurantId FROM Restaurant WHERE OwnerId = '$id';";
+						$result = odbc_exec($conn, $sql); 
+									while (odbc_fetch_row($result)){
+										$rname = odbc_result($result, 1);
+										$rid = odbc_result($result, 2);
+										echo '<option value="'.$rid.'">'.$rname.'</option>';
+									}
+							?>
+						</select>
+						<label><b>Employee Password</b></label>
                         <input class="oldinput" type="password" placeholder="Password" name="password" required>
                         
                         <input class="oldinput" type="password" placeholder="Confirm Password" name="passConf" required>
-						
                     </div>
                 
                     <div class="container" style="background-color:#1f1f1f">

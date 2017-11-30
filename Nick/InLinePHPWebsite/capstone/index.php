@@ -29,7 +29,7 @@ $id = odbc_result($result, 1);
 
 <html>
     <body>
-        
+        <div>
         <!-- BANNER -->
         
         <section class="banner">
@@ -64,7 +64,7 @@ Hello
             
 
         </main>
-        
+        </div>
     </body>
     
 

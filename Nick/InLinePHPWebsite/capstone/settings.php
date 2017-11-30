@@ -106,15 +106,15 @@ update_info();
             <form class="form1">
                 <div class="container">
                     <label><b>Change Email</b></label>
-                    <input type="text" placeholder="New Email" name="email" >
+                    <input class="oldinput" type="text" placeholder="New Email" name="email" >
                 
                     <label><b>Change Username</b></label>
-                    <input type="text" placeholder="New Username" name="username">
+                    <input class="oldinput" type="text" placeholder="New Username" name="username">
                 
                     <label><b>Change Password</b></label>
-                    <input type="password" placeholder="New Password" name="password">
+                    <input class="oldinput" type="password" placeholder="New Password" name="password">
                     
-                    <input type="password" placeholder="Confirm Password" name="passConf">
+                    <input class="oldinput" type="password" placeholder="Confirm Password" name="passConf">
                 
                 </div>
             

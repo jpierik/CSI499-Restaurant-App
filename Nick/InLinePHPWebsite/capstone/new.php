@@ -32,7 +32,7 @@ for($z = 0; $z <= 24; $z++){
 	}
 }
 
-$sql = "INSERT INTO Restaurant (Address, Name, NoOfTables, OwnerId) VALUES ('$restAddress', '$restName', '$countTables', '$id');";
+$sql = "INSERT INTO Restaurant (Address, Name, NoOfTables, OwnerId, CurrentWait) VALUES ('$restAddress', '$restName', '$countTables', '$id', '0');";
 odbc_exec($conn, $sql);
 
 $sql = "SELECT RestaurantID FROM Restaurant WHERE Address = '$restAddress' AND OwnerId = '$id';";
@@ -55,6 +55,10 @@ for($z = 0; $z <= 24; $z++){
 		else if ($tables[$z] == "4seat"){
 			$maxO = 4;
 			$tableType = "4seat";
+		}
+		else if ($tables[$z] == "8seat"){
+			$maxO = 8;
+			$tableType = "8seat";
 		}
 		else if ($tables[$z] == "2seat"){
 			$maxO = 2;
@@ -120,12 +124,14 @@ for ($x = 0; $x <= 24; $x++) {?>
         <img id="4per<?php echo "$x";?>" src="Icons/4personsquare.jpg" alt="Smiley face" height="150" width="150" class="icons" onclick="reset2(<?php echo "$x";?>)">
         <img id="blank<?php echo "$x";?>" src="Icons/Blank.jpg" alt="Smiley face" height="150" width="150" class="icons" style="visibility: hidden"onclick="reset2(<?php echo "$x";?>)">
         <img id="2perv<?php echo "$x";?>" src="Icons/2pervertical.jpg" alt="Smiley face" height="150" width="150" class="icons" onclick="reset2(<?php echo "$x";?>)">
-
+		<img id="8perv<?php echo "$x";?>" src="Icons/8round.jpg" alt="Smiley face" height="150" width="150" class="icons" onclick="reset2(<?php echo "$x";?>)">
+		
         <div class="styled-select">
 
 <select id="sll<?php echo "$x";?>" name="sll<?php echo "$x";?>" onchange="setInner(document.getElementById('sll<?php echo "$x";?>').options[document.getElementById('sll<?php echo "$x";?>').selectedIndex].text, <?php echo "$x";?>)">
   <option value="empty">Empty</option>
   <option value="vertbar">Vertical Bar</option>
+  <option value="8seat">8 Seat Table</option>
   <option value="4seat">4 Seat Table</option>
   <option value="2seat">2 Seat Table</option>
 </select>
@@ -162,6 +168,9 @@ document.getElementById("4per" + w).style.visibility = "visible";
 else if (v=="2 Seat Table"){
 document.getElementById("2perv" + w).style.visibility = "visible";     
 }
+else if (v=="8 Seat Table"){
+document.getElementById("8perv" + w).style.visibility = "visible";     
+}
 else if (v=="Empty"){
 document.getElementById("blank" + w).style.visibility = "visible";    
 }
@@ -173,6 +182,7 @@ function reset2(id){
     document.getElementById("4per" + id).style.visibility = "hidden"; 
     document.getElementById("blank" + id).style.visibility = "hidden"; 
     document.getElementById("2perv" + id).style.visibility = "hidden"; 
+	document.getElementById("8perv" + id).style.visibility = "hidden"; 
 }
 </script>
 </html>

@@ -26,9 +26,7 @@ input[type=text], input[type=password], textarea, input {
     margin: 10px 0;
     display: inline-block;
     border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-family: 'Space Mono', consolas, monospace !important;    
-    
+    box-sizing: border-box;    
 }
 
 textarea {
@@ -36,8 +34,6 @@ textarea {
 }
 
 label {
-    text-transform: uppercase;
-    letter-spacing: 1px;
     color: #000;
 }
 

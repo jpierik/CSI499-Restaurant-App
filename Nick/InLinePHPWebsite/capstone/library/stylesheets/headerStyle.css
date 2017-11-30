@@ -13,7 +13,7 @@ header h1 {
     padding-left: 20px;
   /*  text-transform: uppercase; */
     font-size: 30px;
-    font-weight: 900;
+   /* font-weight: 900;*/
     letter-spacing: 1px;
     color: #fff;
     float: left;
@@ -21,11 +21,11 @@ header h1 {
 
 header h1 b {
     color: #3399cc;
-    font-weight: 900;
+   /* font-weight: 900;*/
 }
 
 header h1 b:last-child {
-    color: #3399cc;
+  /*  color: #3399cc;*/
 }
 
 header .icons {

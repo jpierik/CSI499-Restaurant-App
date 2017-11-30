@@ -10,13 +10,12 @@
         <link rel="stylesheet" href="library/stylesheets/mainStyle.css?<?php echo time(); ?>">
         <link rel="stylesheet" href="library/stylesheets/headerStyle.css?<?php echo time(); ?>">
         <link rel="stylesheet" type="text/css" href="library/stylesheets/headerPagesStyle.css?<?php echo time(); ?>">
-        <link rel="stylesheet" type="text/css" href="library/stylesheets/articleStyle.css?<?php echo time(); ?>">
 		<link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <!-- jQuery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
      
     </head>
@@ -36,7 +35,7 @@
             <nav>
            
                 
-                <?php if ($USER) { ?>
+                <?php if (($USER) && ($_SESSION['acclevel'] == '0')) { ?>
            <!--     
                 <a href="addarticle.php" class="green">
                     <i class="fa fa-plus"></i> Add New
@@ -52,14 +51,28 @@
                 <a href="settings.php" class="gray">
                     <i class="fa fa-gear"></i> User Settings
                 </a>
-                
+                <a href="newemployee.php" class="green">
+                    <i class="fa fa-user-plus"></i> New Employee
+				</a>
                 <a href="login.php?logout=1&url=index.php" class="red">
                     <i class="fa fa-sign-out"></i> Logout
                 </a>
                 
               
-        <?php } else { ?>
-        
+        <?php } else if (($USER) && ($_SESSION['acclevel'] == '1')) { ?>
+
+                <a href="restaurant.php" class="red">
+                    <i class="fa fa-cutlery"></i> Restaurant
+                </a>
+                <a href="settings.php" class="gray">
+                    <i class="fa fa-gear"></i> User Settings
+                </a>
+                <a href="login.php?logout=1&url=index.php" class="red">
+                    <i class="fa fa-sign-out"></i> Logout
+                </a>
+			
+			
+        <?php } else { ?>       
 
              <a href="register.php" class="green">
                     <i class="fa fa-user-plus"></i> Register
@@ -67,8 +80,7 @@
                 
              <a href="login.php" class="red">
                     <i class="fa fa-sign-in"></i> Login
-            </a>
-                
+            </a>		
                 <?php } 
                 // echo $USER; 
                 ?>

@@ -32,9 +32,11 @@ namespace Project16_Mobile.Droid
             Button dealsButton = FindViewById<Button>(Resource.Id.dealsButton);
             Intent searchIntent = this.Intent;
             var specificDealsActivity = new Intent(this, typeof(SpecificDealsActivity));
+
             string restaurantExtra = searchIntent.GetStringExtra(UpdateService.EXTRA_RNAME);
             int id = searchIntent.GetIntExtra(UpdateService.EXTRA_RID, -1);
             int time = searchIntent.GetIntExtra(UpdateService.EXTRA_WAITTIME, -1);
+
             library = SQLLibrary.getInstance();
 
             backButton.Click += delegate
@@ -88,10 +90,10 @@ namespace Project16_Mobile.Droid
                             image.SetBackgroundResource(Resource.Drawable.beer);
                             break;
                         case 2:
-                            image.SetBackgroundResource(Resource.Drawable.app1);
+                            image.SetBackgroundResource(Resource.Drawable.chips_and_salsa);
                             break;
                         case 3:
-                            image.SetBackgroundResource(Resource.Drawable.dessert1);
+                            image.SetBackgroundResource(Resource.Drawable.dessertcup);
                             break;
                         default:
                             break;

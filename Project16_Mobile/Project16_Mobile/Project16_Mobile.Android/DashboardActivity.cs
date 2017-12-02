@@ -32,7 +32,8 @@ namespace Project16_Mobile.Droid
         Typeface weatherFont;
         Handler handler;
         SQLLibrary library;
-        LinearLayout search, deals, profile, logout, checkIn, inlineView;
+        Button search, deals, profile, logout, checkIn;
+        LinearLayout inlineView;
         int mUserId;
         ISharedPreferences sharedPreferences;
         Android.Support.V7.App.AlertDialog.Builder mBuilder;
@@ -57,24 +58,24 @@ namespace Project16_Mobile.Droid
             weatherIcon.SetTypeface(weatherFont, TypefaceStyle.Normal);
             txtDate = FindViewById<TextView>(Resource.Id.txtDate);
             txtWeather = FindViewById<TextView>(Resource.Id.txtWeather);
-            search = FindViewById<LinearLayout>(Resource.Id.layoutSearch);
+            search = FindViewById<Button>(Resource.Id.btnSearch);
 
             search.Click += delegate
             {
                 StartActivity(typeof(SearchActivity));
             };
-            deals = FindViewById<LinearLayout>(Resource.Id.layoutDeals);
+            deals = FindViewById<Button>(Resource.Id.btnDeals);
             deals.Click += delegate
             {
                 StartActivity(typeof(DealsActivity));
             };
-            checkIn = FindViewById<LinearLayout>(Resource.Id.layoutCheckIn);
+            checkIn = FindViewById<Button>(Resource.Id.btnCheckIn);
             checkIn.Click += delegate
             {
                 StartActivity(typeof(InlineActivity));
             };
           
-            logout = FindViewById<LinearLayout>(Resource.Id.layoutLogout);
+            logout = FindViewById<Button>(Resource.Id.btnLogout);
             logout.Click += delegate
             {                
                 ISharedPreferencesEditor editor = sharedPreferences.Edit();
@@ -98,21 +99,22 @@ namespace Project16_Mobile.Droid
             user.email = email;
             library.SetUser(user);
 
-            profile = FindViewById<LinearLayout>(Resource.Id.layoutProfile);
+            profile = FindViewById<Button>(Resource.Id.btnProfile);
             profile.Click += delegate
             {
+                User u = library.GetUser();
                 Android.Support.V7.App.AlertDialog.Builder profileBuilder = new Android.Support.V7.App.AlertDialog.Builder(this);
                 profileBuilder.SetTitle("User Profile");
 
                 View profileView = LayoutInflater.Inflate(Resource.Layout.activity_profile, null);
                 EditText txtName = profileView.FindViewById<EditText>(Resource.Id.txtName);
-                txtName.Text = fullName;
+                txtName.Text = u.FullName;
                 EditText txtEmail = profileView.FindViewById<EditText>(Resource.Id.txtEmail);
-                txtEmail.Text = user.email;
+                txtEmail.Text = u.email;
                 profileBuilder.SetView(profileView);
                 profileBuilder.SetPositiveButton("Save", (s, e) => 
                 {
-                    UpdateUser(user.UserId, txtName.Text, txtEmail.Text);
+                    UpdateUser(u.UserId, txtName.Text, txtEmail.Text);
                     //library.UpdateUser(user.UserId, txtName.Text, txtEmail.Text);
                 });
                 profileBuilder.SetNegativeButton("Exit", (s, e) => { });
@@ -131,9 +133,24 @@ namespace Project16_Mobile.Droid
         {
             Task<bool> output = library.UpdateUser(id, name, email);
             bool value = await output;
-            if (value)
+            if (value) {
+
+                User user = new User();
+                user.UserId = id;
+                user.FullName = name;
+                user.email = email;
+                library.SetUser(user);
+                 // ISharedPreferences sharedPreferences = GetSharedPreferences("mypref", FileCreationMode.Private);
+
+                ISharedPreferencesEditor editor = sharedPreferences.Edit();
+                editor.PutString("username", email);
+                editor.PutString("fullname", name);
+                editor.Apply();
+
+                SupportActionBar.Title = "Welcome " + name;
+
                 Toast.MakeText(ApplicationContext, "Profile Updated", ToastLength.Short).Show();
-            else
+            } else
                 Toast.MakeText(ApplicationContext, "Please try again later", ToastLength.Short).Show();
         }
         public void DismissDialog()
@@ -286,14 +303,17 @@ namespace Project16_Mobile.Droid
                 if (currentTime >= sunrise && currentTime < sunset)
                 {
                     icon = GetString(Resource.String.weather_sunny);
+                    weatherIcon.SetTextColor(Android.Content.Res.ColorStateList.ValueOf(Color.Rgb(255, 242, 0)));
                 }
                 else
                 {
                     icon = GetString(Resource.String.weather_clear_night);
+                    weatherIcon.SetTextColor(Android.Content.Res.ColorStateList.ValueOf(Color.Rgb(10, 85, 216)));
                 }
             }
             else
             {
+                weatherIcon.SetTextColor(Android.Content.Res.ColorStateList.ValueOf(Color.Rgb(124, 162, 167)));
                 switch (id)
                 {
                     case 2:

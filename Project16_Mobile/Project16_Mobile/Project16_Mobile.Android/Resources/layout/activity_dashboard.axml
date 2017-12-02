@@ -4,143 +4,174 @@
     android:background="@drawable/background_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+  <LinearLayout
+      android:orientation="horizontal"
+      android:layout_weight="1"
+      android:layout_width="match_parent"
+      android:layout_height="0dp">
+    <TextClock
+        android:textSize="48sp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_height="match_parent"
+        android:id="@+id/txtTime" />
+    <TextView
+        android:layout_height="match_parent"
+        android:layout_width="150dp"
+        android:gravity="center"
+        android:textSize="72sp"
+      
+        android:id="@+id/weatherIcon" />
+  </LinearLayout>
+  <TextView
+      android:text=""
+      android:gravity="center"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textColor="@color/white"
+      android:id="@+id/txtDate" />
+  <TextView
+      android:text=""
+      android:gravity="center"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textColor="@color/white"
+      android:id="@+id/txtWeather" />
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_weight="1"
+      android:layout_width="match_parent"
+      android:layout_height="0dp">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_weight="1"
+        android:id="@+id/inlineView"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp">
-        <TextClock
-            android:textSize="48sp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:layout_height="match_parent"
-            android:id="@+id/txtTime" />
+      <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:id="@+id/layout"
+          android:gravity="center"
+          android:layout_height="match_parent">
         <TextView
-            android:layout_height="match_parent"
-            android:layout_width="150dp"
-            android:gravity="center"
-            
-            android:textSize="72sp"
-            android:textColor="@android:color/holo_blue_bright"
-            android:id="@+id/weatherIcon" />
+            android:id="@+id/txtInlineName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_blue_dark"
+            android:text="Red Robin"
+            android:textSize="32sp" />
+        <TextView
+            android:id="@+id/txtInlineOther"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Other text....."
+            android:textSize="18sp" />
+      </LinearLayout>
+      <Button
+          android:layout_width="35dp"
+          android:layout_height="match_parent"
+          android:text="&gt;"
+          android:textSize="40sp"
+          android:id="@+id/btnInlineView"
+          android:textColor="@color/white"
+          android:background="@android:color/transparent" />
     </LinearLayout>
-    <TextView
-        android:text=""
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-            android:textColor="@color/white"
-        android:id="@+id/txtDate" />
-    <TextView
-        android:text=""
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-            android:textColor="@color/white"
-        android:id="@+id/txtWeather" />
+  </LinearLayout>
+  <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="330px">
     <LinearLayout
         android:orientation="vertical"
+        android:padding="15dp"
         android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/layoutSearch">
+      <Button
+          android:background="@drawable/search_icon"
+          android:layout_width="match_parent"
+          android:id="@+id/btnSearch"
+          android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/layoutDeals">
+      <Button
+          android:background="@drawable/deals_icon"
+          android:layout_width="match_parent"
+          android:id="@+id/btnDeals"
+          android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+       android:padding="15dp"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/layoutCheckIn"
+        android:gravity="center">
+      <Button
+          android:background="@drawable/location_icon"
+          android:layout_width="match_parent"
+          android:id="@+id/btnCheckIn"
+          android:layout_height="match_parent" />
+
+    </LinearLayout>
+      </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:id="@+id/inlineView"
-            android:padding="10dp"
+        android:layout_height="330px">
+      <LinearLayout
+              android:padding="15dp"
+          android:orientation="vertical"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:id="@+id/layoutProfile"
+          android:gravity="center">
+        <Button
+            android:background="@drawable/profile_icon"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:id="@+id/layout"
-                android:gravity="center"
-                android:layout_height="match_parent">
-                <TextView
-                    android:id="@+id/txtInlineName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_blue_dark"
-                    android:text="Red Robin"
-                    android:textSize="32sp" />
-                <TextView
-                    android:id="@+id/txtInlineOther"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                    android:text="Other text....."
-                    android:textSize="18sp" />
-            </LinearLayout>
-            <Button
-                android:layout_width="35dp"
-                android:layout_height="match_parent"
-                android:text="&gt;"
-                android:textSize="40sp"
-                android:id="@+id/btnInlineView"
-                    android:textColor="@color/white"
-                android:background="@android:color/transparent" />
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="330px">
-        <LinearLayout
-            android:orientation="vertical"
-            android:padding="15dp"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:id="@+id/layoutSearch">
-            <Button
-                android:background="@drawable/search_icon"
-                android:layout_width="match_parent"  
-                android:id="@+id/btnSearch"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/layoutDeals"
-            android:background="@drawable/deals_icon" />
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/layoutCheckIn"
-            android:background="@drawable/location_icon" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="330px">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/layoutProfile"
-            android:background="@drawable/profile_icon" />
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:id="@+id/btnProfile"
             android:layout_height="match_parent" />
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/layoutLogout"
-            android:background="@drawable/logout_icon" />
+
+      </LinearLayout>
+      <LinearLayout
+          android:orientation="vertical"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_height="match_parent" />
+      <LinearLayout
+          android:orientation="vertical"
+                android:padding="15dp"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:id="@+id/layoutLogout"
+             android:gravity="center">
+        <Button
+            android:background="@drawable/logout_icon"
+            android:layout_width="match_parent"
+            android:id="@+id/btnLogout"
+            android:layout_height="match_parent" />
+
+      </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>

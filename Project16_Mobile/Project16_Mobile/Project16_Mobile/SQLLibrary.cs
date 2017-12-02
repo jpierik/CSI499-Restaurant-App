@@ -143,7 +143,7 @@ namespace Project16_Mobile
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
                 request.ContentType = "application/json";
                 request.Method = "PUT";
-                string message = "{\"UserId\":\"" + mID + "\", \"FullName\":" + fullname + "\", \"email\":\"" + email + "\" }";
+                string message = "{\"UserId\":" + mID + ", \"FullName\":\"" + fullname + "\", \"email\":\"" + email + "\" }";
 
                 HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Put, url);
                 reqMessage.Content = new StringContent(message, Encoding.UTF8, "application/json");

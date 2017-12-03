@@ -37,16 +37,16 @@
                 p1:id="@+id/view1"
                 p1:gravity="center"
                 p1:textSize="16sp"
-                p1:textColor="@color/white" />
+                p1:textColor="@android:color/darker_gray" />
             <TextView
                 p1:text="1234 Woods Court"
-                p1:layout_width="0"
+                p1:layout_width="0dp"
                 p1:layout_weight="1"
                 p1:layout_height="wrap_content"
                 p1:id="@+id/txtRAddress"
                 p1:gravity="center"
                 p1:textSize="20sp"
-                p1:textColor="@color/white" />
+                p1:textColor="@color/dark_blue" />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -79,16 +79,16 @@
                 p1:id="@+id/view1"
                 p1:gravity="center"
                 p1:textSize="16sp"
-                p1:textColor="@color/white" />
+                p1:textColor="@android:color/darker_gray" />
             <TextView
                 p1:text="Birmingham, 55.6 mi"
-                p1:layout_width="0"
+                p1:layout_width="0dp"
                 p1:layout_weight="1"
                 p1:layout_height="wrap_content"
                 p1:id="@+id/txtRDistance"
                 p1:gravity="center"
                 p1:textSize="20sp"
-                p1:textColor="@color/white" />
+                p1:textColor="@color/dark_blue" />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -121,16 +121,16 @@
                 p1:id="@+id/view2"
                 p1:gravity="center"
                 p1:textSize="16sp"
-                p1:textColor="@color/white" />
+                p1:textColor="@android:color/darker_gray" />
             <TextView
                 p1:text="0 min"
-                p1:layout_width="0"
+                p1:layout_width="0dp"
                 p1:layout_weight="1"
                 p1:layout_height="wrap_content"
                 p1:id="@+id/waitText"
                 p1:gravity="center"
                 p1:textSize="20sp"
-                p1:textColor="@color/white" />
+                p1:textColor="@color/dark_blue" />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -144,7 +144,7 @@
     <LinearLayout
         p1:orientation="horizontal"
         p1:layout_width="match_parent"
-        p1:layout_height="0"
+        p1:layout_height="0dp"
         p1:layout_weight="1"
         p1:id="@+id/linearLayout2"
         p1:layout_gravity="center"
@@ -159,7 +159,8 @@
             p1:paddingRight="10dp"
             p1:editable="false"
             p1:minHeight="40dp"
-            p1:gravity="center" />
+            p1:gravity="center"
+            p1:textColor="@color/dark_blue" />
         <EditText
             p1:inputType="number"
             p1:layout_width="wrap_content"
@@ -168,7 +169,8 @@
             p1:layout_marginRight="0.0dp"
             p1:minWidth="75dp"
             p1:paddingLeft="10dp"
-            p1:textAppearance="?android:attr/textAppearanceLarge" />
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:textColor="@color/dark_blue" />
     </LinearLayout>
     <Button
         p1:text="Get InLine"
@@ -178,14 +180,16 @@
         p1:minHeight="55dp"
         p1:textSize="25dp"
         p1:textAllCaps="false"
-        p1:background="#006600" />
+        p1:background="#006600"
+        p1:textColor="@color/white" />
     <Button
-        p1:text="See available deals/coupons"
+        p1:text="Deals/Coupons"
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
         p1:id="@+id/dealsButton"
         p1:minHeight="55dp"
         p1:textSize="20dp"
         p1:textAllCaps="false"
-        p1:background="@color/dark_blue" />
+        p1:background="@color/dark_blue"
+        p1:textColor="@color/white" />
 </LinearLayout>

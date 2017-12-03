@@ -13,7 +13,7 @@ using Android.Support.V7.App;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "SpecificDealsActivity", Theme = "@style/Theme.AppCompat.Light", ParentActivity = typeof(ResturantActivity))]
+    [Activity(Label = "Deals", Theme = "@style/Theme.AppCompat.Light", ParentActivity = typeof(ResturantActivity))]
     public class SpecificDealsActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -77,6 +77,17 @@ namespace Project16_Mobile.Droid
         int mCat2Beer = 0;
         int mCat2Mixed = 0;
         int mCat3 = 0;
+
+        public override Boolean OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    Finish();
+                    return true;
+            }
+            return base.OnOptionsItemSelected(item);
+        }
 
         private void ResetImageCounters()
         {

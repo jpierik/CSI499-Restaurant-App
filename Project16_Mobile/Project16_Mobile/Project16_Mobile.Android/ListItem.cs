@@ -22,6 +22,7 @@ namespace Project16_Mobile.Droid
         public int Index { get; set; }
         public string Address { get; set; }
         public int WaitTime { get; set; }
+        public string Distance { get; set; }
 
         public ListItem(Context context, IAttributeSet attrs) :
             base(context, attrs)
@@ -40,9 +41,13 @@ namespace Project16_Mobile.Droid
             mSelection.Click += delegate
             {
                 Intent intent = new Intent(context, typeof(ResturantActivity)/* Insert Reseraunt Activity*/);
+                TaskStackBuilder taskStackBuilder = TaskStackBuilder.Create(context);
+                taskStackBuilder.AddNextIntentWithParentStack(intent);
                 intent.PutExtra(UpdateService.EXTRA_RNAME, Name);
                 intent.PutExtra(UpdateService.EXTRA_RID, Index);
                 intent.PutExtra(UpdateService.EXTRA_WAITTIME, WaitTime);
+                intent.PutExtra(UpdateService.EXTRA_ADDRESS, Address);
+                intent.PutExtra(UpdateService.EXTRA_DISTANCE, Distance);
                 context.StartActivity(intent);
             };
 

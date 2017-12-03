@@ -15,10 +15,11 @@ using Android.Util;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "Restaurant", Theme = "@style/Theme.AppCompat.Light", ParentActivity =typeof(SearchActivity))]
-    
+    [Activity(Label = "Restaurant", Theme = "@style/Theme.AppCompat.Light", ParentActivity = typeof(SearchActivity))]
+ 
     public class ResturantActivity : AppCompatActivity
     {
+        
         SQLLibrary library;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -27,22 +28,27 @@ namespace Project16_Mobile.Droid
             SetContentView(Resource.Layout.Resturant);
 
             EditText partySize = FindViewById<EditText>(Resource.Id.partySize);
-            Button backButton = FindViewById<Button>(Resource.Id.backButton);
+           
             Button inLine = FindViewById<Button>(Resource.Id.inLine);
             Button dealsButton = FindViewById<Button>(Resource.Id.dealsButton);
+          
+
+
+
             Intent searchIntent = this.Intent;
             var specificDealsActivity = new Intent(this, typeof(SpecificDealsActivity));
-
-            string restaurantExtra = searchIntent.GetStringExtra(UpdateService.EXTRA_RNAME);
+            
+          
             int id = searchIntent.GetIntExtra(UpdateService.EXTRA_RID, -1);
+            string restaurantExtra = searchIntent.GetStringExtra(UpdateService.EXTRA_RNAME);
             int time = searchIntent.GetIntExtra(UpdateService.EXTRA_WAITTIME, -1);
+            string address = searchIntent.GetStringExtra(UpdateService.EXTRA_ADDRESS);
+            string distance = searchIntent.GetStringExtra(UpdateService.EXTRA_DISTANCE);
+            
 
             library = SQLLibrary.getInstance();
 
-            backButton.Click += delegate
-            {
-               Finish();
-            };
+        
 
             inLine.Click += delegate
             {
@@ -62,8 +68,16 @@ namespace Project16_Mobile.Droid
            
             TextView textView = FindViewById<TextView>(Resource.Id.resturantName);
             textView.Text = "" + restaurantExtra;
-            TextView waitTime = FindViewById<TextView>(Resource.Id.waitTime);
-            waitTime.Text = "Average Wait Time: " + time + " mins";
+            textView.SetBackgroundResource(GetResourceImage());
+
+            TextView addressView = FindViewById<TextView>(Resource.Id.txtRAddress);
+            addressView.Text = address;
+
+            TextView distanceView = FindViewById<TextView>(Resource.Id.txtRDistance);
+            distanceView.Text = distance;
+
+            TextView waitTime = FindViewById<TextView>(Resource.Id.waitText);
+            waitTime.Text = "" + time + " mins";
             // Create your application here
 
 
@@ -110,6 +124,18 @@ namespace Project16_Mobile.Droid
 
            
         }
+        public override Boolean OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    Finish();
+                    return true;
+            }
+            return base.OnOptionsItemSelected(item);
+        }
+
+
         protected override void OnResume()
         {
             base.OnResume();
@@ -123,6 +149,12 @@ namespace Project16_Mobile.Droid
                 Toast.MakeText(ApplicationContext, "Error: Please try again later", ToastLength.Long).Show();
             else
                 Toast.MakeText(ApplicationContext, "Success: You are InLine!", ToastLength.Long).Show();
+        }
+        int[] drawableSelction = {Resource.Drawable.burger, Resource.Drawable.mozz_sticks, Resource.Drawable.wings, Resource.Drawable.sliders, Resource.Drawable.crablegs, Resource.Drawable.nachos,
+                                   Resource.Drawable.pizza, Resource.Drawable.pasta, Resource.Drawable.salmon, Resource.Drawable.sandwhich};
+        public int GetResourceImage()
+        {
+             return drawableSelction[library.GetNextRandom()];
         }
     }
    

@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "DashboardActivity", Theme = "@style/CustomActionBarTheme")]
+    [Activity(Label = "Dashboard", Theme = "@style/CustomActionBarTheme")]
     public class DashboardActivity : AppCompatActivity, ILocationListener
     {
         Context mContext;
@@ -62,17 +62,27 @@ namespace Project16_Mobile.Droid
 
             search.Click += delegate
             {
-                StartActivity(typeof(SearchActivity));
+                Intent intentSearch = new Intent(mContext, typeof(SearchActivity));
+                TaskStackBuilder taskStackBuilder = TaskStackBuilder.Create(mContext);
+                taskStackBuilder.AddNextIntentWithParentStack(intentSearch);
+                StartActivity(intentSearch);             
             };
             deals = FindViewById<Button>(Resource.Id.btnDeals);
             deals.Click += delegate
             {
-                StartActivity(typeof(DealsActivity));
+                Intent intentDeals = new Intent(mContext, typeof(DealsActivity));
+                TaskStackBuilder taskStackBuilder = TaskStackBuilder.Create(mContext);
+                taskStackBuilder.AddNextIntentWithParentStack(intentDeals);
+                StartActivity(intentDeals);
+              
             };
             checkIn = FindViewById<Button>(Resource.Id.btnCheckIn);
             checkIn.Click += delegate
             {
-                StartActivity(typeof(InlineActivity));
+                Intent intentCheckIn = new Intent(mContext, typeof(InlineActivity));               
+                TaskStackBuilder taskStackBuilder = TaskStackBuilder.Create(mContext);
+                taskStackBuilder.AddNextIntentWithParentStack(intentCheckIn);
+                StartActivity(intentCheckIn);
             };
           
             logout = FindViewById<Button>(Resource.Id.btnLogout);

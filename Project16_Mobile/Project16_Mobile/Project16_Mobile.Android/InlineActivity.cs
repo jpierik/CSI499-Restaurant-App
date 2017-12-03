@@ -52,6 +52,16 @@ namespace Project16_Mobile.Droid
                    
             }
         }
+        public override Boolean OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    Finish();
+                    return true;
+            }
+            return base.OnOptionsItemSelected(item);
+        }
         public void RemoveItemFromView(int pID)
         {
             for(int i = 0; i < itemList.Count; i++)

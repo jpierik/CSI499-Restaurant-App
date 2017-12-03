@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "RegisterActivity",Theme = "@style/Theme.AppCompat.Light")]
+    [Activity(Label = "Register",Theme = "@style/Theme.AppCompat.Light")]
     public class RegisterActivity : AppCompatActivity
     {
         Button btnSignup;

@@ -59,7 +59,16 @@ namespace Project16_Mobile.Droid
             };
             //StartActivity(typeof(LoginActivity));
         }
-
+        public override Boolean OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    Finish();
+                    return true;
+            }
+            return base.OnOptionsItemSelected(item);
+        }
         protected override void OnResume()
         {
             base.OnResume();

@@ -28,6 +28,11 @@ namespace Project16_Mobile
         {
             mCurrentLocation = new CurrentLocation();
         }
+        Random random = new Random();
+        public int GetNextRandom()
+        {
+            return random.Next(0, 9);
+        }
 
         public struct CurrentLocation
         {

@@ -13,7 +13,7 @@ using Android.Support.V7.App;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "DealsActivity", Theme = "@style/Theme.AppCompat.Light", ParentActivity = typeof(ResturantActivity))]
+    [Activity(Label = "Available Deals", Theme = "@style/Theme.AppCompat.Light", ParentActivity = typeof(DashboardActivity))]
     public class DealsActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -99,6 +99,16 @@ namespace Project16_Mobile.Droid
 
             
 
+        }
+        public override Boolean OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    Finish();
+                    return true;
+            }
+            return base.OnOptionsItemSelected(item);
         }
         int mCat0 = 0;
         int mCat1 = 0;

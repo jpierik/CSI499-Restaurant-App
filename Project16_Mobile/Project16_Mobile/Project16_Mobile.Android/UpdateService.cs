@@ -26,6 +26,9 @@ namespace Project16_Mobile.Droid
         public static string EXTRA_RNAME = "com.csi.project16.EXTRA_RNAME";
         public static string EXTRA_DEALS_ID = "com.csi.project16.EXTRA_ID";
 
+        public static string EXTRA_ADDRESS = "com.csi.project16.EXTRA_ADDRESS";
+        public static string EXTRA_DISTANCE = "com.csi.project16.EXTRA_DISTANCE";
+
         public IBinder Binder { get; private set; }
         private Timer mUpateTimer;
         public List<ListItem> mResturantList;
@@ -128,8 +131,9 @@ namespace Project16_Mobile.Droid
                         item.Name = r.Name;
                         item.Index = id;
                         item.WaitTime = r.CurrentWait;
-                        item.Address = r.Address;
+                        item.Address = r.Address;                      
                         string distance = CalculateDistance(currentLocation, r.Address);
+                        item.Distance = distance;
                         item.setLables(r.Name, "Average Wait Time: " + r.CurrentWait + " mins", distance);
                         mService.addListItem(item);
                         mFlag = true;
@@ -155,7 +159,8 @@ namespace Project16_Mobile.Droid
                     return "";
                 }
                 double distance = locA.DistanceTo(locB);
-                return "" + (distance * TO_MILES).ToString("0.##") + " miles";
+                string city = ReverseGeocodeCurrentLocation(locB).Locality;
+                return city + ", " + (distance * TO_MILES).ToString("0.##") + " mi";
                 
             }
             private Location GetLocationFromAddress(string strAddress)
@@ -168,10 +173,26 @@ namespace Project16_Mobile.Droid
                     address = coder.GetFromLocationName(strAddress, 5);
                     Address location = address[0];
                     rLocation = new Location("Store");
+                
                     rLocation.Latitude = location.Latitude;
                     rLocation.Longitude = location.Longitude;
                     return rLocation;
 
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
+            private Address ReverseGeocodeCurrentLocation(Location loc)
+            {
+                try
+                {
+                    Geocoder geocoder = new Geocoder(mService);
+                    IList<Address> addressList = geocoder.GetFromLocation(loc.Latitude, loc.Longitude, 10);
+
+                    Address address = addressList.FirstOrDefault();
+                    return address;
                 }
                 catch (Exception ex)
                 {

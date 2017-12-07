@@ -7,18 +7,12 @@
     p1:layout_height="match_parent"
     p1:id="@+id/dealsLayoutSP">
     <TextView
-        p1:text="Available offers from"
+        p1:text="Current Deals/Coupons"
         p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
+        p1:layout_height="75dp"
+        
         p1:id="@+id/offerTextSP"
         p1:textSize="25dp"
-        p1:gravity="center" />
-    <TextView
-        p1:text="restName"
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:id="@+id/dealRestNameSP"
-        p1:textSize="30dp"
         p1:gravity="center" />
     <ScrollView
         p1:minWidth="25px"

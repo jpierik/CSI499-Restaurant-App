@@ -10,10 +10,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Support.V7.App;
+using Android.Locations;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "Available Deals", Theme = "@style/Theme.AppCompat.Light", ParentActivity = typeof(DashboardActivity))]
+    [Activity(Label = "Available Deals", Theme = "@style/CustomAppCompatTheme", ParentActivity = typeof(DashboardActivity))]
     public class DealsActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -37,6 +38,7 @@ namespace Project16_Mobile.Droid
             bool x = false;
             int y = 0;
             ResetImageCounters();
+            SQLLibrary.CurrentLocation currentLocation = dLibrary.GetCurrentLocation();
             foreach (Deal d in dealList)
             {
                 if (x == false)
@@ -52,7 +54,9 @@ namespace Project16_Mobile.Droid
                             item.restId = id;
                             item.restName = r.Name;
                             item.restWaitTime = r.CurrentWait;
-
+                            item.Address = r.Address;
+                            string distance = CalculateDistance(currentLocation, r.Address);
+                            item.Distance = distance;
                             item.SetName(r.Name);
                             break;
                         }
@@ -62,6 +66,7 @@ namespace Project16_Mobile.Droid
                     item.SetText(d.Title);
                     item.SetDescript(d.Descript);
                     item.SetImage(GetImageResource(y, d.Title));
+                    
                     dDealLayout.AddView(item);
                     x = true;
                 }
@@ -78,7 +83,9 @@ namespace Project16_Mobile.Droid
                             item.restId = id;
                             item.restName = r.Name;
                             item.restWaitTime = r.CurrentWait;
-                       
+                            item.Address = r.Address;
+                            string distance = CalculateDistance(currentLocation, r.Address);
+                            item.Distance = distance;
                             item.SetNameR(r.Name);
                             break;
                         }
@@ -166,6 +173,60 @@ namespace Project16_Mobile.Droid
                     return mMealImages[mCat0++];
                   
             }          
+        }
+        double TO_MILES = 0.000621371;
+        private string CalculateDistance(SQLLibrary.CurrentLocation location, string address)
+        {
+
+            Location locA = new Location("Current");
+            locA.Latitude = location.Latitude;
+            locA.Longitude = location.Longitude;
+
+            Location locB = GetLocationFromAddress(address);
+            if (locB == null)
+            {
+                return "";
+            }
+            double distance = locA.DistanceTo(locB);
+            string city = ReverseGeocodeCurrentLocation(locB).Locality;
+            return city + ", " + (distance * TO_MILES).ToString("0.##") + " mi";
+
+        }
+        private Location GetLocationFromAddress(string strAddress)
+        {
+            Location rLocation = null;
+            Geocoder coder = new Geocoder(ApplicationContext);
+            IList<Address> address;
+            try
+            {
+                address = coder.GetFromLocationName(strAddress, 5);
+                Address location = address[0];
+                rLocation = new Location("Store");
+
+                rLocation.Latitude = location.Latitude;
+                rLocation.Longitude = location.Longitude;
+                return rLocation;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        private Address ReverseGeocodeCurrentLocation(Location loc)
+        {
+            try
+            {
+                Geocoder geocoder = new Geocoder(ApplicationContext);
+                IList<Address> addressList = geocoder.GetFromLocation(loc.Latitude, loc.Longitude, 10);
+
+                Address address = addressList.FirstOrDefault();
+                return address;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }    
 }

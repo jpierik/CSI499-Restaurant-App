@@ -22,7 +22,7 @@ namespace Project16_Mobile.Droid
 
 
 
-    [Activity(Label = "Login", Theme = "@style/Theme.AppCompat.Light")]
+    [Activity(Label = "Login", Theme = "@style/CustomAppCompatTheme")]
     public class LoginActivity : AppCompatActivity
     {
 
@@ -99,34 +99,46 @@ namespace Project16_Mobile.Droid
             btnLogin.Enabled = false;
             ProgressDialog progressDialog = new ProgressDialog(context);
             progressDialog.SetMessage("Authenticating...");
-            // progressDialog.Indeterminate = true;
+            progressDialog.Indeterminate = true;
             progressDialog.SetProgressStyle(ProgressDialogStyle.Spinner);
             progressDialog.Show();
 
             string email = txtEmail.Text;
             string password = txtPassword.Text;
             SQLLibrary library = SQLLibrary.getInstance();
+
+            Handler h = new Handler();
+            Action myAction = () =>
+            {
+                User user = library.Login(email, password);
+
+                if (user != null)
+                {
+                    OnLoginSuccess(user);
+                }
+                else
+                {
+                    onLoginFailed();
+                }
+                 progressDialog.Dismiss();
+
+            };
+
+            h.Post(myAction);
+            /*
             new System.Threading.Thread(new ThreadStart(() =>
             {
                 RunOnUiThread(() =>
                 {
-                    User user = library.Login(email, password);
-
-                    if (user != null)
-                    {
-                        OnLoginSuccess(user);
-                    }
-                    else
-                    {
-                        onLoginFailed();
-                    }
-                    progressDialog.Dismiss();
+                  
+                   
                 });             
                
             })).Start();            
 
-
+    */
         }
+
         public void OnLoginSuccess(User user)
         {
             ISharedPreferences sharedPreferences = GetSharedPreferences("mypref", FileCreationMode.Private);
@@ -137,10 +149,12 @@ namespace Project16_Mobile.Droid
             editor.PutString("fullname", user.FullName);
             editor.Apply();
             btnLogin.Enabled = true;
+            SQLLibrary library = SQLLibrary.getInstance();
+            library.SetUser(user);
             Intent search = new Intent(this, typeof(DashboardActivity));
-            search.PutExtra("com.csi4999.inline.EXTRA_USER_ID", user.UserId);
-            search.PutExtra("com.csi4999.inline.EXTRA_USER_FULLNAME", user.FullName);
-            search.PutExtra("com.csi4999.inline.EXTRA_EMAIL", user.email);
+          //  search.PutExtra("com.csi4999.inline.EXTRA_USER_ID", user.UserId);
+           // search.PutExtra("com.csi4999.inline.EXTRA_USER_FULLNAME", user.FullName);
+           // search.PutExtra("com.csi4999.inline.EXTRA_EMAIL", user.email);
             StartActivity(search);
             Finish();
         }
@@ -166,7 +180,7 @@ namespace Project16_Mobile.Droid
             }
             if(string.IsNullOrEmpty(password) || password.Length < 4 || password.Length > 10)
             {
-                txtPassword.Error = "Between 4 and 10 alphanumeric characters";
+                txtPassword.Error = "Enter a valid password";
                 valid = false;
             }
             else

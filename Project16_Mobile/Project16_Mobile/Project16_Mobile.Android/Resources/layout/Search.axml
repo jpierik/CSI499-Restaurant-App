@@ -14,19 +14,15 @@
             p1:layout_width="wrap_content"
             p1:minHeight="50dp"
             p1:editable="true"
+            p1:theme="@style/TextInput"
             p1:singleLine="true"
+        
             p1:capitalize="words"
             p1:layout_columnWeight="1"
-            p1:hint="Search for a resturant"
+            p1:hint="Restaurant Name"
             p1:textSize="23dp"
-            p1:gravity="fill" />
-        <ImageView
-            p1:src="@android:drawable/ic_menu_search"
-            p1:id="@+id/searchIcon"
-            p1:layout_height="wrap_content"
-            p1:minHeight="50dp"
-            p1:minWidth="50dp"
-            p1:clickable="true" />
+            p1:gravity="fill"
+            p1:drawableRight="@android:drawable/ic_menu_search" />
     </GridLayout>
     <ScrollView
         p1:minWidth="25px"

@@ -13,7 +13,7 @@ using Android.Support.V7.App;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "InlineActivity", Theme = "@style/Theme.AppCompat.Light")]
+    [Activity(Label = "Current InLine", Theme = "@style/CustomAppCompatTheme", ParentActivity = typeof(DashboardActivity))]
     public class InlineActivity : AppCompatActivity
     {
         SQLLibrary library;

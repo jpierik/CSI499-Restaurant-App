@@ -16,7 +16,7 @@ using Android.Support.V7.App;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "Search", Theme = "@style/Theme.AppCompat.Light", ParentActivity = typeof(DashboardActivity))]
+    [Activity(Label = "Search", Theme = "@style/CustomAppCompatTheme", ParentActivity = typeof(DashboardActivity))]
     public class SearchActivity : AppCompatActivity
     {
 
@@ -43,20 +43,19 @@ namespace Project16_Mobile.Droid
             BindService(updateService, new ServiceConnection(this), Bind.AutoCreate);
             
             searchBox = FindViewById<EditText>(Resource.Id.searchBox);
-            searchIcon = FindViewById<ImageView>(Resource.Id.searchIcon);
+            //searchIcon = FindViewById<ImageView>(Resource.Id.searchIcon);
             resultListLayout = FindViewById<LinearLayout>(Resource.Id.resultListLayout);
             //LinearLayout.LayoutParams resultParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 200);
-            
+
             //Button b1 = new Button(this);
 
-            searchIcon.Click += delegate
+            searchBox.TextChanged += delegate
             {
                 removeItemsFromView();
                 addItemsToView(mUpdateService.mResturantList, searchBox.Text);
-                
-                //resultListLayout.AddView(b1, resultParams);
-               
             };
+
+           
             //StartActivity(typeof(LoginActivity));
         }
         public override Boolean OnOptionsItemSelected(IMenuItem item)

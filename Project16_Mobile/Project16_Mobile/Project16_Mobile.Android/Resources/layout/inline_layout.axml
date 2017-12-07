@@ -5,6 +5,7 @@
     p1:minHeight="25px"
     p1:layout_width="match_parent"
     p1:layout_height="300px"
+    p1:paddingLeft="10dp"
     p1:id="@+id/linearLayout1">
     <LinearLayout
         p1:orientation="vertical"
@@ -25,12 +26,14 @@
             p1:textAppearance="?android:attr/textAppearanceMedium"
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
+            p1:textColor="@color/gray"
             p1:id="@+id/txtInlineNumOfGuest" />
         <TextView
             p1:text="Medium Text"
             p1:textAppearance="?android:attr/textAppearanceMedium"
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
+                p1:textColor="@color/gray"
             p1:id="@+id/txtInlineDate" />
     </LinearLayout>
     <LinearLayout
@@ -52,7 +55,7 @@
         p1:minWidth="25px"
         p1:minHeight="25px"
         p1:layout_width="150px"
-         p1:gravity="center"
+        p1:gravity="center"
         p1:layout_height="match_parent"
         p1:id="@+id/linearLayout2">
         <ImageView

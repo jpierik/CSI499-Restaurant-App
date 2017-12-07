@@ -40,7 +40,7 @@ namespace Project16_Mobile.Droid
             checkIn = (ImageView)FindViewById(Resource.Id.prevCheckIn);
             checkIn.Click += delegate
             {
-                if (CalculateDistance(library.GetCurrentLocation(), Address) < 1.0)
+                if (CalculateDistance(library.GetCurrentLocation(), Address) < 5.0)
                     UpdateWaitingParty();
                 else
                     Toast.MakeText(applicationContext, "You must be within 1 mile to check in!", ToastLength.Long).Show();

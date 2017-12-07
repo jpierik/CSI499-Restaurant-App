@@ -45,10 +45,11 @@ namespace Project16_Mobile.Droid
                 User user = library.Login(username, password);
                 if (user != null)
                 {
+                    library.SetUser(user);
                     Intent search = new Intent(this, typeof(DashboardActivity));
-                    search.PutExtra("com.csi4999.inline.EXTRA_USER_ID", id);
-                    search.PutExtra("com.csi4999.inline.EXTRA_USER_FULLNAME", fullname);
-                     search.PutExtra("com.csi4999.inline.EXTRA_EMAIL", username);
+                   // search.PutExtra("com.csi4999.inline.EXTRA_USER_ID", id);
+                   // search.PutExtra("com.csi4999.inline.EXTRA_USER_FULLNAME", fullname);
+                    // search.PutExtra("com.csi4999.inline.EXTRA_EMAIL", username);
                     StartActivity(search);
                 }
                 else

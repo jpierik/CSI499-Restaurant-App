@@ -21,13 +21,14 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/TextInput"
+          android:textColorHint="@android:color/darker_gray"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
             <EditText
                 android:id="@+id/txtUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+            
                 android:inputType="textEmailAddress"
                 android:textColor="@color/white"
                 android:hint="Email" />
@@ -35,8 +36,8 @@
     <!-- Password Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"    
-            android:theme="@style/TextInput"
+            android:layout_height="wrap_content"
+           android:textColorHint="@android:color/darker_gray"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
             <EditText
@@ -44,7 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                 android:textColor="@color/white"
+             
+                android:textColor="@color/white"
                 android:hint="Password" />
         </android.support.design.widget.TextInputLayout>
         <android.support.v7.widget.AppCompatButton
@@ -52,12 +54,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:background="@color/dark_blue"
+            android:textColor="@color/white"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
             android:text="Login" />
         <TextView
             android:id="@+id/lnkSignup"
-             android:textColor="@color/white"
+            android:textColor="@color/white"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"

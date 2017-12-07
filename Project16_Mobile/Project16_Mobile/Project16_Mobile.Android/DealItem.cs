@@ -22,6 +22,8 @@ namespace Project16_Mobile.Droid
         public int restId { get; set; }
         public int restWaitTime { get; set; }
         public string restName { get; set; }
+        public string Address { get; set; }
+        public string Distance { get; set; }
 
         public string Name { get; set; }
         public int Index { get; set; }
@@ -47,6 +49,9 @@ namespace Project16_Mobile.Droid
                 intent.PutExtra(UpdateService.EXTRA_RNAME, restName);
                 intent.PutExtra(UpdateService.EXTRA_RID, restId);
                 intent.PutExtra(UpdateService.EXTRA_WAITTIME, restWaitTime);
+                intent.PutExtra(UpdateService.EXTRA_ADDRESS, Address);
+                intent.PutExtra(UpdateService.EXTRA_DISTANCE, Distance);
+
                 context.StartActivity(intent);
             };
         }

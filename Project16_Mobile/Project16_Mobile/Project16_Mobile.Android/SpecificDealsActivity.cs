@@ -13,7 +13,7 @@ using Android.Support.V7.App;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "Deals", Theme = "@style/Theme.AppCompat.Light", ParentActivity = typeof(ResturantActivity))]
+    [Activity(Label = "Deals", Theme = "@style/CustomAppCompatTheme", ParentActivity = typeof(ResturantActivity))]
     public class SpecificDealsActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -39,7 +39,7 @@ namespace Project16_Mobile.Droid
             //SetContentView(Resource.Layout.);
             dRelativeLayout = (RelativeLayout)FindViewById(Resource.Id.selectedDeal);
             dDealLayout = (LinearLayout)FindViewById(Resource.Id.dealListLayoutSP);
-            dDealRestNameSP = (TextView)FindViewById(Resource.Id.dealRestNameSP);
+         //   dDealRestNameSP = (TextView)FindViewById(Resource.Id.dealRestNameSP);
             dDealTextSP = (TextView)FindViewById(Resource.Id.dealTextSP);
             bool x = false;
             int y = 0;
@@ -57,6 +57,7 @@ namespace Project16_Mobile.Droid
                     item.SetDescriptSP(d.Descript);
                     item.SetImageSP(GetImageResource(y, d.Title));
                     dDealLayout.AddView(item);
+                    x = true;
                 }
 
                 else
@@ -69,6 +70,7 @@ namespace Project16_Mobile.Droid
                     item.SetDescriptSPR(d.Descript);
                     item.SetImageSPR(GetImageResource(y, d.Title));
                     dDealLayout.AddView(item);
+                    x = false;
                 }
             }
         }

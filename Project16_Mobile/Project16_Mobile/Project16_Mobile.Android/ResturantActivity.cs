@@ -15,7 +15,7 @@ using Android.Util;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "Restaurant", Theme = "@style/Theme.AppCompat.Light", ParentActivity = typeof(SearchActivity))]
+    [Activity(Label = "Restaurant", Theme = "@style/DashboardAppCompatTheme", ParentActivity = typeof(SearchActivity))]
  
     public class ResturantActivity : AppCompatActivity
     {
@@ -52,16 +52,33 @@ namespace Project16_Mobile.Droid
 
             inLine.Click += delegate
             {
+
                 int sizeOfParty = int.Parse(partySize.Text);
                 //library = SQLLibrary.getInstance();
                 User user = library.GetUser();
-                InsertWaitingParty(id, sizeOfParty, user.FullName, user.UserId);            
+
+                ProgressDialog progressDialog = new ProgressDialog(this);
+                progressDialog.SetMessage("Getting InLine...");
+                progressDialog.Indeterminate = true;
+                progressDialog.Show();
+
+                Handler h = new Handler();
+                Action myAction = () =>
+                {
+                    // your code that you want to delay here
+                    InsertWaitingParty(id, sizeOfParty, user.FullName, user.UserId);
+
+                };
+
+                h.Post(myAction);
+             
+                        
              
             };
 
             dealsButton.Click += delegate {
                 specificDealsActivity.PutExtra(UpdateService.EXTRA_RESTAURANT, restaurantExtra); //Need to add the restaurant name to this1
-                specificDealsActivity.PutExtra(UpdateService.EXTRA_DEALS_ID, restaurantExtra); //Need to add the restaurant name to this1
+                specificDealsActivity.PutExtra(UpdateService.EXTRA_DEALS_ID, id); //Need to add the restaurant name to this1
                 StartActivity(specificDealsActivity);
             };
 
@@ -113,6 +130,7 @@ namespace Project16_Mobile.Droid
                             break;
                     }
                     builder.SetView(image);
+                    specificDealsActivity.PutExtra(UpdateService.EXTRA_DEALS_ID, id);
                     specificDealsActivity.PutExtra(UpdateService.EXTRA_RESTAURANT, restaurantExtra); //Need to add the restaurant name to this
                     builder.SetPositiveButton("View More", (s, e) => { StartActivity(specificDealsActivity); });
                     builder.SetNegativeButton("Exit", (s, e) => { });
@@ -148,7 +166,14 @@ namespace Project16_Mobile.Droid
             if (!value)
                 Toast.MakeText(ApplicationContext, "Error: Please try again later", ToastLength.Long).Show();
             else
+            {
                 Toast.MakeText(ApplicationContext, "Success: You are InLine!", ToastLength.Long).Show();
+                Intent i = new Intent(this, typeof(DashboardActivity));
+                i.AddFlags(ActivityFlags.ReorderToFront);
+                StartActivity(i);
+                Finish();
+
+            }
         }
         int[] drawableSelction = {Resource.Drawable.burger, Resource.Drawable.mozz_sticks, Resource.Drawable.wings, Resource.Drawable.sliders, Resource.Drawable.crablegs, Resource.Drawable.nachos,
                                    Resource.Drawable.pizza, Resource.Drawable.pasta, Resource.Drawable.salmon, Resource.Drawable.sandwhich};

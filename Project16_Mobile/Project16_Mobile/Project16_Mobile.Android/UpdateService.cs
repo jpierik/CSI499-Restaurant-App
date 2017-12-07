@@ -31,20 +31,46 @@ namespace Project16_Mobile.Droid
 
         public IBinder Binder { get; private set; }
         private Timer mUpateTimer;
+        private Timer mUpdateWeather;
         public List<ListItem> mResturantList;
 
+        //DisplayAddress(address);
+        long mWeatherUpdateTime;//sharedPreferences.GetLong("update_weather", 0);
+        long mCurrentTime; // = DateTime.Now.Ticks;
+        long mSunrise = -1;
+        long mSunset = -1;
+        int mWeatherId = -1;
+        int mTemperature = -1;
+        Address mCurrentAddress;
+
+        SQLLibrary library;
+
+        /*
+        ISharedPreferences sharedPreferences;
+        Location _currentLocation;
+        LocationManager _locationManager;
+        string location;
+        string _locationProvider;
+
+    */
         public override void OnCreate()
         {
             // This method is optional to implement
             base.OnCreate();
+            library = SQLLibrary.getInstance();
+           // sharedPreferences = GetSharedPreferences("mypref", FileCreationMode.Private);
             mResturantList = new List<ListItem>();
-           
+          //  InitializeLocationManager();
+         //   startUpdateTimer();
+         //   startUpdateWeather();
+
         }
 
         public override IBinder OnBind(Intent intent)
         {
             // This method must always be implemented        
             this.Binder = new LocalBinder(this);
+           
             Console.WriteLine("Service Bounded: " + Binder);
             return this.Binder;
         }
@@ -61,6 +87,8 @@ namespace Project16_Mobile.Droid
             // This method is optional to implement
            
             base.OnDestroy();
+            stopUpdateTimer();
+        //    stopUpdateWeather();
         }
 
         public class LocalBinder : Binder
@@ -71,7 +99,24 @@ namespace Project16_Mobile.Droid
             }
             public UpdateService Service { get; private set; }
         }
-
+        /*
+        public void startUpdateWeather()
+        {
+            if(mUpdateWeather == null)
+            {
+                mUpdateWeather = new Timer();
+            }
+            mUpdateWeather.ScheduleAtFixedRate(new UpdateWeatherTask(this), 0, 5 * 60 * 1000);
+        }
+        public void stopUpdateWeather()
+        {
+            if (mUpdateWeather == null)
+            {
+                return;
+            }
+            mUpdateWeather.Dispose();
+        }
+        */
         public void startUpdateTimer()
         {
             if(mUpateTimer == null)
@@ -103,6 +148,133 @@ namespace Project16_Mobile.Droid
         {
             return mResturantList;
         }
+        public Address GetLocationAddress()
+        {
+            return mCurrentAddress;
+        }
+        /*
+        public ISharedPreferences GetSharedPreferences()
+        {
+            return sharedPreferences;
+        }
+        public void OnProviderDisabled(string provider) { }
+
+        public void OnProviderEnabled(string provider) { }
+
+        public void OnStatusChanged(string provider, Availability status, Bundle extras) { }
+
+        public void OnLocationChanged(Location location)
+        {
+            if (_currentLocation == null)
+            {
+                return; //_locationText.Text = "Unable to determine your location. Try again in a short while.";
+            }
+            else
+            {
+               
+                Address newAddress = ReverseGeocodeCurrentLocation();
+                if(newAddress.PostalCode != mCurrentAddress.PostalCode)
+                {
+                    library.SetCurrentLocation(location.Latitude, location.Longitude);
+                    mCurrentAddress = newAddress;
+                    ISharedPreferencesEditor editor = sharedPreferences.Edit();
+                    editor.PutString("location_zipcode",newAddress.PostalCode);
+                    editor.PutString("location_city", newAddress.Locality);
+                    editor.Apply();
+                }                      
+            }
+        }
+        private void InitializeLocationManager()
+        {
+            _locationManager = (LocationManager)GetSystemService(LocationService);
+            Criteria criteriaForLocationService = new Criteria
+            {
+                Accuracy = Accuracy.Fine
+            };
+            IList<string> acceptableLocationProviders = _locationManager.GetProviders(criteriaForLocationService, true);
+
+            if (acceptableLocationProviders.Any())
+            {
+                _locationProvider = acceptableLocationProviders.First();
+            }
+            else
+            {
+                _locationProvider = string.Empty;
+            }
+            _locationManager.RequestLocationUpdates(_locationProvider, 0, 0, this);
+
+        }
+        private void DisplayAddress(Address address)
+        {
+            if (address != null)
+            {
+                StringBuilder deviceAddress = new StringBuilder();
+                for (int i = 0; i < address.MaxAddressLineIndex; i++)
+                {
+                    deviceAddress.AppendLine(address.GetAddressLine(i));
+                }
+                // Remove the last comma from the end of the address.
+                location = deviceAddress.ToString();
+            }
+            else
+            {
+                location = "Unable to determine the address. Try again in a few minutes.";
+            }
+        }
+        private Address ReverseGeocodeCurrentLocation()
+        {
+            try
+            {
+                Geocoder geocoder = new Geocoder(this);
+                IList<Address> addressList = geocoder.GetFromLocation(_currentLocation.Latitude, _currentLocation.Longitude, 10);
+
+                Address address = addressList.FirstOrDefault();
+                return address;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        */
+        /*
+        public class UpdateWeatherTask : TimerTask
+        {
+
+            UpdateService mService;
+            SQLLibrary library;
+            ISharedPreferencesEditor editor;
+            //double TO_MILES = 0.000621371;
+            public UpdateWeatherTask(UpdateService service)
+            {
+                mService = service;
+                library = SQLLibrary.getInstance();
+              
+            }
+            public override void Run()
+            {
+
+                editor = mService.GetSharedPreferences().Edit();
+                WeatherObject w = library.GetWeather(mService.GetLocationAddress().PostalCode);
+                if (w != null)
+                {
+
+                 //   mSunrise = w.sys.sunrise;
+                 //   mSunset = w.sys.sunset;
+                 //   mWeatherId = w.weather[0].id;
+                 //   mTemperature = w.main.temp;
+                    editor.PutInt("weatherId", w.weather[0].id);
+                    editor.PutInt("temperature", w.main.temp);
+                    editor.PutLong("sunrise", w.sys.sunrise);
+                    editor.PutLong("sunset", w.sys.sunset);
+                    editor.Apply();
+                }            
+             
+            }
+            
+        }
+        */
+
         public class UpdateTimerTask : TimerTask
         {
             UpdateService mService;

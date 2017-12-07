@@ -31,17 +31,12 @@ namespace Project16_Mobile.Droid
         {
 
             LayoutInflater.From(context).Inflate(Resource.Layout.specific_deal_item_layout_right, this, true);
-            mDealText = (TextView)FindViewById(Resource.Id.dealDescriptSPR);
+            mDealText = (TextView)FindViewById(Resource.Id.restNameSPR);
             mSelectedDeal = (LinearLayout)FindViewById(Resource.Id.selectedDealSPR);
             mDealDescript = (TextView)FindViewById(Resource.Id.dealDescriptSPR);
             mDealIcon = (ImageView)FindViewById(Resource.Id.dealIconSPR);
             Index = -1;
-            mSelectedDeal.Click += delegate
-            {
-                Intent intent = new Intent(context, typeof(ResturantActivity)/* Insert Reseraunt Activity*/);
-                intent.PutExtra(UpdateService.EXTRA_RNAME, Name);
-                context.StartActivity(intent);
-            };
+         
         }
         public void SetNameSPR(string name)
         {

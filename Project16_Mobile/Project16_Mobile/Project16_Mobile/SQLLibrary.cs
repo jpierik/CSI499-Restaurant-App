@@ -28,6 +28,9 @@ namespace Project16_Mobile
         {
             mCurrentLocation = new CurrentLocation();
         }
+
+        
+
         Random random = new Random();
         public int GetNextRandom()
         {
@@ -217,7 +220,7 @@ namespace Project16_Mobile
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
                 request.ContentType = "application/json";
                 request.Method = "PUT";
-                string message = "{\"PartyId\":\"" + pID + "\", \"PriorityLvl\":" + 1 + "\" }";
+                string message = "{\"PartyId\":" + pID + ", \"PriorityLvl\":" + 1 + " }";
 
                 HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Put, url);
                 reqMessage.Content = new StringContent(message, Encoding.UTF8, "application/json");
@@ -546,11 +549,7 @@ namespace Project16_Mobile
                         return null;
                     }
                 }
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (list[i].RestaurantId != id)
-                        list.RemoveAt(i);
-                }
+                list.RemoveAll(p => p.RestaurantId != id);
                 return list;
 
             }

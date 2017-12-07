@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "Dashboard", Theme = "@style/CustomActionBarTheme")]
+    [Activity(Label = "Dashboard", Theme = "@style/DashboardAppCompatTheme")]
     public class DashboardActivity : AppCompatActivity, ILocationListener
     {
         Context mContext;
@@ -44,8 +44,14 @@ namespace Project16_Mobile.Droid
             base.OnCreate(savedInstanceState);            
             SetContentView(Resource.Layout.activity_dashboard);
 
+            if (mCurrentAddress == null)
+            {
+                mCurrentAddress = new Address(Locale.English);
+                mCurrentAddress.PostalCode = "";
+            }
             mContext = this;
 
+          //  mCurrentAddress = new Address(thi
             mSelection = (Button)FindViewById(Resource.Id.btnInlineView);
             mSelection.Visibility = ViewStates.Invisible;
             mLocationName = (TextView)FindViewById(Resource.Id.txtInlineName);
@@ -65,6 +71,7 @@ namespace Project16_Mobile.Droid
                 Intent intentSearch = new Intent(mContext, typeof(SearchActivity));
                 TaskStackBuilder taskStackBuilder = TaskStackBuilder.Create(mContext);
                 taskStackBuilder.AddNextIntentWithParentStack(intentSearch);
+                intentSearch.AddFlags(ActivityFlags.ReorderToFront);
                 StartActivity(intentSearch);             
             };
             deals = FindViewById<Button>(Resource.Id.btnDeals);
@@ -73,6 +80,7 @@ namespace Project16_Mobile.Droid
                 Intent intentDeals = new Intent(mContext, typeof(DealsActivity));
                 TaskStackBuilder taskStackBuilder = TaskStackBuilder.Create(mContext);
                 taskStackBuilder.AddNextIntentWithParentStack(intentDeals);
+                intentDeals.AddFlags(ActivityFlags.ReorderToFront);
                 StartActivity(intentDeals);
               
             };
@@ -82,6 +90,7 @@ namespace Project16_Mobile.Droid
                 Intent intentCheckIn = new Intent(mContext, typeof(InlineActivity));               
                 TaskStackBuilder taskStackBuilder = TaskStackBuilder.Create(mContext);
                 taskStackBuilder.AddNextIntentWithParentStack(intentCheckIn);
+                intentCheckIn.AddFlags(ActivityFlags.ReorderToFront);
                 StartActivity(intentCheckIn);
             };
           
@@ -99,36 +108,40 @@ namespace Project16_Mobile.Droid
             InitializeLocationManager();
 
             Intent i = this.Intent;
-            mUserId = i.GetIntExtra("com.csi4999.inline.EXTRA_USER_ID", -1);
-            string fullName = i.GetStringExtra("com.csi4999.inline.EXTRA_USER_FULLNAME");
-            string email = i.GetStringExtra("com.csi4999.inline.EXTRA_EMAIL");
+            User user = library.GetUser();
+
+
+            mUserId = user.UserId;// i.GetIntExtra("com.csi4999.inline.EXTRA_USER_ID", -1);
+            string fullName = user.FullName;//i.GetStringExtra("com.csi4999.inline.EXTRA_USER_FULLNAME");
+            string email = user.email;//i.GetStringExtra("com.csi4999.inline.EXTRA_EMAIL");
             SupportActionBar.Title = "Welcome " + fullName;
-            User user = new User();
-            user.UserId = mUserId;
-            user.FullName = fullName;
-            user.email = email;
-            library.SetUser(user);
+         
+    
 
             profile = FindViewById<Button>(Resource.Id.btnProfile);
             profile.Click += delegate
             {
-                User u = library.GetUser();
-                Android.Support.V7.App.AlertDialog.Builder profileBuilder = new Android.Support.V7.App.AlertDialog.Builder(this);
+               
+                Android.Support.V7.App.AlertDialog.Builder profileBuilder = new Android.Support.V7.App.AlertDialog.Builder(this, Resource.Style.AlertDialogTheme);
                 profileBuilder.SetTitle("User Profile");
-
+              
                 View profileView = LayoutInflater.Inflate(Resource.Layout.activity_profile, null);
                 EditText txtName = profileView.FindViewById<EditText>(Resource.Id.txtName);
-                txtName.Text = u.FullName;
+              
+                txtName.Text = user.FullName;
                 EditText txtEmail = profileView.FindViewById<EditText>(Resource.Id.txtEmail);
-                txtEmail.Text = u.email;
+                txtEmail.Text = user.email;
+                
                 profileBuilder.SetView(profileView);
                 profileBuilder.SetPositiveButton("Save", (s, e) => 
                 {
-                    UpdateUser(u.UserId, txtName.Text, txtEmail.Text);
+                    UpdateUser(user.UserId, txtName.Text, txtEmail.Text);
                     //library.UpdateUser(user.UserId, txtName.Text, txtEmail.Text);
                 });
                 profileBuilder.SetNegativeButton("Exit", (s, e) => { });
                 profileBuilder.Show();
+
+
             };
             // Create your application here
 
@@ -211,6 +224,9 @@ namespace Project16_Mobile.Droid
                     };
                 }
             }
+            DateTime date = DateTime.Now;
+            string format = "ddd, dd MMM";
+            txtDate.Text = date.ToString(format);
         }
         protected override void OnResume()
         {
@@ -220,7 +236,9 @@ namespace Project16_Mobile.Droid
             mSelection.Visibility = ViewStates.Invisible;
             mLocationName.Visibility = ViewStates.Invisible;
             mInfo.Visibility = ViewStates.Invisible;
-            CheckForWaitingParty();         
+            CheckForWaitingParty();
+
+           
 
         }
         protected override void OnPause()
@@ -234,10 +252,117 @@ namespace Project16_Mobile.Droid
 
         public void OnStatusChanged(string provider, Availability status, Bundle extras) { }
 
+
+
+        long mWeatherUpdateTime;//sharedPreferences.GetLong("update_weather", 0);
+        long mCurrentTime; // = DateTime.Now.Ticks;
+        long mSunrise = -1;
+        long mSunset = -1;
+        int mWeatherId = -1;
+        int mTemperature = -1;
+        string mCity = "";
+        string mZipCode = "";
+        Address mCurrentAddress;
+
+
         public void OnLocationChanged(Location location)
         {
             _currentLocation = location;
-            
+
+            mWeatherUpdateTime = sharedPreferences.GetLong("update_weather", 0);
+            mCurrentTime = DateTime.Now.Ticks;
+
+            ISharedPreferencesEditor editor = sharedPreferences.Edit();
+
+            if (_currentLocation == null)
+            {
+                editor = sharedPreferences.Edit();
+                if (mWeatherUpdateTime < mCurrentTime - (TimeSpan.TicksPerMinute * 5))
+                {
+
+                    mWeatherId = sharedPreferences.GetInt("weatherId", -1);
+                    mSunrise = sharedPreferences.GetLong("sunrise", -1);
+                    mSunset = sharedPreferences.GetLong("sunset", -1);
+                    mTemperature = sharedPreferences.GetInt("temperature", -1);
+                    mCity = sharedPreferences.GetString("location_city", "");
+                    mZipCode = sharedPreferences.GetString("location_zip", "");
+                    if (mZipCode.Equals(""))
+                    {
+                        return;
+                    }
+
+                    WeatherObject w = library.GetWeather(mZipCode);
+                    if (w != null)
+                    {
+                        editor.PutInt("weatherId", w.weather[0].id);
+                        editor.PutInt("temperature", w.main.temp);
+                        editor.PutLong("sunrise", w.sys.sunrise);
+                        editor.PutLong("sunset", w.sys.sunset);
+                    }
+                }
+
+                editor.PutLong("update_weather", mCurrentTime);
+                editor.Apply();
+
+                if (mWeatherId != -1 && mSunrise != -1 && mSunset != -1 && mTemperature != -1)
+                {
+                  //  long t1 = sunrise * 1000;
+                 //   long t2 = sunset * 1000;
+                    setWeatherIcon(mWeatherId, mSunrise * 1000, mSunset * 1000);
+                    txtWeather.Text = mCurrentAddress.Locality + " " + mTemperature + " °F";
+                }
+
+
+                return; //_locationText.Text = "Unable to determine your location. Try again in a short while.";
+            }
+            else
+            {
+
+
+                Address newAddress = ReverseGeocodeCurrentLocation();
+               
+                if (!newAddress.PostalCode.Equals(mCurrentAddress.PostalCode))
+                {
+                   // mCurrentAddress = newAddress;
+                    editor = sharedPreferences.Edit();
+
+                  
+
+                    if (mWeatherUpdateTime < mCurrentTime - (TimeSpan.TicksPerMinute * 5) || txtWeather.Text.Equals(""))
+                    {
+
+                        WeatherObject w = library.GetWeather(newAddress.PostalCode);
+                        if (w != null)
+                        {
+                            mWeatherId = w.weather[0].id;
+                            mSunrise = w.sys.sunrise;
+                            mSunset = w.sys.sunset;
+                            mTemperature = w.main.temp;
+
+
+
+                            editor.PutInt("weatherId", w.weather[0].id);
+                            editor.PutInt("temperature", w.main.temp);
+                            editor.PutLong("sunrise", w.sys.sunrise);
+                            editor.PutLong("sunset", w.sys.sunset);
+                        }
+                        editor.PutLong("update_weather", mCurrentTime);
+                        library.SetCurrentLocation(location.Latitude, location.Longitude);
+                        mCurrentAddress = newAddress;
+
+                        editor.PutString("location_zipcode", newAddress.PostalCode);
+                        editor.PutString("location_city", newAddress.Locality);
+                        editor.Apply();
+
+
+                        setWeatherIcon(mWeatherId, mSunrise * 1000, mSunset * 1000);
+                        txtWeather.Text = newAddress.Locality + " " + mTemperature + " °F";
+                    }
+                }
+            }
+
+
+            /*
             if (_currentLocation == null)
             {
                 //_locationText.Text = "Unable to determine your location. Try again in a short while.";
@@ -293,7 +418,9 @@ namespace Project16_Mobile.Droid
           
                 if (weatherId != -1 && sunrise != -1 && sunset != -1 && temperature != -1)
                 {
-                    setWeatherIcon(weatherId, sunrise, sunset);
+                    long t1 = sunrise * 1000;
+                    long t2 = sunset * 1000;
+                    setWeatherIcon(weatherId, sunrise * 1000, sunset * 1000);
                     txtWeather.Text = address.Locality + " " + temperature + " °F";
                 }
 
@@ -303,14 +430,17 @@ namespace Project16_Mobile.Droid
                 
             }
         }
+        */
+        }
+
         private void setWeatherIcon(int actualId, long sunrise, long sunset)
         {
             int id = actualId / 100;
             string icon = "";
             if (actualId == 800){
                
-                long currentTime = new Date().Time;
-                if (currentTime >= sunrise && currentTime < sunset)
+                long currentTime = (new Date().Time);
+                if (currentTime >= sunrise && currentTime <= sunset)
                 {
                     icon = GetString(Resource.String.weather_sunny);
                     weatherIcon.SetTextColor(Android.Content.Res.ColorStateList.ValueOf(Color.Rgb(255, 242, 0)));
@@ -397,7 +527,6 @@ namespace Project16_Mobile.Droid
             {
                 return null;
             }
-        }
-      
+        }      
     }
 }

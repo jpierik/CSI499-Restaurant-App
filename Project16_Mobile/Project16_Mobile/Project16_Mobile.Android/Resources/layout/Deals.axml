@@ -6,13 +6,6 @@
     p1:layout_width="match_parent"
     p1:layout_height="match_parent"
     p1:id="@+id/dealsLayout">
-    <TextView
-        p1:text="Available offers:"
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:id="@+id/offerText"
-        p1:textSize="25dp"
-        p1:gravity="center" />
     <ScrollView
         p1:minWidth="25px"
         p1:minHeight="25px"

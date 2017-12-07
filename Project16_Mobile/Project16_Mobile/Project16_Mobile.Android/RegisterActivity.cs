@@ -10,10 +10,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Support.V7.App;
+using System.Threading.Tasks;
 
 namespace Project16_Mobile.Droid
 {
-    [Activity(Label = "RegisterActivity",Theme = "@style/Theme.AppCompat.Light")]
+    [Activity(Label = "Register", Theme = "@style/CustomAppCompatTheme")]
     public class RegisterActivity : AppCompatActivity
     {
         Button btnSignup;
@@ -21,6 +22,7 @@ namespace Project16_Mobile.Droid
         EditText txtName;
         EditText txtEmail;
         EditText txtPassword;
+        EditText txtConfirm;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -30,6 +32,8 @@ namespace Project16_Mobile.Droid
             txtName = (EditText)FindViewById(Resource.Id.inputName);
             txtEmail = (EditText)FindViewById(Resource.Id.inputEmail);
             txtPassword = (EditText)FindViewById(Resource.Id.inputPassword);
+            txtConfirm = (EditText)FindViewById(Resource.Id.confirmPassword);
+          
             btnSignup = (Button)FindViewById(Resource.Id.btnSignup);
             btnSignup.Click += delegate
             {
@@ -41,6 +45,20 @@ namespace Project16_Mobile.Droid
                 Finish();
             };
 
+        }
+        public async void RegisterUser(string name, string email, string password)
+        {
+            SQLLibrary library = SQLLibrary.getInstance();
+            Task<bool> output = library.Register(name, email, password);
+            bool value = await output;
+            if (value)
+            {
+                onSignupSuccess();
+            }
+            else
+            {
+                onSignupFailed();
+            }            
         }
         public void signup(Context context)
         {
@@ -65,20 +83,11 @@ namespace Project16_Mobile.Droid
             Action myAction = () =>
             {
                 // your code that you want to delay here
-                string output = library.TestConnection(email, password, "REGISTER");
-                if (output.Contains("Success"))
-                {
-                    onSignupSuccess();
-                }
-                else
-                {
-                    onSignupFailed();
-                }
-                progressDialog.Dismiss();
-
+                RegisterUser(name, email, password);             
+               
             };
 
-            h.PostDelayed(myAction, 3000);
+            h.Post(myAction);
 
         }
         public void onSignupSuccess()
@@ -99,6 +108,7 @@ namespace Project16_Mobile.Droid
             string name = txtName.Text;
             string email = txtEmail.Text;
             string password = txtPassword.Text;
+            string confirm = txtConfirm.Text;
 
             if (string.IsNullOrEmpty(name) || name.Length < 3)
             {
@@ -117,14 +127,28 @@ namespace Project16_Mobile.Droid
             {
                 txtEmail.Error = null;
             }
-            if(string.IsNullOrEmpty(password) || password.Length < 4 || password.Length > 10)
+            if(string.IsNullOrEmpty(password) || password.Length < 4 || password.Length > 20)
             {
-                txtPassword.Error = "Between 4 and 10 alphanumeric characters";
+                txtPassword.Error = "Between 4 and 20 alphanumeric characters";
+                valid = false;
+            }
+            else if (!password.Any(c => char.IsDigit(c)))
+            {
+                txtPassword.Error = "Must contain a number";
                 valid = false;
             }
             else
             {
                 txtPassword.Error = null;
+            }
+            if(string.IsNullOrEmpty(confirm) || !confirm.Equals(password))
+            {
+                txtConfirm.Error = "Passwords must match";
+                valid = false;
+            }
+            else
+            {
+                txtConfirm.Error = null;
             }
             return valid;
         }

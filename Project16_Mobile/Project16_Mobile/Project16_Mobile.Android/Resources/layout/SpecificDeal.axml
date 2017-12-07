@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:orientation="vertical"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:id="@+id/dealsLayoutSP">
+    <TextView
+        p1:text="Current Deals/Coupons"
+        p1:layout_width="match_parent"
+        p1:layout_height="75dp"
+        
+        p1:id="@+id/offerTextSP"
+        p1:textSize="25dp"
+        p1:gravity="center" />
+    <ScrollView
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/dealsViewSP">
+        <LinearLayout
+            p1:orientation="vertical"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/dealListLayoutSP" />
+    </ScrollView>
+</LinearLayout>

@@ -13,13 +13,16 @@ using Java.Lang;
 using Xamarin;
 using Android.Util;
 using Android.Support.V7.App;
+using Android;
+using Android.Content.PM;
+using System.Threading;
 
 namespace Project16_Mobile.Droid
 {
 
 
 
-    [Activity(Label = "LoginActivity", Theme = "@style/Theme.AppCompat.Light")]
+    [Activity(Label = "Login", Theme = "@style/CustomAppCompatTheme")]
     public class LoginActivity : AppCompatActivity
     {
 
@@ -27,6 +30,7 @@ namespace Project16_Mobile.Droid
         TextView lnkSignup;
         EditText txtEmail;
         EditText txtPassword;
+        public static int APP_PERMISSION = 2;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -47,6 +51,7 @@ namespace Project16_Mobile.Droid
             {
                 StartActivity(typeof(RegisterActivity));
             };
+            AskForPermissions();
 
         }
        //[Android.Runtime.Register("onBackPressed", "()V", "GetOnBackPressedHandler")]
@@ -58,7 +63,30 @@ namespace Project16_Mobile.Droid
         }
 
 
+        public void AskForPermissions()
+        {
+            if (Android.Support.V4.Content.ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessCoarseLocation) != (int)Permission.Granted ||
+                Android.Support.V4.Content.ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) != (int)Permission.Granted ||
+                Android.Support.V4.Content.ContextCompat.CheckSelfPermission(this, Manifest.Permission.Internet) != (int)Permission.Granted)
+            {
+                Android.Support.V4.App.ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.AccessFineLocation, Manifest.Permission.AccessCoarseLocation, Manifest.Permission.Internet }, APP_PERMISSION);
+            }
+        }
 
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            switch (requestCode)
+            {
+                case 2:
+                    {
+                        if (grantResults[0] == Permission.Granted)
+                        {
+
+                        }
+                    }
+                    break;
+            }
+        }
 
         public void login(Context context)
         {
@@ -72,35 +100,62 @@ namespace Project16_Mobile.Droid
             ProgressDialog progressDialog = new ProgressDialog(context);
             progressDialog.SetMessage("Authenticating...");
             progressDialog.Indeterminate = true;
+            progressDialog.SetProgressStyle(ProgressDialogStyle.Spinner);
             progressDialog.Show();
 
             string email = txtEmail.Text;
             string password = txtPassword.Text;
             SQLLibrary library = SQLLibrary.getInstance();
+
             Handler h = new Handler();
             Action myAction = () =>
             {
-                // your code that you want to delay here
-                string output = library.TestConnection(email, password, "LOGIN");
-                if (output.Contains("Success"))
+                User user = library.Login(email, password);
+
+                if (user != null)
                 {
-                    onLoginSuccess();
+                    OnLoginSuccess(user);
                 }
                 else
                 {
                     onLoginFailed();
                 }
-                progressDialog.Dismiss();
+                 progressDialog.Dismiss();
 
             };
 
-            h.PostDelayed(myAction, 3000);
+            h.Post(myAction);
+            /*
+            new System.Threading.Thread(new ThreadStart(() =>
+            {
+                RunOnUiThread(() =>
+                {
+                  
+                   
+                });             
+               
+            })).Start();            
 
-
+    */
         }
-        public void onLoginSuccess()
+
+        public void OnLoginSuccess(User user)
         {
+            ISharedPreferences sharedPreferences = GetSharedPreferences("mypref", FileCreationMode.Private);
+            ISharedPreferencesEditor editor = sharedPreferences.Edit();
+            editor.PutString("username", user.email);
+            editor.PutString("password", user.pwd);
+            editor.PutInt("user_id", user.UserId);
+            editor.PutString("fullname", user.FullName);
+            editor.Apply();
             btnLogin.Enabled = true;
+            SQLLibrary library = SQLLibrary.getInstance();
+            library.SetUser(user);
+            Intent search = new Intent(this, typeof(DashboardActivity));
+          //  search.PutExtra("com.csi4999.inline.EXTRA_USER_ID", user.UserId);
+           // search.PutExtra("com.csi4999.inline.EXTRA_USER_FULLNAME", user.FullName);
+           // search.PutExtra("com.csi4999.inline.EXTRA_EMAIL", user.email);
+            StartActivity(search);
             Finish();
         }
         public void onLoginFailed()
@@ -125,7 +180,7 @@ namespace Project16_Mobile.Droid
             }
             if(string.IsNullOrEmpty(password) || password.Length < 4 || password.Length > 10)
             {
-                txtPassword.Error = "Between 4 and 10 alphanumeric characters";
+                txtPassword.Error = "Enter a valid password";
                 valid = false;
             }
             else

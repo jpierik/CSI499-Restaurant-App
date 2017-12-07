@@ -9,7 +9,8 @@
     <Import_RootNamespace>Project16_Mobile</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)MyClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Restaurant.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLLibrary.cs" />
   </ItemGroup>
 </Project>

@@ -116,11 +116,8 @@ update_info();
                     
                     <input class="oldinput" type="password" placeholder="Confirm Password" name="passConf">
                 
-                </div>
-            
-                <div class="container" style="background-color:#1f1f1f">
-                    <button type="submit" name="submission">Save Changes</button>
-                    <button type="submit" name="cancel" class="cancel">Cancel</button>
+                    <button type="submit"style="    box-shadow: 1px 1px 14px 3px #cccccc;font-size: 20px;width:100%" name="submission">Save Changes</button>
+                    <button type="submit"style="    box-shadow: 1px 1px 14px 3px #cccccc;font-size: 20px;width:100%" name="cancel" class="cancel">Cancel</button>
                 </div>
             </form>
         </center>

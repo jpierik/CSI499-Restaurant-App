@@ -27,7 +27,8 @@
             <a href="index.php">
                 
                 <!-- Title -->
-                <h1><b>I</b>n<b>L</b>ine</h1>
+            <!--    <h1>InLine</h1>-->
+			<img src="/InLineWebApp/Icons/log1.png" width="165" height="45"style="margin-top: 8px;">
 
                 
             </a>

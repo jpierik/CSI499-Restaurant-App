@@ -23,7 +23,7 @@ $ffont = '"Veranda"';
         
         <!-- BANNER -->
         
-        <section class="banner" style="padding: 20px 0;">
+        <section class="bannero" style="padding: 20px 0;box-shadow:none;background: #ececec;">
                     <h1 class="text-center">My Restaurants</h1>
                    
         </section>
@@ -61,14 +61,17 @@ echo '
               </div>
 			  
             <div style="float: right; ">
-			  <button class="restl xhover" type="submit" name="view" style="margin: 0px; border: 2px solid #FFF; border-radius: 5px; font-size: x-large;" onClick="remRest1('.$rid.');");">Delete</button>
+			  <button class="restl xhover" type="submit" name="view" style="margin-top:5px;box-shadow: 1px 1px 14px 3px #e2e2e2;font-size: large;" onClick="remRest1('.$rid.');");">Delete</button>
           </div>      
 
 		  <div style="float: right;">
-			  <button class="restl" type="submit" name="view" style="margin: 0px; border: 2px solid #FFF; border-radius: 5px; font-size: x-large;" onClick="moving1('.$rid.');");">View</button>
+			  <button class="restl" type="submit" name="deal" style="margin-top:5px;box-shadow: 1px 1px 14px 3px #e2e2e2;font-size: large;" onClick="moving2('.$rid.');");">Deals</button>
+          </div>  
+		  	  <div style="float: right;">
+			  <button class="restl" type="submit" name="view" style="margin-top:5px;box-shadow: 1px 1px 14px 3px #e2e2e2;font-size: large;" onClick="moving1('.$rid.');");">View</button>
           </div>  
             <div style="float: right; ">
-			<span style="line-height: 62px; font-size: x-large; color: #bdefff;">Current Wait: ' .$cwait. ' Minutes</span>
+			<span style="line-height: 62px; font-size: x-large;color: #9e9e9e;">Current Wait: ' .$cwait. ' Minutes</span>
           </div>   		  
         </section>
 
@@ -106,6 +109,11 @@ echo '
 		<script>
 		function moving1(v){
 			var yy = "./restaurant.php?rid="
+			var x = yy + v
+	window.location = x;
+		}
+		function moving2(v){
+			var yy = "./deals.php?rid="
 			var x = yy + v
 	window.location = x;
 		}

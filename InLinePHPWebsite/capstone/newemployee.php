@@ -18,6 +18,7 @@ $email = false;
 $uname = false;
 $pass = false;
 $pass2 = false;
+$error = false;
 
 if (isset($_REQUEST['cancel'])) {
      header("Location:index.php");
@@ -90,7 +91,7 @@ if (isset($_REQUEST['submission'])) {
         $sql = "INSERT INTO users (email, pwd, username, restaurantid, alevel) VALUES ('$email', '$pass', '$uname', '$restaurant', '1');";
         odbc_exec($conn, $sql);
      
-        header("Location:index.php");
+     //   header("Location:index.php");
         $success = "<center>" . "User Created!" . "</center>";
         echo $success;
     }
@@ -128,11 +129,8 @@ if (isset($_REQUEST['submission'])) {
                         <input class="oldinput" type="password" placeholder="Password" name="password" required>
                         
                         <input class="oldinput" type="password" placeholder="Confirm Password" name="passConf" required>
-                    </div>
-                
-                    <div class="container" style="background-color:#1f1f1f">
-                        <button type="submit" name="submission">Register</button>
-                        <button type="submit" name="cancel" class="cancel" formnovalidate>Cancel</button>
+                        <button type="submit"style="    box-shadow: 1px 1px 14px 3px #cccccc;font-size: 20px;width:100%" name="submission">Register</button>
+                        <button type="submit" style="    box-shadow: 1px 1px 14px 3px #cccccc;font-size: 20px;width:100%"name="cancel" class="cancel" formnovalidate>Cancel</button>
                     </div>
                 </form>
             </div>

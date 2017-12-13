@@ -66,7 +66,7 @@ return $checkt;
 }
 $boxstyle = 'box-shadow:inset 0px 0px 0px 5px #3399cc;';
 
-$sql = "SELECT FullName, NoOfGuests, PartyId FROM WaitingParty WHERE RestaurantID = '$tempid';";
+$sql = "SELECT FullName, NoOfGuests, PartyId, PriorityLvl FROM WaitingParty WHERE RestaurantID = '$tempid' ORDER BY PriorityLvl desc;";
 $result = odbc_exec($conn, $sql);
 
 
@@ -77,7 +77,7 @@ $result = odbc_exec($conn, $sql);
         
         <!-- BANNER -->
         
-        <section class="banner" style="padding: 5px 0;">
+        <section class="bannero" style="padding: 5px 0; box-shadow: none;">
 		
 		
                     <h1 class="text-center"><?=$restName?></h1>
@@ -127,9 +127,9 @@ $result = odbc_exec($conn, $sql);
 				<h2 id="food">Party Name:</h2>                
 				<input class ="newinput" type="text" placeholder="Party Name" name="partyname" required>
 				<h2>Party Size:</h2>                
-				<input class ="newinput" type="text" placeholder="Party Size" name="partysize" style="width: 43%;"required>
+				<input class ="newinput" type="text" placeholder="Party Size" name="partysize" style="width: 100%;"required>
 				<input class ="newinput" type="text" value="<?php echo "$tempid"?>" name="restid" style="display: none;"required>
-				<button type="submit" style="margin-top: 25px;"name="submission">Add Party</button>
+				<button type="submit" style="margin-top: 25px;font-size:20px;width:100%;box-shadow: 1px 1px 14px 3px #dedede;"name="submission">Add Party</button>
 			</form>
 			
 			<div class="fade_div">
@@ -140,7 +140,7 @@ $result = odbc_exec($conn, $sql);
 			<h2>Table Info</h2> 
 			<h2>Occupants: <span id="infoOcc">4</span></h2> 
 			<h2>Time Sat: <span id="satTime"></span></h2>
-			<button onclick="remTable(this)"type="input" name="cleartable" class="remTableButton">Clear Table</button>
+			<button onclick="remTable(this)"type="input" name="cleartable" class="remTableButton"style="background-color:#ff6f6f;">Clear Table</button>
 
 			</div>
 			
@@ -161,12 +161,16 @@ $result = odbc_exec($conn, $sql);
 $rfname = odbc_result($result, 1);
 $rnum = odbc_result($result, 2);
 $rpid = odbc_result($result, 3);
-
-
+$rpri = odbc_result($result, 4);
+if ($rpri == 0){
+	$rpri = 'style="background-color: #7fbdff"';
+}else {
+	$rpri = '';
+}
 echo '
 
 					
-					<div class="waititem" id="'.$rpid.'"draggable="true" ondragstart="drag(event, this)">
+					<div class="waititem" id="'.$rpid.'"draggable="true" ondragstart="drag(event, this)"'.$rpri.'>
 						<div style="float: left; margin-left: 5px; display: inline-flex;">
 							<div id="partyname">
 							'.$rfname." -  " . '

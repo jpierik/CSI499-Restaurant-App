@@ -87,13 +87,11 @@ header("Location:myrest.php");
     <body>
         
         <!-- BANNER -->
-        
-        <section class="banner" style="padding: 30px 0;">
-                    <h1 class="text-center">Create New Restaurant</h1>
+        <section class="bannero">
+				                    <h1 class="text-center">Create New Restaurant</h1>
                     <p>Use this page to create a new restaurant layout</p>
-        </section>
-        
-        
+		</section>
+
         
         
         <!-- CONTENT -->
@@ -110,7 +108,10 @@ header("Location:myrest.php");
 <input class ="newinput" type="text" placeholder="Restaurant Name" name="restname" required>
 <h2>Restaurant Address:</h2>                
 <input class ="newinput" type="text" placeholder="Restaurant Address" name="restaddress" required>
-<button type="submit" name="submission" >Save</button>
+<button type="submit" name="submission" style="font-size: 18px;
+    width: 15%;
+    padding: 7px;
+    margin-top: 23px;" >Save</button>
             </section>
 
 

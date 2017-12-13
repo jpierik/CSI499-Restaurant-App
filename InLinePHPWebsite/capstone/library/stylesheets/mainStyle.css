@@ -1,10 +1,11 @@
 body {
-    background: #2b2b2b;
-    color: #fff;
+    background: #fffff;
+    color: #2b2b2b;
     font-family: 'Helvetica', sans-serif;
     font-size: 14px;
     line-height: 150%;
     margin: 0;
+	/*background-color:#eaeaea;*/
 }
 
 a:-webkit-any-link {
@@ -14,7 +15,7 @@ a:-webkit-any-link {
 .bg {
 	    /* The image used */
 		
-    background-image: url("/InLineWebApp/Icons/restaurant.jpg");
+    background-image: url("/InLineWebApp/Icons/00.jpg");
 
     /* Full height */
     height: 100%; 
@@ -23,35 +24,58 @@ a:-webkit-any-link {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+	margin-bottom: 25px;
 	
 }
 
 /* ---------- BANNER ---------- */
-
-section.banner {
-    background: #3399cc;
+section.bannero {
+    background: #6bb4ff;
     width: 100%;
-    padding: 50px 0;
+    padding: 25px 0;
     text-align: center;
-    border: #fff solid;
-    border-width: 5px 0;
     box-shadow: inset 0 10px 20px -10px rgba(0,0,0,0.2), 
                 inset 0 -10px 20px -10px rgba(0,0,0,0.2);
 }
 
-section.banner h1 {
-    font-size: 40px;
-    max-width: 70%;
+section.banner {
+    /*background: #eaeaea;*/
+    width: 100%;
+    padding: 50px 0;
+	height: 300px;
+    text-align: center;
+}
+section.bannero h1 {
+    font-size: 50px;
     margin: 0 auto;
+	color: #383838;
+    letter-spacing: 1px;
+    line-height: 130%;
+}
+
+section.bannero  p {
+    width: 70%;
+	font-size: 20px;
+    max-width: 950px;
+    margin: 0 auto;
+    color: #000;
+}
+
+section.banner h1 {
+    font-size: 80px;
+	padding-top: 75px;
+    margin: 0 auto;
+	color: #fff;
     letter-spacing: 1px;
     line-height: 130%;
 }
 
 section.banner  p {
     width: 70%;
+	font-size: 20px;
     max-width: 950px;
     margin: 0 auto;
-    color: #000;
+    color: #dedede;
 }
 
 /* ---------- MAIN CONTAINER ---------- */
@@ -63,10 +87,46 @@ main.content {
 
 }
 
+.mainStuff {
+	text-align: center;
+}
+
+.boxing {
+	height: 350px;
+    width: 300px;
+    margin: 10px 0px 0px 40px;
+    padding: 15px;
+    font-size: 16px;
+    float: left;
+    box-shadow: 1px 1px 9px 1px #cacaca;
+}
+
+.mobileCard{
+    height: 560px;
+    width: 1070px;
+    margin-left: 40px;
+	margin-top: 50px;
+    float: left;
+	box-shadow: 1px 1px 9px 1px #cacaca;
+	margin-bottom: 50px;
+}
+.mobPic{
+    float: left;
+    margin: 35px 0px 0px 30px;
+    border: 1px;
+	border-color: #c2c7c7;
+    border-style: solid;
+}
+.mobText{
+    margin-top: 120px;
+    padding-right: 60px;
+    padding-left: 585px;
+	
+}
 aside.sidebar {
 	position: absolute;
 	width: 510px;
-	border: 3px solid #3399cc;
+	box-shadow: 0px 0px 2px 1px #444;
 	
 }
 aside.sidebar h2 {
@@ -97,23 +157,25 @@ article {
 }
 
 .waitlist {
-	border-left: 3px solid #ffffff;
-	border-right: 3px solid #ffffff;
-	margin-left: 830px;
-	height: 1000px;
+    border: 1px solid #929292;
+    margin-left: 830px;
+    margin-top: 20px;
+    height: 568px;
+    box-shadow: 0px 0px 2px 1px #444;
 }
 
 .waititem {	
-	width: 299px;
-	background-color: #3399cc;
-	margin-top: 0px;
+    width: 299px;
+    background-color: #3293f7;
+    margin-top: 0px;
     margin-right: auto;
     margin-bottom: 10px;
     margin-left: auto;
-	height: 50px;
-	font-size: 25px;
-	line-height: 50px;
-	border-radius: 5px;
+    height: 50px;
+    font-size: 25px;
+    line-height: 50px;
+    color: white;
+    box-shadow: 2px 2px 6px 0px #ababab;
 }
 
 .xhover:hover {
@@ -131,29 +193,27 @@ article {
 }
 
 .tables {
-    border: 3px solid #3399cc;
+    border: 3px solid #484848;
     height: 760px;
     margin: 0px auto;
     width: 760px;
 
 }
 .restlist {
-    border: 3px solid #5f686d;
     height: 80px;
     margin: 0px auto;
-    width: 760px;
-background-color: #3399cc;
-margin-bottom: 30px;
-border-radius: 10px;
+    width: 800px;
+    box-shadow: 2px 2px 9px 0px #888;
+    margin-bottom: 30px;
+	    border-style: solid;
+    border-width: 1px;
+    border-color: #a5a5a5;
 }
 
 .restlist div {
-    float: left;
-    display: inline;
-	margin-top: 0px;
     padding: 10px;
     font-size: xx-large;
-    color: #fff;
+	    float: left;
 }
 .floating-box {
     float: left;
@@ -164,15 +224,15 @@ border-radius: 10px;
 }
 
 #pInfo {
-	background-color: #424242;
-	padding: 10px;
-	visibility: hidden;
-	border-radius: 15px;
-	margin-top: 20px;
+    background-color: #e6e6e6;
+    padding: 10px;
+    visibility: hidden;
+    border-radius: 15px;
+    margin-top: 20px;
 }
 #pInfo span {
 	font-size: x-large;
-	color: #82d5ff;
+	color: #3293f7;
 }
 
 .fade_div{
@@ -232,7 +292,7 @@ footer {
     text-align: center;
     padding: 50px 0;
     width: 100%;
-    border-top: 5px #fff solid;
+    border-top: 1px #909090 solid;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 12px;

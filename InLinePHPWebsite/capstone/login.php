@@ -98,7 +98,7 @@ $result = odbc_exec($conn, $sql);
 $alevel = odbc_result($result, 1);
 $_SESSION['acclevel'] = $alevel;
 $_SESSION['currentRest'] = false; 
-    header("Location:index.php");
+    header("Location:myrest.php");
    // didjd();
     }
     
@@ -123,15 +123,12 @@ update_info();
         <center>
             <form class="form1">
                 <div class="container">
+				<label><b>Username</b></label>
                     <input class="oldinput" type="text" placeholder="Username" name="username" required>
-                
+                <label><b>Password</b></label>
                     <input class="oldinput" type="password" placeholder="Password" name="city" required>
-                
-                </div>
-            
-                <div class="container" style="background-color:#1f1f1f">
-                    <button type="submit" name="submission">Login</button>
-                    <button type="submit" name="cancel" class="cancel" formnovalidate>Cancel</button>
+                    <button type="submit" style="    box-shadow: 1px 1px 14px 3px #cccccc;font-size: 20px;width:100%"name="submission">Login</button>
+                    <button type="submit" style="    box-shadow: 1px 1px 14px 3px #cccccc;font-size: 20px;width:100%"name="cancel" class="cancel" formnovalidate>Cancel</button>
                 </div>
             </form>
         </center>

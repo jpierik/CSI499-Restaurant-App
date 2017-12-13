@@ -105,21 +105,19 @@ if (isset($_REQUEST['submission'])) {
             <div class="topSpacer"></div>
                 <form class="form1">
                     <div class="container">
+					<label><b>Email</b></label>
                         <input class="oldinput" type="text" placeholder="Email" name="email" required>
-                    
+                    <label><b>Username</b></label>
                         <input class="oldinput" type="text" placeholder="Username" name="username" required>
-                    
+                    <label><b>Access Code (Contact us if you don't have one!)</b></label>
 						<input class="oldinput" type="text" placeholder="Access Code" name="code" required>
-					
+					<label><b>Password</b></label>
                         <input class="oldinput" type="password" placeholder="Password" name="password" required>
-                        
+                        <label><b>Confirm Password</b></label>
                         <input class="oldinput" type="password" placeholder="Confirm Password" name="passConf" required>
-						
-                    </div>
-                
-                    <div class="container" style="background-color:#1f1f1f">
-                        <button type="submit" name="submission">Register</button>
-                        <button type="submit" name="cancel" class="cancel" formnovalidate>Cancel</button>
+
+                        <button type="submit" name="submission"style="    box-shadow: 1px 1px 14px 3px #cccccc;font-size: 20px;width:100%">Register</button>
+                        <button type="submit" name="cancel" class="cancel"style="   box-shadow: 1px 1px 14px 3px #cccccc; font-size: 20px;width:100%" formnovalidate>Cancel</button>
                     </div>
                 </form>
             </div>
